@@ -1,0 +1,53 @@
+.navbar {
+  z-index: 9999;
+  border-bottom: 2px solid #d6d6d6;
+}
+
+.form-bordered {
+  border: 2px solid;
+  border-color: #f4f4f4 #d0d0d0 #d0d0d0 #f4f4f4;
+  padding: 10px;
+  -webkit-box-shadow: 8px 8px 9px -7px rgba(51, 51, 51, 1);
+  -moz-box-shadow: 8px 8px 9px -7px rgba(51, 51, 51, 1);
+  box-shadow: 8px 8px 9px -7px rgba(51, 51, 51, 1);
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.close {
+  background: url(close.svg);
+  width: 30px;
+  height: 30px;
+}
+
+#formHeader {
+  padding-bottom: 15px;
+}
+
+.ng-invalid:not(form).ng-touched, .ng-invalid:not(form).ng-dirty {
+  border-left: 6px solid #a94442;
+}
+
+.ng-valid.ng-dirty:not(form) {
+  border-left: 6px solid #42A948;
+}
+
+.error {
+  color: #a94442;
+}
+
+#gap {
+  height: 25px;
+}
+
+#content {
+  border-width: 0px 1px 1px 1px;
+  border-style: solid;
+  border-color: #ddd;
+}
+
+.btn{
+  margin-bottom: 15px;
+}
