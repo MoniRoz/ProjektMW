@@ -1,0 +1,43 @@
+create table Pojazd(
+id integer primary key, 
+rodzaj_pojazdu varchar2(50),
+marka varchar2(50),
+typ varchar2(50),
+model varchar2(50),
+rok_produkcji integer,
+nr_VIN varchar2(50),
+nr_silnika varchar2(50),
+d_nr_rejestracyjny varchar2(50),
+nr_kart_pojazdu varchar2(50),
+przebieg_p_w_km integer,
+barwa_nadwozia varchar2(50)
+);
+
+------------------------
+
+create or replace FUNCTION getMinPojazdID 
+return number is 
+
+cnt number := 0;
+v_flag integer := 1;
+
+begin 
+
+loop 
+
+cnt := cnt + 1;
+
+SELECT 
+   CASE WHEN EXISTS(SELECT 1 FROM Pojazd where id = cnt)  
+     THEN 1  
+     ELSE 0  
+   END  
+into v_flag FROM dual;
+
+
+EXIT when v_flag = 0;                     
+end loop;
+ 
+return cnt; 
+end; 
+
