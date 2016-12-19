@@ -31,12 +31,12 @@ export class RejestracjaSamochodu {
     this.autoService.nowySamochod(samochod).subscribe(
       data => {
         console.log('Data: ' + data);
-    
+        this.formularzRejestracji.reset();
       },
       error => {
-
+        this.formularzRejestracji.reset();
       });
     console.log(samochod);
-
+    this.formularzRejestracji.reset();
   }
 }
