@@ -9,21 +9,22 @@ import {AutoService} from "../../../_services/auto.service";
 })
 export class RejestracjaSamochodu {
   formularzRejestracji: FormGroup;
+  message: string;
 
   constructor(private fb: FormBuilder,
               private autoService: AutoService) {
     this.formularzRejestracji = fb.group({
-      'rodzaj_pojazdu': [null,Validators.pattern('[a-zA-Z]*')],
-      'marka': [null,Validators.pattern('[a-zA-Z]*')],
-      'typ': [null,Validators.pattern('[a-zA-Z]*')],
-      'model': [null,Validators.pattern('[a-zA-Z]*')],
-      'rok_produkcji': [null,[Validators.minLength(4),Validators.pattern('[0-9]{4,4}')]],
-      'nr_VIN': [null,Validators.pattern('[A-Z0-9]*')],
-      'nr_silnika': [null,Validators.pattern('[A-Z0-9]*')],
-      'd_nr_rejestracyjny': [null,Validators.pattern('[A-Z0-9]*')],
-      'nr_kart_pojazdu': [null,Validators.pattern('[0-9]*')],
-      'przebieg_p_w_km': [null,Validators.pattern('[0-9]*')],
-      'barwa_nadwozia': [null,Validators.pattern('[a-zA-Z]*')]
+      'rodzaj_pojazdu': [null, Validators.pattern('[a-zA-Z]*')],
+      'marka': [null, Validators.pattern('[a-zA-Z]*')],
+      'typ': [null, Validators.pattern('[a-zA-Z]*')],
+      'model': [null, Validators.pattern('[a-zA-Z]*')],
+      'rok_produkcji': [null, [Validators.minLength(4), Validators.pattern('[0-9]{4,4}')]],
+      'nr_VIN': [null, Validators.pattern('[A-Z0-9]*')],
+      'nr_silnika': [null, Validators.pattern('[A-Z0-9]*')],
+      'd_nr_rejestracyjny': [null, Validators.pattern('[A-Z0-9]*')],
+      'nr_kart_pojazdu': [null, Validators.pattern('[0-9]*')],
+      'przebieg_p_w_km': [null, Validators.pattern('[0-9]*')],
+      'barwa_nadwozia': [null, Validators.pattern('[a-zA-Z]*')]
     });
   }
 
@@ -31,9 +32,11 @@ export class RejestracjaSamochodu {
     this.autoService.nowySamochod(samochod).subscribe(
       data => {
         console.log('Data: ' + data);
+        this.message = 'Rejestracja przebiegła pomyślnie';
         this.formularzRejestracji.reset();
       },
       error => {
+        this.message = error;
         this.formularzRejestracji.reset();
       });
     console.log(samochod);

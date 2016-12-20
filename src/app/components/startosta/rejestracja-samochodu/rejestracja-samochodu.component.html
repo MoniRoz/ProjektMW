@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <div style="padding: 15px">
+      <div *ngIf="message">{{message}}</div>
       <h4 id="#formHeader">Dane pojazdu:</h4>
       <form [formGroup]="formularzRejestracji" (ngSubmit)="submit(formularzRejestracji.value)">
         <div class="form-group row">
