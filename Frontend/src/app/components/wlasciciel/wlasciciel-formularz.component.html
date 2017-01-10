@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div style="padding: 15px">
+      <div *ngIf="message">{{message}}</div>
+      <h4 class="formHeader">Dane właściciela:</h4>
+      <form [formGroup]="formularzWlasciciela" novalidate>
+        <div class=row>
+          <div class="form-group">
+            <div class="col-sm-6">
+              <label>Imię: </label>
+              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['imie']">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-6">
+              <label>Nazwisko: </label>
+              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nazwisko']">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h5 class="formHeader col-sm-12" style="padding-top: 20px; padding-bottom: 5px">Adres:</h5>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="form-group col-sm-8">
+                <label>Ulica: </label>
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['ulica']">
+              </div>
+              <div class="form-group col-sm-4">
+                <label>Numer: </label>
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nr_domu']">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label>Kod pocztowy: </label>
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['kod_pocztowy']">
+              </div>
+              <div class="form-group col-sm-6">
+                <label>Miejscowość: </label>
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['miejscowosc']">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group col-sm-12">
+              <label>Pesel: </label>
+              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['pesel']">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

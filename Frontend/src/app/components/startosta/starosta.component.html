@@ -1,0 +1,28 @@
+<div class="container" style="margin-bottom: 20px">
+  <div class="row">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="tab nav-link active" href="#wlasciciel" role="tab" data-toggle="tab">Dodaj właściciela pojazdu</a>
+      </li>
+      <li class="nav-item">
+        <a class="tab nav-link" href="#samochod" role="tab" data-toggle="tab">Dodaj do bazy nowy pojazd</a>
+      </li>
+    </ul>
+  </div>
+  <div id="content" class="row">
+    <div class="container">
+      <div class="tab-content">
+        <div class="tab-pane active" id="wlasciciel">
+          <wlasciciel-formularz [reset]="reset" (notify)="wlascicielFormularz = $event"></wlasciciel-formularz>
+        </div>
+        <div class="tab-pane" id="samochod">
+          <rejestracja-samochodu [reset]="reset" (notify)="samochodFormularz = $event"></rejestracja-samochodu>
+        </div>
+      </div>
+    </div>
+    <button class="btn btn-secondary float-xs-right" style="margin-right: 25px" [disabled]="!isFormValid()"
+            (click)="submit()" title="Należy uzupełnić wszytkie dane poprawnie">
+      Submit
+    </button>
+  </div>
+</div>

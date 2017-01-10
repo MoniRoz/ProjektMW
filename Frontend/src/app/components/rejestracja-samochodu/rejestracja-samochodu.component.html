@@ -3,7 +3,7 @@
     <div style="padding: 15px">
       <div *ngIf="message">{{message}}</div>
       <h4 id="#formHeader">Dane pojazdu:</h4>
-      <form [formGroup]="formularzRejestracji" (ngSubmit)="submit(formularzRejestracji.value)">
+      <form [formGroup]="formularzRejestracji">
         <div class="form-group row">
           <div class="col-sm-12">
             <label>Rodzaj pojazdu: </label>
@@ -64,9 +64,6 @@
             <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['barwa_nadwozia']">
           </div>
         </div>
-        <button type="submit" class="btn btn-secondary float-xs-right" [disabled]="!formularzRejestracji.valid">
-          Submit
-        </button>
       </form>
     </div>
   </div>
