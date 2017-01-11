@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Output, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Wlasciciel} from "../../_mocks/wlasciciel";
+import {StarostaService} from "../../_services/starosta.service";
 
 @Component({
   selector: 'wlasciciel-formularz',
@@ -14,7 +15,8 @@ export class FormularzWlasciciela implements OnChanges {
   private wlasciciel: Wlasciciel = new Wlasciciel('John', 'Doe', 'Kocia 11', '3', '03-028', 'Warszawa', '75120514389');
   // private wlasciciel: Wlasciciel;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private service: StarostaService) {
     this.formularzWlasciciela = fb.group({
       'imie': [null, [Validators.required, Validators.pattern('[a-zA-Z]*')]],
       'nazwisko': [null, [Validators.required, Validators.pattern('[a-zA-Z]*')]],
@@ -28,6 +30,18 @@ export class FormularzWlasciciela implements OnChanges {
     this.formularzWlasciciela.valueChanges.subscribe(() => {
       this.notify.emit(this.formularzWlasciciela);
     });
+  }
+
+  isOwnerExists(value: any) {
+    console.log(value);
+    this.service.getOwner().subscribe(
+      wlasciciel => {
+        this.wlasciciel = wlasciciel;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   ngOnChanges(changes: SimpleChanges) {

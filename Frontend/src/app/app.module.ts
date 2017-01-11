@@ -11,6 +11,7 @@ import {RejestracjaSamochodu} from "./components/rejestracja-samochodu/rejestrac
 import {AutoService} from "./_services/auto.service";
 import {FormularzWlasciciela} from "./components/wlasciciel/wlasciciel-formularz.component";
 import {Policjant} from "./components/policjant/policjant.component";
+import {StarostaService} from "./_services/starosta.service";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {Policjant} from "./components/policjant/policjant.component";
     AppRoutingModule,
     NgbModule.forRoot()
   ],
-  providers: [AutoService],
+  providers: [AutoService, StarostaService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

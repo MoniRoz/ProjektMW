@@ -3,20 +3,22 @@ import {Http} from '@angular/http';
 
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
+import {Wlasciciel} from "../_mocks/wlasciciel";
 
 @Injectable()
-export class AutoService {
-  private httpregistrationUrl = 'api/starosta_samochod';
+export class StarostaService {
+  private httpVehicleDataUrl = 'api/starosta/dane_samochod';
+  private httpOwnersDataUrl = 'api/starosta/dane_wlasciciel';
 
   constructor(private http: Http) {
   }
 
-  nowySamochod(samochod: Samochod) {
-    let body = JSON.stringify(samochod);
+  getVehicle(): Observable<Samochod> {
+    return this.http.get(this.httpVehicleDataUrl).map(res => res.json());
+  }
 
-    return this.http.post(this.httpregistrationUrl, body)
-      .map(res => res.json())
-      .catch(this.handleError);
+  getOwner(): Observable<Wlasciciel> {
+    return this.http.get(this.httpOwnersDataUrl).map(res => res.json());
   }
 
   private handleError(error: any) {

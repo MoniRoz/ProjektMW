@@ -1,6 +1,7 @@
 import {Component, Output, EventEmitter, Input, SimpleChanges, OnChanges} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Samochod} from "../../_mocks/samochod";
+import {StarostaService} from "../../_services/starosta.service";
 
 @Component({
   selector: 'rejestracja-samochodu',
@@ -14,7 +15,8 @@ export class RejestracjaSamochodu implements OnChanges {
   private samochod: Samochod = new Samochod('Samochod', 'Ford', 'sedan', 'Focus',
     '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', '23423456', '200000', 'czerwony');
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+              private service: StarostaService) {
     this.formularzRejestracji = fb.group({
       'rodzaj_pojazdu': [null, [Validators.required, Validators.pattern('[a-zA-Z]*')]],
       'marka': [null, [Validators.required, Validators.pattern('[a-zA-Z]*')]],
@@ -32,6 +34,18 @@ export class RejestracjaSamochodu implements OnChanges {
     this.formularzRejestracji.valueChanges.subscribe(() => {
       this.notify.emit(this.formularzRejestracji);
     });
+  }
+
+  isVehicleExists(value: any) {
+    console.log(value);
+    this.service.getVehicle().subscribe(
+      samochod => {
+        this.samochod = samochod;
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 
   ngOnChanges(changes: SimpleChanges) {
