@@ -1,0 +1,7 @@
+DROP TABLE Pojazd;
+DROP TABLE Dokument;
+DROP TABLE Wlasciciel;
+
+DROP SEQUENCE seq_Pojazd;
+DROP SEQUENCE seq_Wlasciciel;
+DROP SEQUENCE seq_Dokument;

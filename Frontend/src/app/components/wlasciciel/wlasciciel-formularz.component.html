@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div style="padding: 15px">
+      <div *ngIf="message">{{message}}</div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 float-xs-right">
+          <div class="input-group">
+            <input #PESEL type="text" class="form-control" placeholder="PESEL">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button"
+                (click)="isOwnerExists(PESEL.value);
+                PESEL.value= '';">Szukaj</button>
+      </span>
+          </div>
+        </div>
+      </div>
+      <h4 class="formHeader">Dane właściciela:</h4>
+      <form [formGroup]="formularzWlasciciela" novalidate>
+        <div class=row>
+          <div class="form-group">
+            <div class="col-sm-6">
+              <label>Imię: </label>
+              <input [maxlength]="20" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['imie']"
+                     [ngModel]="wlasciciel.imie">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-6">
+              <label>Nazwisko: </label>
+              <input [maxlength]="41" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nazwisko']"
+                     [ngModel]="wlasciciel.nazwisko">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h5 class="formHeader col-sm-12" style="padding-top: 20px; padding-bottom: 5px">Adres:</h5>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="form-group col-sm-8">
+                <label>Ulica: </label>
+                <input [maxlength]="20" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['ulica']"
+                       [ngModel]="wlasciciel.ulica">
+              </div>
+              <div class="form-group col-sm-4">
+                <label>Nr. budynku: </label>
+                <input [maxlength]="4" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nr_domu']"
+                       [ngModel]="wlasciciel.nr_domu">
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-sm-6">
+                <label>Kod pocztowy: </label>
+                <input [maxlength]="6" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['kod_pocztowy']"
+                       [ngModel]="wlasciciel.kod_pocztowy">
+              </div>
+              <div class="form-group col-sm-6">
+                <label>Miejscowość: </label>
+                <input [maxlength]="41" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['miejscowosc']"
+                       [ngModel]="wlasciciel.miejscowosc">
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group col-sm-12">
+              <label>Pesel: </label>
+              <input [maxlength]="11" type="text" class="form-control" [formControl]="formularzWlasciciela.controls['pesel']"
+                     [ngModel]="wlasciciel.pesel">
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

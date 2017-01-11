@@ -1,0 +1,10 @@
+CREATE SEQUENCE seq_Pojazd;
+CREATE SEQUENCE seq_Wlasciciel;
+CREATE SEQUENCE seq_Dokument;
+
+CREATE TABLE Pojazd (ID_pojazdu number(10) NOT NULL, ID_dokument number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, PRIMARY KEY (ID_pojazdu));
+CREATE TABLE Wlasciciel (ID_wlasciciela number(10) NOT NULL, imie varchar2(50) NOT NULL, nazwisko varchar2(50) NOT NULL, pesel number(20) NOT NULL, ulica varchar2(50) NOT NULL, kod_pocztowy varchar2(50) NOT NULL, miejscowosc varchar2(50) NOT NULL, nr_domu number(10) NOT NULL, PRIMARY KEY (ID_wlasciciela));
+CREATE TABLE Dokument (ID_dokument number(10) NOT NULL, rodzaj_pojazdu varchar2(50) NOT NULL, marka varchar2(50) NOT NULL, typ varchar2(50) NOT NULL, model varchar2(50) NOT NULL, rok_produkcji number(10) NOT NULL, nr_vin number(20) NOT NULL, nr_silnika number(20) NOT NULL, d_nr_rejestracyjny number(10) NOT NULL, nr_kart_pojazdu number(20) NOT NULL, przebieg_p_w_km number(10) NOT NULL, barwa_nadwozia varchar2(50) NOT NULL, PRIMARY KEY (ID_dokument));
+
+ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd146638 FOREIGN KEY (ID_dokument) REFERENCES Dokument (ID_dokument);
+ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd436213 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);

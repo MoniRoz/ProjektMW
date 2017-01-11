@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.malinki.pz</groupId>
-	<artifactId>Glowny</artifactId>
+	<groupId>com.truskawki.mw</groupId>
+	<artifactId>ProjektMW</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0-SNAPSHOT</version>
 
@@ -12,6 +12,7 @@
 		<module>api</module>
 		<module>bll</module>
 		<module>dal</module>
+		<module>lib</module>
 	</modules>
 
 	<parent>
@@ -23,7 +24,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<start-class>com.malinki.pz.Application</start-class>
+		<start-class>Application</start-class>
 	</properties>
 
 	<repositories>
