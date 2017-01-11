@@ -13,7 +13,7 @@ export class AutoService {
   }
 
   nowySamochod(samochod: Samochod, wlasciciel: Wlasciciel) {
-    let body = JSON.stringify({'Samochod': samochod, 'Wlasciciel': wlasciciel});
+    let body = JSON.stringify({'samochod': samochod, 'wlasciciel': wlasciciel});
     console.log(body);
     return this.http.post(this.httpregistrationUrl, body)
       .map(res => res.json())
