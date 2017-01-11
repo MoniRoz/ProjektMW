@@ -12,8 +12,8 @@ export class FormularzWlasciciela implements OnChanges {
   @Output() notify = new EventEmitter();
 
   private formularzWlasciciela: FormGroup;
-  private wlasciciel: Wlasciciel = new Wlasciciel('John', 'Doe', 'Kocia 11', '3', '03-028', 'Warszawa', '75120514389');
-  // private wlasciciel: Wlasciciel;
+  // private wlasciciel: Wlasciciel = new Wlasciciel('John', 'Doe', 'Kocia 11', '3', '03-028', 'Warszawa', '75120514389');
+  private wlasciciel: Wlasciciel;
 
   constructor(private fb: FormBuilder,
               private service: StarostaService) {

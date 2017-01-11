@@ -32,9 +32,8 @@ export class Starosta implements AfterViewInit {
   }
 
   submit() {
-    this.autoService.nowySamochod(this.samochodFormularz.value).subscribe(
+    this.autoService.nowySamochod(this.samochodFormularz.value,this.wlascicielFormularz.value).subscribe(
       data => {
-        console.log('Data: ' + data);
         this.message = 'Rejestracja przebiegła pomyślnie';
       },
       error => {

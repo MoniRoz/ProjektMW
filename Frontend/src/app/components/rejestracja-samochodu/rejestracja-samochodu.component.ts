@@ -11,9 +11,9 @@ export class RejestracjaSamochodu implements OnChanges {
   @Input() reset: boolean;
   @Output() notify = new EventEmitter();
   private formularzRejestracji: FormGroup;
-  //private samochod: Samochod;
-  private samochod: Samochod = new Samochod('Samochod', 'Ford', 'sedan', 'Focus',
-    '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', '23423456', '200000', 'czerwony');
+  private samochod: Samochod;
+  // private samochod: Samochod = new Samochod('Samochod', 'Ford', 'sedan', 'Focus',
+  //   '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', '23423456', '200000', 'czerwony');
 
   constructor(private fb: FormBuilder,
               private service: StarostaService) {

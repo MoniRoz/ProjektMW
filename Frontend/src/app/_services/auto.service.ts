@@ -3,6 +3,7 @@ import {Http} from '@angular/http';
 
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
+import {Wlasciciel} from "../_mocks/wlasciciel";
 
 @Injectable()
 export class AutoService {
@@ -11,9 +12,9 @@ export class AutoService {
   constructor(private http: Http) {
   }
 
-  nowySamochod(samochod: Samochod) {
-    let body = JSON.stringify(samochod);
-
+  nowySamochod(samochod: Samochod, wlasciciel: Wlasciciel) {
+    let body = JSON.stringify({'Samochod': samochod, 'Wlasciciel': wlasciciel});
+    console.log(body);
     return this.http.post(this.httpregistrationUrl, body)
       .map(res => res.json())
       .catch(this.handleError);
