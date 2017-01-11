@@ -1,4 +1,4 @@
-import {Component, AfterViewInit, OnChanges, SimpleChanges, DoCheck} from '@angular/core';
+import {Component, AfterViewInit, DoCheck} from '@angular/core';
 import {AutoService} from "../../_services/auto.service";
 import * as $ from 'jquery';
 
@@ -34,12 +34,13 @@ export class Starosta implements AfterViewInit,DoCheck {
   }
 
   submit() {
+    this.message = null;
     this.autoService.nowySamochod(this.samochodFormularz.value, this.wlascicielFormularz.value).subscribe(
       data => {
         this.message = 'Rejestracja przebiegła pomyślnie';
       },
       error => {
-        this.message = error;
+        console.log(error);
       });
     this.reset = true;
     setTimeout(() => {

@@ -4,6 +4,8 @@ import {Http} from '@angular/http';
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
 import {Wlasciciel} from "../_mocks/wlasciciel";
+import {error} from "util";
+import any = jasmine.any;
 
 @Injectable()
 export class StarostaService {
@@ -14,11 +16,11 @@ export class StarostaService {
   }
 
   getVehicle(): Observable<Samochod> {
-    return this.http.get(this.httpVehicleDataUrl).map(res => res.json());
+    return this.http.get(this.httpVehicleDataUrl).map(res => res.json()).catch(this.handleError);
   }
 
   getOwner(): Observable<Wlasciciel> {
-    return this.http.get(this.httpOwnersDataUrl).map(res => res.json());
+    return this.http.get(this.httpOwnersDataUrl).map(res => res.json()).catch(this.handleError);
   }
 
   private handleError(error: any) {

@@ -38,6 +38,10 @@
   color: #a94442;
 }
 
+.message {
+  color: limegreen;
+}
+
 #gap {
   height: 25px;
 }

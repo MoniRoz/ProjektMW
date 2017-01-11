@@ -14,6 +14,9 @@
   </div>
   <div id="content" class="row">
     <div class="container">
+      <div class="container">
+        <h5 id="formHeader" class="message" *ngIf="message" style="padding-top: 25px">{{message}}</h5>
+      </div>
       <div class="tab-content">
         <div class="tab-pane active" id="wlasciciel">
           <wlasciciel-formularz [reset]="reset" (notify)="wlascicielFormularz = $event"></wlasciciel-formularz>
