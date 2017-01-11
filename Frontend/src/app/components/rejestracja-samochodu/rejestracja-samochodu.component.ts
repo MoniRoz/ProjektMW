@@ -11,6 +11,7 @@ export class RejestracjaSamochodu implements OnChanges {
   @Input() reset: boolean;
   @Output() notify = new EventEmitter();
   private formularzRejestracji: FormGroup;
+  private formularzWyszukiwarki;
   private samochod: Samochod;
   // private samochod: Samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
   //   '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
@@ -26,9 +27,13 @@ export class RejestracjaSamochodu implements OnChanges {
       'nr_VIN': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]],
       'nr_silnika': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{12}$')]],
       'd_nr_rejestracyjny': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{7}$')]],
-      'nr_kart_pojazdu': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{15}$'|| 'nie wydano')]],
+      'nr_kart_pojazdu': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{15}$' || 'nie wydano')]],
       'przebieg_p_w_km': [null, [Validators.required, Validators.pattern('[0-9]*')]],
       'barwa_nadwozia': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]]
+    });
+
+    this.formularzWyszukiwarki = fb.group({
+      'search': [null, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]
     });
 
     this.formularzRejestracji.valueChanges.subscribe(() => {
@@ -45,7 +50,8 @@ export class RejestracjaSamochodu implements OnChanges {
       error => {
         console.log(error);
       }
-    )
+    );
+    this.formularzWyszukiwarki.reset();
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -10,7 +10,7 @@ import {StarostaService} from "../../_services/starosta.service";
 export class FormularzWlasciciela implements OnChanges {
   @Input() reset: boolean;
   @Output() notify = new EventEmitter();
-
+  private formularzWyszukiwarki;
   private formularzWlasciciela: FormGroup;
   // private wlasciciel: Wlasciciel = new Wlasciciel('John', 'Doe-Ave', 'Kocia', '3', '03-028', 'Warszawa', '75120514389');
   private wlasciciel: Wlasciciel;
@@ -27,13 +27,13 @@ export class FormularzWlasciciela implements OnChanges {
       'pesel': [null, [Validators.required, Validators.pattern('^\\d{11}$')]]
     });
 
+    this.formularzWyszukiwarki = fb.group({
+      'search': [null, Validators.pattern('^\\d{11}$')]
+    });
+
     this.formularzWlasciciela.valueChanges.subscribe(() => {
       this.notify.emit(this.formularzWlasciciela);
     });
-  }
-
-  check(value: any) {
-    console.log(value);
   }
 
   isOwnerExists(value: any) {
@@ -45,7 +45,8 @@ export class FormularzWlasciciela implements OnChanges {
       error => {
         console.log(error);
       }
-    )
+    );
+    this.formularzWyszukiwarki.reset();
   }
 
   ngOnChanges(changes: SimpleChanges) {

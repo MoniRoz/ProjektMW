@@ -30,7 +30,7 @@
   border: 2px solid indianred;
 }
 
-.ng-valid.ng-dirty:not(form) {
+.ng-valid.ng-dirty:not(form,.input-group) {
   border: 2px solid limegreen;
 }
 
