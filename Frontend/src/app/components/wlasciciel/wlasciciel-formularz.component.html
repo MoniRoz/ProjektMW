@@ -18,13 +18,15 @@
           <div class="form-group">
             <div class="col-sm-6">
               <label>Imię: </label>
-              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['imie']">
+              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['imie']"
+                     [ngModel]="wlasciciel.imie">
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-6">
               <label>Nazwisko: </label>
-              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nazwisko']">
+              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nazwisko']"
+                     [ngModel]="wlasciciel.nazwisko">
             </div>
           </div>
         </div>
@@ -36,28 +38,33 @@
             <div class="row">
               <div class="form-group col-sm-8">
                 <label>Ulica: </label>
-                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['ulica']">
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['ulica']"
+                       [ngModel]="wlasciciel.ulica">
               </div>
               <div class="form-group col-sm-4">
-                <label>Numer: </label>
-                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nr_domu']">
+                <label>Nr. domu: </label>
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['nr_domu']"
+                       [ngModel]="wlasciciel.nr_domu">
               </div>
             </div>
             <div class="row">
               <div class="form-group col-sm-6">
                 <label>Kod pocztowy: </label>
-                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['kod_pocztowy']">
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['kod_pocztowy']"
+                       [ngModel]="wlasciciel.kod_pocztowy">
               </div>
               <div class="form-group col-sm-6">
                 <label>Miejscowość: </label>
-                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['miejscowosc']">
+                <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['miejscowosc']"
+                       [ngModel]="wlasciciel.miejscowosc">
               </div>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group col-sm-12">
               <label>Pesel: </label>
-              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['pesel']">
+              <input type="text" class="form-control" [formControl]="formularzWlasciciela.controls['pesel']"
+                     [ngModel]="wlasciciel.pesel">
             </div>
           </div>
         </div>

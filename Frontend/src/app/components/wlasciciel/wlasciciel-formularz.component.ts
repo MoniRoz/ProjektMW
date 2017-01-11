@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {Wlasciciel} from "../../_mocks/wlasciciel";
 
 @Component({
   selector: 'wlasciciel-formularz',
@@ -10,6 +11,8 @@ export class FormularzWlasciciela implements OnChanges {
   @Output() notify = new EventEmitter();
 
   private formularzWlasciciela: FormGroup;
+  private wlasciciel: Wlasciciel = new Wlasciciel('John', 'Doe', 'Kocia 11', '3', '03-028', 'Warszawa', '75120514389');
+  // private wlasciciel: Wlasciciel;
 
   constructor(private fb: FormBuilder) {
     this.formularzWlasciciela = fb.group({
@@ -31,6 +34,8 @@ export class FormularzWlasciciela implements OnChanges {
     if (this.reset) {
       this.formularzWlasciciela.reset();
     }
+    if (!this.wlasciciel) {
+      this.wlasciciel = new Wlasciciel(null, null, null, null, null, null, null);
+    }
   }
-
 }
