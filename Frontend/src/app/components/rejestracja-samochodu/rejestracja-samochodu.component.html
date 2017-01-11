@@ -1,7 +1,16 @@
 <div class="row">
   <div class="col-lg-12">
     <div style="padding: 15px">
-      <div *ngIf="message">{{message}}</div>
+      <div class="row">
+        <div class="col-lg-4 col-sm-6 float-xs-right">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Numer VIN">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Szukaj</button>
+      </span>
+          </div>
+        </div>
+      </div>
       <h4 id="#formHeader">Dane pojazdu:</h4>
       <form [formGroup]="formularzRejestracji">
         <div class="form-group row">

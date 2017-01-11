@@ -10,11 +10,13 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {RejestracjaSamochodu} from "./components/rejestracja-samochodu/rejestracja-samochodu.component";
 import {AutoService} from "./_services/auto.service";
 import {FormularzWlasciciela} from "./components/wlasciciel/wlasciciel-formularz.component";
+import {Policjant} from "./components/policjant/policjant.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     Starosta,
+    Policjant,
     RejestracjaSamochodu,
     FormularzWlasciciela
   ],

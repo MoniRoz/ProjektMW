@@ -10,7 +10,6 @@ export class Starosta implements AfterViewInit {
   private wlascicielFormularz: any = '';
   private samochodFormularz: any = '';
   private reset: boolean = false;
-  private titleHTML: String;
   message: string;
 
   constructor(private autoService: AutoService) {
@@ -26,10 +25,8 @@ export class Starosta implements AfterViewInit {
 
   isFormValid() {
     if (this.wlascicielFormularz.valid && this.samochodFormularz.valid) {
-      this.titleHTML = '';
       return true;
     } else {
-      this.titleHTML = "Należy podać wszytskie dane";
       return false;
     }
   }
