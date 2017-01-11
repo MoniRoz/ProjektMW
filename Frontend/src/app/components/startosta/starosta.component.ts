@@ -1,4 +1,4 @@
-import {Component, AfterViewInit} from '@angular/core';
+import {Component, AfterViewInit, OnChanges, SimpleChanges, DoCheck} from '@angular/core';
 import {AutoService} from "../../_services/auto.service";
 import * as $ from 'jquery';
 
@@ -6,10 +6,11 @@ import * as $ from 'jquery';
   selector: 'starosta',
   templateUrl: 'starosta.component.html'
 })
-export class Starosta implements AfterViewInit {
+export class Starosta implements AfterViewInit,DoCheck {
   private wlascicielFormularz: any = '';
   private samochodFormularz: any = '';
   private reset: boolean = false;
+  private isValid: boolean = false;
   message: string;
 
   constructor(private autoService: AutoService) {
@@ -23,23 +24,23 @@ export class Starosta implements AfterViewInit {
     });
   }
 
+  ngDoCheck(): void {
+    //console.log(this.wlascicielFormularz.valid + ' ' + this.samochodFormularz.valid);
+    this.isValid = this.isFormValid();
+  }
+
   isFormValid() {
-    if (this.wlascicielFormularz.valid && this.samochodFormularz.valid) {
-      return true;
-    } else {
-      return false;
-    }
+    return (this.wlascicielFormularz.valid && this.samochodFormularz.valid)
   }
 
   submit() {
-    this.autoService.nowySamochod(this.samochodFormularz.value,this.wlascicielFormularz.value).subscribe(
+    this.autoService.nowySamochod(this.samochodFormularz.value, this.wlascicielFormularz.value).subscribe(
       data => {
         this.message = 'Rejestracja przebiegła pomyślnie';
       },
       error => {
         this.message = error;
       });
-    console.log(this.samochodFormularz.value);
     this.reset = true;
     setTimeout(() => {
       this.reset = false;

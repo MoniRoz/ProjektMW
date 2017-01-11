@@ -37,7 +37,6 @@ export class FormularzWlasciciela implements OnChanges {
   }
 
   isOwnerExists(value: any) {
-    console.log(value);
     this.service.getOwner().subscribe(
       wlasciciel => {
         this.wlasciciel = wlasciciel;
@@ -47,11 +46,13 @@ export class FormularzWlasciciela implements OnChanges {
       }
     );
     this.formularzWyszukiwarki.reset();
+    this.wlasciciel = new Wlasciciel('John', 'Doe-Ave', 'Kocia', '3', '03-028', 'Warszawa', '75120514389');
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.reset) {
       this.formularzWlasciciela.reset();
+      this.wlasciciel = new Wlasciciel(null, null, null, null, null, null, null);
     }
     if (!this.wlasciciel) {
       this.wlasciciel = new Wlasciciel(null, null, null, null, null, null, null);

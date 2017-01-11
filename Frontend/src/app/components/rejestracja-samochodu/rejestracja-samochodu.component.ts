@@ -42,7 +42,6 @@ export class RejestracjaSamochodu implements OnChanges {
   }
 
   isVehicleExists(value: any) {
-    console.log(value);
     this.service.getVehicle().subscribe(
       samochod => {
         this.samochod = samochod;
@@ -52,11 +51,14 @@ export class RejestracjaSamochodu implements OnChanges {
       }
     );
     this.formularzWyszukiwarki.reset();
+    this.samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
+      '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.reset) {
       this.formularzRejestracji.reset();
+      this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null, null);
     }
 
     if (!this.samochod) {
