@@ -13,8 +13,6 @@ export class RejestracjaSamochodu implements OnChanges {
   private formularzRejestracji: FormGroup;
   private formularzWyszukiwarki;
   private samochod: Samochod;
-  // private samochod: Samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
-  //   '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
 
   constructor(private fb: FormBuilder,
               private service: StarostaService) {
@@ -33,7 +31,7 @@ export class RejestracjaSamochodu implements OnChanges {
     });
 
     this.formularzWyszukiwarki = fb.group({
-      'search': [null, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]
+      'search': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]]
     });
 
     this.formularzRejestracji.valueChanges.subscribe(() => {
@@ -41,8 +39,8 @@ export class RejestracjaSamochodu implements OnChanges {
     });
   }
 
-  isVehicleExists(value: any) {
-    this.service.getVehicle().subscribe(
+  isVehicleExists(VIN: string) {
+    this.service.getVehicle(VIN).subscribe(
       samochod => {
         this.samochod = samochod;
       },
@@ -51,8 +49,8 @@ export class RejestracjaSamochodu implements OnChanges {
       }
     );
     this.formularzWyszukiwarki.reset();
-    this.samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
-      '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
+    // this.samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
+    //   '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
   }
 
   ngOnChanges(changes: SimpleChanges) {

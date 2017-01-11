@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, URLSearchParams} from '@angular/http';
 
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
@@ -15,11 +15,18 @@ export class StarostaService {
   constructor(private http: Http) {
   }
 
-  getVehicle(): Observable<Samochod> {
-    return this.http.get(this.httpVehicleDataUrl).map(res => res.json()).catch(this.handleError);
+  getVehicle(VIN: string): Observable<Samochod> {
+    console.log(VIN);
+    let params = new URLSearchParams();
+    params.set('vin', VIN);
+    return this.http.get(this.httpVehicleDataUrl,{search: params})
+      .map(res => res.json())
+      .catch(this.handleError);
   }
 
-  getOwner(): Observable<Wlasciciel> {
+  getOwner(pesel: string): Observable<Wlasciciel> {
+    let params = new URLSearchParams();
+    params.set('pesel', pesel);
     return this.http.get(this.httpOwnersDataUrl).map(res => res.json()).catch(this.handleError);
   }
 

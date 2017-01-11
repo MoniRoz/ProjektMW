@@ -12,7 +12,6 @@ export class FormularzWlasciciela implements OnChanges {
   @Output() notify = new EventEmitter();
   private formularzWyszukiwarki;
   private formularzWlasciciela: FormGroup;
-  // private wlasciciel: Wlasciciel = new Wlasciciel('John', 'Doe-Ave', 'Kocia', '3', '03-028', 'Warszawa', '75120514389');
   private wlasciciel: Wlasciciel;
 
   constructor(private fb: FormBuilder,
@@ -28,7 +27,7 @@ export class FormularzWlasciciela implements OnChanges {
     });
 
     this.formularzWyszukiwarki = fb.group({
-      'search': [null, Validators.pattern('^\\d{11}$')]
+      'search': [null, [Validators.required, Validators.pattern('^\\d{11}$')]]
     });
 
     this.formularzWlasciciela.valueChanges.subscribe(() => {
@@ -36,8 +35,8 @@ export class FormularzWlasciciela implements OnChanges {
     });
   }
 
-  isOwnerExists(value: any) {
-    this.service.getOwner().subscribe(
+  isOwnerExists(pesel: string) {
+    this.service.getOwner(pesel).subscribe(
       wlasciciel => {
         this.wlasciciel = wlasciciel;
       },
@@ -46,7 +45,7 @@ export class FormularzWlasciciela implements OnChanges {
       }
     );
     this.formularzWyszukiwarki.reset();
-    this.wlasciciel = new Wlasciciel('John', 'Doe-Ave', 'Kocia', '3', '03-028', 'Warszawa', '75120514389');
+    // this.wlasciciel = new Wlasciciel('John', 'Doe-Ave', 'Kocia', '3', '03-028', 'Warszawa', '75120514389');
   }
 
   ngOnChanges(changes: SimpleChanges) {
