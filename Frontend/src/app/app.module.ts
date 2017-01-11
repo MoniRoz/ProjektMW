@@ -12,6 +12,7 @@ import {AutoService} from "./_services/auto.service";
 import {FormularzWlasciciela} from "./components/wlasciciel/wlasciciel-formularz.component";
 import {Policjant} from "./components/policjant/policjant.component";
 import {StarostaService} from "./_services/starosta.service";
+import {KartaPojazdu} from "./components/karta_pojazdu/karta_pojazdu.component";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {StarostaService} from "./_services/starosta.service";
     Starosta,
     Policjant,
     RejestracjaSamochodu,
-    FormularzWlasciciela
+    FormularzWlasciciela,
+    KartaPojazdu
   ],
   imports: [
     BrowserModule,

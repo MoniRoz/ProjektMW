@@ -51,3 +51,7 @@
 .btn{
   margin-bottom: 15px;
 }
+
+.tab.nav-link:not(.active){
+  color: #c1c1c1;
+}

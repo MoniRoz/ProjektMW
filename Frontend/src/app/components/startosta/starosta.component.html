@@ -7,6 +7,9 @@
       <li class="nav-item">
         <a class="tab nav-link" href="#samochod" role="tab" data-toggle="tab">Dodaj do bazy nowy pojazd</a>
       </li>
+      <li class="nav-item">
+        <a class="tab nav-link" href="#karta" role="tab" data-toggle="tab">Karta pojazdu</a>
+      </li>
     </ul>
   </div>
   <div id="content" class="row">
@@ -17,6 +20,9 @@
         </div>
         <div class="tab-pane" id="samochod">
           <rejestracja-samochodu [reset]="reset" (notify)="samochodFormularz = $event"></rejestracja-samochodu>
+        </div>
+        <div class="tab-pane" id="karta">
+          <karta-pojazdu></karta-pojazdu>
         </div>
       </div>
       <button class="btn btn-secondary float-xs-right" style="margin-right: 25px" [disabled]="!isFormValid()"
