@@ -7,12 +7,14 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {Starosta} from "./components/startosta/starosta.component";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {RejestracjaSamochodu} from "./components/rejestracja-samochodu/rejestracja-samochodu.component";
+import {RejestracjaSamochodu} from "./components/startosta/rejestracja-samochodu/rejestracja-samochodu.component";
 import {AutoService} from "./_services/auto.service";
-import {FormularzWlasciciela} from "./components/wlasciciel/wlasciciel-formularz.component";
+import {FormularzWlasciciela} from "./components/startosta/wlasciciel/wlasciciel-formularz.component";
 import {Policjant} from "./components/policjant/policjant.component";
 import {StarostaService} from "./_services/starosta.service";
-import {KartaPojazdu} from "./components/karta_pojazdu/karta_pojazdu.component";
+import {WlascicielInfo} from "./components/policjant/wlascicele-informacje/wlasciciel-informacje.component";
+import {Ng2TableModule} from "ng2-table";
+import {PojazdInfo} from "./components/policjant/pojazd-informacje/pojazd-informacje.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {KartaPojazdu} from "./components/karta_pojazdu/karta_pojazdu.component";
     Policjant,
     RejestracjaSamochodu,
     FormularzWlasciciela,
-    KartaPojazdu
+    WlascicielInfo,
+    PojazdInfo
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import {KartaPojazdu} from "./components/karta_pojazdu/karta_pojazdu.component";
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
+    Ng2TableModule,
     NgbModule.forRoot()
   ],
   providers: [AutoService, StarostaService],

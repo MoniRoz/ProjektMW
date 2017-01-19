@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Output, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {FormGroup, FormBuilder, Validators, Validator} from "@angular/forms";
-import {Wlasciciel} from "../../_mocks/wlasciciel";
-import {StarostaService} from "../../_services/starosta.service";
+import {Wlasciciel} from "../../../_mocks/wlasciciel";
+import {StarostaService} from "../../../_services/starosta.service";
 
 @Component({
   selector: 'wlasciciel-formularz',

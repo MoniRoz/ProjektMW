@@ -2,8 +2,8 @@ import {NgModule}             from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AppComponent} from "./app.component";
 import {Starosta} from "./components/startosta/starosta.component";
-import {RejestracjaSamochodu} from "./components/rejestracja-samochodu/rejestracja-samochodu.component";
-import {FormularzWlasciciela} from "./components/wlasciciel/wlasciciel-formularz.component";
+import {RejestracjaSamochodu} from "./components/startosta/rejestracja-samochodu/rejestracja-samochodu.component";
+import {FormularzWlasciciela} from "./components/startosta/wlasciciel/wlasciciel-formularz.component";
 import {Policjant} from "./components/policjant/policjant.component";
 
 const routes: Routes = [

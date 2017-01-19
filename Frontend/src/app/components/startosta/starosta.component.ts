@@ -25,7 +25,6 @@ export class Starosta implements AfterViewInit,DoCheck {
   }
 
   ngDoCheck(): void {
-    //console.log(this.wlascicielFormularz.valid + ' ' + this.samochodFormularz.valid);
     this.isValid = this.isFormValid();
   }
 

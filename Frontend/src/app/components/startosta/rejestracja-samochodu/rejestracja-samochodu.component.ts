@@ -1,7 +1,7 @@
 import {Component, Output, EventEmitter, Input, SimpleChanges, OnChanges} from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import {Samochod} from "../../_mocks/samochod";
-import {StarostaService} from "../../_services/starosta.service";
+import {Samochod} from "../../../_mocks/samochod";
+import {StarostaService} from "../../../_services/starosta.service";
 
 @Component({
   selector: 'rejestracja-samochodu',
