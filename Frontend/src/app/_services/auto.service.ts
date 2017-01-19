@@ -8,6 +8,7 @@ import {Wlasciciel} from "../_mocks/wlasciciel";
 @Injectable()
 export class AutoService {
   private httpregistrationUrl = 'api/starosta_samochod';
+  private httpFindCar = 'api/policjant';
 
   constructor(private http: Http) {
   }
@@ -16,6 +17,13 @@ export class AutoService {
     let body = JSON.stringify({'samochod': samochod, 'wlasciciel': wlasciciel});
     console.log(body);
     return this.http.post(this.httpregistrationUrl, body)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
+  znajdzSamochod(value: string) {
+    let body = JSON.stringify({'wartosc': value});
+    return this.http.post(this.httpFindCar, body)
       .map(res => res.json())
       .catch(this.handleError);
   }
