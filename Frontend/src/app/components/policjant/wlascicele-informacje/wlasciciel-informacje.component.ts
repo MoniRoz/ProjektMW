@@ -16,7 +16,9 @@ export class WlascicielInfo implements OnInit {
     {title: 'Ulica', name: 'ulica'},
     {title: 'Numer domu', name: 'nr_domu'},
     {title: 'Kod pocztowy', name: 'kod_pocztowy'},
-    {title: 'Miejscowość', name: 'miejscowosc'}
+    {title: 'Miejscowość', name: 'miejscowosc'},
+    {title: 'Rok', name: 'rok', sort: 'desc'}
+
   ];
   public page: number = 1;
   public itemsPerPage: number = 6;
