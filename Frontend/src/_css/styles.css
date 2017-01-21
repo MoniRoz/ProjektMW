@@ -52,10 +52,16 @@
   border-color: #ddd;
 }
 
-.btn{
+.btn {
   margin-bottom: 15px;
 }
 
-.tab.nav-link:not(.active){
+.tab.nav-link:not(.active) {
   color: #c1c1c1;
 }
+
+.info {
+  text-decoration: underline;
+  font-style: italic;
+}
+

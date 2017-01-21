@@ -43,15 +43,13 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-sm-12">
-            <label>Rok produkcji: </label>
-            <input [maxlength]="4" type="text" class="form-control"
-                   [formControl]="formularzRejestracji.controls['rok_produkcji']"
-                   [ngModel]="samochod.rok_produkcji">
+          <div class="col-sm-6">
+            <label>Dotychczasowy numer rejestracyjny: </label>
+            <input [maxlength]="7" type="text" class="form-control"
+                   [formControl]="formularzRejestracji.controls['d_nr_rejestracyjny']"
+                   [ngModel]="samochod.d_nr_rejestracyjny">
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-12">
+          <div class="col-sm-6">
             <label>Numer identyfikacyjny VIN: </label>
             <input [maxlength]="17" type="text" class="form-control"
                    [formControl]="formularzRejestracji.controls['nr_VIN']"
@@ -59,39 +57,35 @@
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-sm-12">
-            <label>Numer silnika: </label>
+          <div class="col-sm-4">
+            <label>Masa: </label>
             <input [maxlength]="12" type="text" class="form-control"
-                   [formControl]="formularzRejestracji.controls['nr_silnika']"
-                   [ngModel]="samochod.nr_silnika">
+                   [formControl]="formularzRejestracji.controls['masa']"
+                   [ngModel]="samochod.masa">
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-12">
-            <label>Dotychczasowy numer rejestracyjny: </label>
-            <input [maxlength]="7" type="text" class="form-control"
-                   [formControl]="formularzRejestracji.controls['d_nr_rejestracyjny']"
-                   [ngModel]="samochod.d_nr_rejestracyjny">
+          <div class="col-sm-4">
+            <label>Rok produkcji: </label>
+            <input [maxlength]="4" type="text" class="form-control"
+                   [formControl]="formularzRejestracji.controls['rok_produkcji']"
+                   [ngModel]="samochod.rok_produkcji">
           </div>
-        </div>
-        <div class="form-group row">
-          <div class="col-sm-12">
-            <label>Numer karty pojazdu: </label>
+          <div class="col-sm-4">
+            <label>Pojemność silnika: </label>
             <input [maxlength]="15" type="text" class="form-control"
-                   [formControl]="formularzRejestracji.controls['nr_kart_pojazdu']"
-                   [ngModel]="samochod.nr_kart_pojazdu">
+                   [formControl]="formularzRejestracji.controls['p_silnika']"
+                   [ngModel]="samochod.p_silnika">
           </div>
         </div>
         <div class="form-group row">
           <div class="col-sm-6">
-            <label>Przebieg pojazdu w km: </label>
-            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['przebieg_p_w_km']"
-                   [ngModel]="samochod.przebieg_p_w_km">
+            <label>Moc silnika: </label>
+            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['m_silnika']"
+                   [ngModel]="samochod.m_silnika">
           </div>
           <div class="col-sm-6">
-            <label>Barwa nadwozia: </label>
-            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['barwa_nadwozia']"
-                   [ngModel]="samochod.barwa_nadwozia">
+            <label>Zasilanie: </label>
+            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['zasilanie']"
+                   [ngModel]="samochod.zasilanie">
           </div>
         </div>
       </form>

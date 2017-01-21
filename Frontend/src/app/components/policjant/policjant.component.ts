@@ -31,10 +31,10 @@ export class Policjant implements OnInit {
       data => {
         console.log(data);
       }, error => {
-        setTimeout(() => {
-          $('.loader').toggle();
-          $('.content').fadeIn('slow');
-        }, 4000);
+        // setTimeout(() => {
+        $('.loader').toggle();
+        $('.content').fadeIn('slow');
+        // }, 4000);
       });
   }
 }

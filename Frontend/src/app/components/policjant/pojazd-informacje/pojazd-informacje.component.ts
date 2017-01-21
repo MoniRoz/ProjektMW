@@ -14,12 +14,14 @@ export class PojazdInfo implements OnInit {
     {title: 'Marka', name: 'marka'},
     {title: 'Typ', name: 'typ'},
     {title: 'Model', name: 'model'},
-    {title: 'Rok', name: 'rok_produkcji'},
-    {title: 'VIN', name: 'nr_VIN'},
-    {title: 'Nr silnika', name: 'nr_silnika'},
     {title: 'Rejestracja', name: 'd_nr_rejestracyjny'},
-    {title: 'Nr karty pojazdu', name: 'nr_kart_pojazdu'},
-    {title: 'Barwa', name: 'barwa_nadwozia'}
+    {title: 'VIN', name: 'nr_VIN'},
+    {title: 'Rok', name: 'rok_produkcji'},
+    {title: 'Masa', name: 'masa'},
+    {title: 'Pojemność', name: 'p_silnika'},
+    {title: 'Moc', name: 'm_silnika'},
+    {title: 'Zasialnie', name: 'zasilanie'},
+    {title: 'Dodatkowe informacje', name: 'info'}
   ];
   public page: number = 1;
   public itemsPerPage: number = 6;
@@ -133,6 +135,16 @@ export class PojazdInfo implements OnInit {
   }
 
   public onCellClick(data: any): any {
+    $('tr').click(function () {
+      $(this).css('background-color', '#61f661');
+      $(this).siblings().each(function () {
+        if ($(this).index() % 2 == 0) {
+          $(this).css('background-color', 'rgba(0, 0, 0, 0.05)');
+        } else {
+          $(this).css('background-color', 'transparent');
+        }
+      });
+    });
     console.log(data);
   }
 }
