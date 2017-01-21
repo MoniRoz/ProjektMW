@@ -1,15 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnChanges, DoCheck} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import * as $ from 'jquery';
 import {AutoService} from "../../_services/auto.service";
+import {CarData} from './pojazd-informacje/przykladowy-samochod';
+import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
 
 @Component({
   selector: 'policjant',
   templateUrl: 'policjant.component.html',
   styleUrls: ['policjant.component.css']
 })
-export class Policjant implements OnInit {
+export class Policjant implements OnInit,DoCheck {
   private formularzWyszukiwarki;
+  private carChoosen: boolean = false;
+  private carData: Array<any> = CarData;
+  private ownerData: Array<any> = [];
 
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
@@ -21,6 +26,11 @@ export class Policjant implements OnInit {
   ngOnInit(): void {
     $('.loader').hide();
     $('.content').hide();
+  }
+
+  ngDoCheck(): void {
+    if (this.carChoosen)
+      this.ownerData = OwnersData
   }
 
   private clicked(value: any) {

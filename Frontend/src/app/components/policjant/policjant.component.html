@@ -24,7 +24,7 @@
       <p id="message">Skorzystaj z wyszukiwarki by znaleźć informacje o interesującym Cię pojeździe</p>
       <div class="loader"></div>
       <div class="content">
-        <pojazd-info></pojazd-info>
+        <pojazd-info [TableData]="carData" (notify)="carClicked = $event"></pojazd-info>
         <wlasciciel-info></wlasciciel-info>
       </div>
     </div>

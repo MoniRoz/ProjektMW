@@ -1,13 +1,15 @@
 ///<reference path="../../../../../node_modules/@angular/forms/src/validators.d.ts"/>
-import {Component, OnInit} from '@angular/core';
-import {TableData} from './przykladowi-wlasciciele';
+import {Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
+import * as $ from 'jquery';
 
 
 @Component({
   selector: 'wlasciciel-info',
   templateUrl: 'wlasciciel-informacje.component.html'
 })
-export class WlascicielInfo implements OnInit {
+export class WlascicielInfo implements OnInit,OnChanges {
+  @Input() TableData: Array<any>;
+
   public rows: Array<any> = [];
   public columns: Array<any> = [
     {title: 'Imię', name: 'imie'},
@@ -33,14 +35,26 @@ export class WlascicielInfo implements OnInit {
     className: ['table-striped', 'table-bordered']
   };
 
-  private contentData: Array<any> = TableData;
+  private contentData: Array<any> = [];
 
   public constructor() {
     this.length = this.contentData.length;
   }
 
   public ngOnInit(): void {
+    $('wlasciciel-info').hide();
     this.onChangeTable(this.config);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.TableData.length > 0) {
+      console.log('cos jest');
+      this.contentData = this.TableData;
+    }
+    else {
+      console.log('pusty');
+      this.contentData = [];
+    }
   }
 
   public changePage(page: any, data: Array<any> = this.contentData): Array<any> {

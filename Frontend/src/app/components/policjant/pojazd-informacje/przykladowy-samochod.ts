@@ -1,4 +1,4 @@
-export const TableData: Array<any> = [
+export const CarData: Array<any> = [
   {
     'rodzaj_pojazdu': 'Osobowy',
     'marka': 'Ford',

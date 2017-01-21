@@ -1,13 +1,16 @@
 ///<reference path="../../../../../node_modules/@angular/forms/src/validators.d.ts"/>
-import {Component, OnInit} from '@angular/core';
-import {TableData} from './przykladowy-samochod';
+import {Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges} from '@angular/core';
+import * as $ from 'jquery';
 
 
 @Component({
   selector: 'pojazd-info',
   templateUrl: 'pojazd-informacje.component.html'
 })
-export class PojazdInfo implements OnInit {
+export class PojazdInfo implements OnInit,OnChanges {
+  @Input() TableData: Array<any>;
+  @Output() notify = new EventEmitter();
+
   public rows: Array<any> = [];
   public columns: Array<any> = [
     {title: 'Rodzaj', name: 'rodzaj_pojazdu'},
@@ -36,7 +39,7 @@ export class PojazdInfo implements OnInit {
     className: ['table-striped', 'table-bordered']
   };
 
-  private contentData: Array<any> = TableData;
+  private contentData: Array<any> = [];
 
   public constructor() {
     this.length = this.contentData.length;
@@ -45,6 +48,16 @@ export class PojazdInfo implements OnInit {
   public ngOnInit(): void {
     this.onChangeTable(this.config);
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.TableData.length > 0) {
+      this.contentData = this.TableData;
+    }
+    else {
+      this.contentData = [];
+    }
+  }
+
 
   public changePage(page: any, data: Array<any> = this.contentData): Array<any> {
     let start = (page.page - 1) * page.itemsPerPage;
@@ -135,7 +148,8 @@ export class PojazdInfo implements OnInit {
   }
 
   public onCellClick(data: any): any {
-    $('tr').click(function () {
+    this.notify.emit(true);
+    $('tbody > tr').click(function () {
       $(this).css('background-color', '#61f661');
       $(this).siblings().each(function () {
         if ($(this).index() % 2 == 0) {
@@ -145,6 +159,7 @@ export class PojazdInfo implements OnInit {
         }
       });
     });
-    console.log(data);
+    // console.log(data);
   }
+
 }
