@@ -26,13 +26,18 @@ export class SKP implements OnInit {
 
   myChange(value) {
     this.carChoosen = value;
-    this.przegladyData = [];
-    if (this.carChoosen != null)
-      this.przegladyData = PrzegladyData;
+    $('#ownerLoad').show();
+    if (this.carChoosen != null) {
+      setTimeout(() => {
+        $('#ownerLoad').hide();
+        this.przegladyData = PrzegladyData;
+      }, 2000)
+    }
   }
 
   ngOnInit(): void {
     $('#onLoad').hide();
+    $('#ownerLoad').hide();
     $('.content').hide();
 
   }
@@ -40,6 +45,7 @@ export class SKP implements OnInit {
   private clicked(value: any) {
     this.formularzWyszukiwarki.reset();
     this.carData = [];
+    this.przegladyData = [];
     $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();

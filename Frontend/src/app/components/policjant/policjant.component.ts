@@ -36,7 +36,6 @@ export class Policjant implements OnInit {
 
   myChange(value) {
     this.carChoosen = value;
-    this.ownerData = [];
 
     if (this.carChoosen != null) {
       $('#ownerLoad').show();
@@ -58,6 +57,8 @@ export class Policjant implements OnInit {
   private clicked(value: any) {
     this.formularzWyszukiwarki.reset();
     this.carData = [];
+    this.ownerData = [];
+    this.przegladyData = [];
     $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();
