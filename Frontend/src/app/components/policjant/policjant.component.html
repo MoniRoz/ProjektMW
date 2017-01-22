@@ -8,10 +8,10 @@
   </div>
   <div id="content" class="row">
     <div class="container" style="min-height: 50vh; padding-top: 15px">
-      <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.value)">
+      <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.controls['search'].value)">
         <div class="col-lg-6 float-xs-right">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub rejestracyjny pojazdu"
+            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub numer rejestracyjny pojazdu"
                    [maxlength]="17"
                    [formControl]="formularzWyszukiwarki.controls['search']">
             <span class="input-group-btn">
