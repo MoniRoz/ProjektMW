@@ -28,6 +28,13 @@ export class AutoService {
       .catch(this.handleError);
   }
 
+  znajdzWlasciciela(samochod: Samochod){
+    let body = JSON.stringify({'samochod': samochod});
+    return this.http.post(this.httpFindCar, body)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
   private handleError(error: any) {
     let errorMsg;
     if (error.status === 500) {

@@ -1,6 +1,6 @@
-///<reference path="../../../../../node_modules/@angular/forms/src/validators.d.ts"/>
 import {Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges} from '@angular/core';
 import * as $ from 'jquery';
+import {Samochod} from "../../../_mocks/samochod";
 
 
 @Component({
@@ -23,8 +23,7 @@ export class PojazdInfo implements OnInit,OnChanges {
     {title: 'Masa', name: 'masa'},
     {title: 'Pojemność', name: 'p_silnika'},
     {title: 'Moc', name: 'm_silnika'},
-    {title: 'Zasialnie', name: 'zasilanie'},
-    {title: 'Dodatkowe informacje', name: 'info'}
+    {title: 'Zasialnie', name: 'zasilanie'}
   ];
   public page: number = 1;
   public itemsPerPage: number = 6;
@@ -46,15 +45,19 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   public ngOnInit(): void {
+    $('pojazd-info').hide();
     this.onChangeTable(this.config);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.TableData.length > 0) {
       this.contentData = this.TableData;
+      this.onChangeTable(this.config);
+      $('pojazd-info').fadeIn('slow');
     }
     else {
       this.contentData = [];
+      $('pojazd-info').hide();
     }
   }
 
@@ -148,7 +151,9 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   public onCellClick(data: any): any {
-    this.notify.emit(true);
+    let samochod = new Samochod(data.row.rodzaj_pojazdu, data.row.marka, data.row.typ, data.row.model,
+      data.row.rok_produkcji, data.row.nr_VIN, data.row.masa, data.row.d_nr_rejestracyjny, data.row.p_silnika, data.row.m_silnika, data.row.zasilanie)
+    this.notify.emit(samochod);
     $('tbody > tr').click(function () {
       $(this).css('background-color', '#61f661');
       $(this).siblings().each(function () {
@@ -159,7 +164,5 @@ export class PojazdInfo implements OnInit,OnChanges {
         }
       });
     });
-    // console.log(data);
   }
-
 }

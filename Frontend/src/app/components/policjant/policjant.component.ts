@@ -1,19 +1,21 @@
-import {Component, OnInit, OnChanges, DoCheck} from '@angular/core';
+import {Component, OnInit, OnChanges, DoCheck, SimpleChanges} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import * as $ from 'jquery';
 import {AutoService} from "../../_services/auto.service";
 import {CarData} from './pojazd-informacje/przykladowy-samochod';
 import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
+import {Samochod} from "../../_mocks/samochod";
 
 @Component({
   selector: 'policjant',
   templateUrl: 'policjant.component.html',
   styleUrls: ['policjant.component.css']
 })
-export class Policjant implements OnInit,DoCheck {
+export class Policjant implements OnInit {
+
   private formularzWyszukiwarki;
-  private carChoosen: boolean = false;
-  private carData: Array<any> = CarData;
+  private carChoosen: Samochod = null;
+  private carData: Array<any> = [];
   private ownerData: Array<any> = [];
 
   public constructor(private fb: FormBuilder,
@@ -24,27 +26,37 @@ export class Policjant implements OnInit,DoCheck {
   }
 
   ngOnInit(): void {
-    $('.loader').hide();
+    $('#onLoad').hide();
+    $('#ownerLoad').hide();
     $('.content').hide();
+
   }
 
-  ngDoCheck(): void {
-    if (this.carChoosen)
-      this.ownerData = OwnersData
+  myChange(value) {
+    this.carChoosen = value;
+    this.ownerData = [];
+
+    if (this.carChoosen != null) {
+      console.log("checked");
+      $('#ownerLoad').show();
+      setTimeout(() => {
+        $('#ownerLoad').hide();
+        this.ownerData = OwnersData;
+      }, 4000);
+    }
   }
 
   private clicked(value: any) {
     this.formularzWyszukiwarki.reset();
     $('#message').hide();
-    $('.loader').toggle();
+    $('#onLoad').toggle();
     this.autoService.znajdzSamochod(value).subscribe(
       data => {
         console.log(data);
-      }, error => {
-        // setTimeout(() => {
-        $('.loader').toggle();
+      }, () => {
+        $('#onLoad').toggle();
         $('.content').fadeIn('slow');
-        // }, 4000);
+        this.carData = CarData;
       });
   }
 }

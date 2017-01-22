@@ -1,4 +1,3 @@
-///<reference path="../../../../../node_modules/@angular/forms/src/validators.d.ts"/>
 import {Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
 import * as $ from 'jquery';
 
@@ -48,12 +47,13 @@ export class WlascicielInfo implements OnInit,OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.TableData.length > 0) {
-      console.log('cos jest');
       this.contentData = this.TableData;
+      this.onChangeTable(this.config);
+      $('wlasciciel-info').fadeIn('slow');
     }
     else {
-      console.log('pusty');
       this.contentData = [];
+      $('wlasciciel-info').hide();
     }
   }
 
