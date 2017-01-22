@@ -8,8 +8,8 @@ import {Wlasciciel} from "../_mocks/wlasciciel";
 @Injectable()
 export class AutoService {
   private httpregistrationUrl = 'api/starosta_samochod';
-  private httpFindCars = 'api/policjant';
-  private httpFindOwners = 'api/policjant/owners';
+  private httpFindCars = 'api/policjant/samochody';
+  private httpFindOwners = 'api/policjant/wlasciciele';
 
   constructor(private http: Http) {
   }

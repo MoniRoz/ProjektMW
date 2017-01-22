@@ -16,6 +16,7 @@ import {WlascicielInfo} from "./components/policjant/wlascicele-informacje/wlasc
 import {Ng2TableModule} from "ng2-table";
 import {PojazdInfo} from "./components/policjant/pojazd-informacje/pojazd-informacje.component";
 import { PaginationModule } from 'ng2-bootstrap/pagination';
+import {SKP} from "./components/skp/skp.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PaginationModule } from 'ng2-bootstrap/pagination';
     RejestracjaSamochodu,
     FormularzWlasciciela,
     WlascicielInfo,
-    PojazdInfo
+    PojazdInfo,
+    SKP
   ],
   imports: [
     BrowserModule,

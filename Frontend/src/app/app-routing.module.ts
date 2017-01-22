@@ -1,15 +1,15 @@
 import {NgModule}             from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AppComponent} from "./app.component";
 import {Starosta} from "./components/startosta/starosta.component";
-import {RejestracjaSamochodu} from "./components/startosta/rejestracja-samochodu/rejestracja-samochodu.component";
-import {FormularzWlasciciela} from "./components/startosta/wlasciciel/wlasciciel-formularz.component";
 import {Policjant} from "./components/policjant/policjant.component";
+import {SKP} from "./components/skp/skp.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: 'starosta', pathMatch: 'full'},
-  {path: 'starosta', component: Starosta},
-  {path: 'policjant', component: Policjant}
+  {path: '', redirectTo: 'starostwo', pathMatch: 'full'},
+  {path: 'starostwo', component: Starosta},
+  {path: 'policja', component: Policjant},
+  {path: 'skp', component: SKP}
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
