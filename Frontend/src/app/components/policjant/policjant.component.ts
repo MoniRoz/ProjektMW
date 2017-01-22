@@ -48,6 +48,16 @@ export class Policjant implements OnInit {
           console.log(error);
           $('#ownerLoad').hide();
           this.ownerData = OwnersData;
+        }
+      );
+      this.autoService.znajdzPrzeglady(this.carChoosen).subscribe(
+        data => {
+          console.log(data);
+          $('#ownerLoad').hide();
+          this.przegladyData = PrzegladyData;
+        }, error => {
+          console.log(error);
+          $('#ownerLoad').hide();
           this.przegladyData = PrzegladyData;
         }
       );

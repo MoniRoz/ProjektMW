@@ -10,6 +10,7 @@ export class AutoService {
   private httpregistrationUrl = 'api/starosta_samochod';
   private httpFindCars = 'api/policjant/samochody';
   private httpFindOwners = 'api/policjant/wlasciciele';
+  private httpFindPrzeglad = 'api/policjant/przeglady';
 
   constructor(private http: Http) {
   }
@@ -34,6 +35,14 @@ export class AutoService {
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+  znajdzPrzeglady(samochod: Samochod) {
+    let body = JSON.stringify({'samochod': samochod});
+    return this.http.post(this.httpFindPrzeglad, body)
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
 
   private handleError(error: any) {
     let errorMsg;

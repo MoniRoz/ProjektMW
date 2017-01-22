@@ -6,6 +6,7 @@ import set = Reflect.set;
 import {PrzegladInfo} from "../policjant/przeglad-informacje/przeglad-informacje.component";
 import {PrzegladyData} from "../policjant/przeglad-informacje/przykladowe-przeglady";
 import {Samochod} from "../../_mocks/samochod";
+import {AutoService} from "../../_services/auto.service";
 
 @Component({
   selector: 'skp',
@@ -18,7 +19,8 @@ export class SKP implements OnInit {
   private carData: Array<any> = [];
   private przegladyData: Array<any> = [];
 
-  public constructor(private fb: FormBuilder) {
+  public constructor(private autoService: AutoService,
+                     private fb: FormBuilder) {
     this.formularzWyszukiwarki = fb.group({
       'search': [null]
     });
@@ -28,10 +30,17 @@ export class SKP implements OnInit {
     this.carChoosen = value;
     $('#ownerLoad').show();
     if (this.carChoosen != null) {
-      setTimeout(() => {
-        $('#ownerLoad').hide();
-        this.przegladyData = PrzegladyData;
-      }, 2000)
+      this.autoService.znajdzPrzeglady(this.carChoosen).subscribe(
+        data => {
+          console.log(data);
+          $('#ownerLoad').hide();
+          this.przegladyData = PrzegladyData;
+        }, error => {
+          console.log(error);
+          $('#ownerLoad').hide();
+          this.przegladyData = PrzegladyData;
+        }
+      );
     }
   }
 
@@ -49,11 +58,17 @@ export class SKP implements OnInit {
     $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();
-    setTimeout(() => {
-      $('#onLoad').toggle();
-      $('.content').fadeIn('slow');
-      this.carData = CarData;
-      console.log(this.carData)
-    }, 2000);
+    this.autoService.znajdzSamochody(value).subscribe(
+      data => {
+        console.log(data);
+        $('#onLoad').toggle();
+        $('.content').fadeIn('slow');
+        this.carData = CarData;
+      }, error => {
+        console.log(error);
+        $('#onLoad').toggle();
+        $('.content').fadeIn('slow');
+        this.carData = CarData;
+      });
   }
 }

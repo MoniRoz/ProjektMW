@@ -141,6 +141,6 @@ export class PrzegladInfo implements OnInit,OnChanges {
   }
 
   public onCellClick(data: any): any {
-    console.log(data);
+    // console.log(data);
   }
 }
