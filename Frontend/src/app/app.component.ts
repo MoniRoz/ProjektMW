@@ -14,10 +14,6 @@ export class AppComponent implements AfterViewInit {
       $('.spinner').fadeOut('slow');
       $('.bg-spinner').fadeOut('slow');
     }, 2000);
-    $('.nav-tab.nav-item').click(function () {
-      $('.nav-tab.nav-item.active').removeClass('active');
-      $(this).addClass('active');
-    });
   }
 
 }
