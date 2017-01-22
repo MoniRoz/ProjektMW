@@ -53,7 +53,10 @@ export class SKP implements OnInit {
   }
 
   nowyPrzeglad(value: any) {
-    let car = this.carData[0];
+    if (this.carChoosen == null)
+      var car = this.carData[0];
+    else
+      car = this.carChoosen;
     this.carData = [];
     this.przegladyData = [];
     $('.content').hide();
