@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, URLSearchParams} from '@angular/http';
 
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
@@ -23,22 +23,25 @@ export class AutoService {
   }
 
   znajdzSamochody(value: string): Observable <Samochod[]> {
-    let body = JSON.stringify({'wartosc': value});
-    return this.http.post(this.httpFindCars, body)
+    let params = new URLSearchParams();
+    params.set('wartosc', value);
+    return this.http.get(this.httpFindCars, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   znajdzWlascicieli(samochod: Samochod) {
-    let body = JSON.stringify({'samochod': samochod});
-    return this.http.post(this.httpFindOwners, body)
+    let params = new URLSearchParams();
+    params.set('vin', samochod.nr_VIN);
+    return this.http.get(this.httpFindOwners, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   znajdzPrzeglady(samochod: Samochod) {
-    let body = JSON.stringify({'samochod': samochod});
-    return this.http.post(this.httpFindPrzeglad, body)
+    let params = new URLSearchParams();
+    params.set('vin', samochod.nr_VIN);
+    return this.http.get(this.httpFindPrzeglad, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
   }
