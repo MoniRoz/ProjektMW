@@ -36,6 +36,8 @@ export class Policjant implements OnInit {
 
   myChange(value) {
     this.carChoosen = value;
+    this.ownerData = [];
+    this.przegladyData = [];
 
     if (this.carChoosen != null) {
       $('#ownerLoad').show();

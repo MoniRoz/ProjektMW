@@ -28,6 +28,8 @@ export class SKP implements OnInit {
 
   myChange(value) {
     this.carChoosen = value;
+    this.przegladyData = [];
+
     $('#ownerLoad').show();
     if (this.carChoosen != null) {
       this.autoService.znajdzPrzeglady(this.carChoosen).subscribe(
