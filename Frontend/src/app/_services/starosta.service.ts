@@ -16,9 +16,9 @@ export class StarostaService {
   }
 
   getVehicle(VIN: string): Observable<Samochod> {
-    console.log(VIN);
     let params = new URLSearchParams();
     params.set('vin', VIN);
+    console.log(params);
     return this.http.get(this.httpVehicleDataUrl, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
