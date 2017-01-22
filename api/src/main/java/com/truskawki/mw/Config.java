@@ -7,12 +7,22 @@ import org.springframework.context.annotation.Configuration;
 public class Config {
     
     @Bean
-    public VehicleService vehicleService() {
-        return new VehicleService();
+    public StarostaService vehicleService() {
+        return new StarostaService();
     }
 
     @Bean
-    public VehicleRepository vehicleRepository() {
-        return new VehicleRepository();
+    public StarostaRepository vehicleRepository() {
+        return new StarostaRepository();
+    }
+
+    @Bean
+    public PolicjantService policjantService() {
+        return new PolicjantService();
+    }
+
+    @Bean
+    public PolicjantRepository policjantRepository() {
+        return new PolicjantRepository();
     }
 }

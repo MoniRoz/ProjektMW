@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, URLSearchParams} from '@angular/http';
+import {Http, URLSearchParams, Response} from '@angular/http';
 
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
@@ -20,7 +20,10 @@ export class AutoService {
   nowySamochod(samochod: Samochod, wlasciciel: Wlasciciel) {
     let body = JSON.stringify({'samochod': samochod, 'wlasciciel': wlasciciel});
     return this.http.post(this.httpregistrationUrl, body)
-      .map(res => res.json())
+      .map((res: Response) => {
+        if (res.status === 200)
+          return 200;
+      })
       .catch(this.handleError);
   }
 

@@ -10,7 +10,7 @@ import com.truskawki.mw.operations.VehicleRegistration;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class VehicleRepository {
+public class StarostaRepository {
 
     public TruskawkiSimpleResponse addVehicle(Pojazd pojazd, Wlasciciel wlasciciel) {
         VehicleRegistration vehicleRegistration = new VehicleRegistration(pojazd, wlasciciel);
