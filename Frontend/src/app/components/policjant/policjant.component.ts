@@ -1,10 +1,10 @@
-import {Component, OnInit, OnChanges, DoCheck, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
-import * as $ from 'jquery';
 import {AutoService} from "../../_services/auto.service";
 import {CarData} from './pojazd-informacje/przykladowy-samochod';
 import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
 import {Samochod} from "../../_mocks/samochod";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'policjant',
@@ -41,7 +41,7 @@ export class Policjant implements OnInit {
       setTimeout(() => {
         $('#ownerLoad').hide();
         this.ownerData = OwnersData;
-      }, 4000);
+      }, 2000);
     }
   }
 
@@ -52,7 +52,8 @@ export class Policjant implements OnInit {
     this.autoService.znajdzSamochod(value).subscribe(
       data => {
         console.log(data);
-      }, () => {
+      }, error => {
+        console.log(error);
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
         this.carData = CarData;
