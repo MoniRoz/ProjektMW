@@ -2,16 +2,16 @@
   <div class="row">
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item">
-        <a class="tab nav-link active">Wyszukaj informacje o pojeździe</a>
+        <a class="tab nav-link active">Wyszukaj informacje o pojazdach</a>
       </li>
     </ul>
   </div>
   <div id="content" class="row">
     <div class="container" style="min-height: 50vh; padding-top: 15px">
       <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.value)">
-        <div class="col-lg-5 float-xs-right">
+        <div class="col-lg-6 float-xs-right">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub rejestracyjny"
+            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub rejestracyjny pojazdu"
                    [maxlength]="17"
                    [formControl]="formularzWyszukiwarki.controls['search']">
             <span class="input-group-btn">
@@ -21,7 +21,7 @@
           </div>
         </div>
       </form>
-      <p id="message">Skorzystaj z wyszukiwarki by znaleźć informacje o interesującym Cię pojeździe</p>
+      <p id="message">Skorzystaj z wyszukiwarki by znaleźć informacje o interesujących Cię pojazdach</p>
       <div id="onLoad" class="loader"></div>
       <div class="content">
         <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>
