@@ -36,6 +36,9 @@ export class FormularzWlasciciela implements OnChanges {
   }
 
   isOwnerExists(pesel: string) {
+    this.wlasciciel = new Wlasciciel(null, null, null, null, null, null, null);
+    this.formularzWlasciciela.reset();
+    this.formularzWyszukiwarki.reset();
     this.service.getOwner(pesel).subscribe(
       wlasciciel => {
         this.wlasciciel = wlasciciel;
@@ -44,7 +47,6 @@ export class FormularzWlasciciela implements OnChanges {
         console.log(error);
       }
     );
-    this.formularzWyszukiwarki.reset();
     // this.wlasciciel = new Wlasciciel('John', 'Doe-Ave', 'Kocia', '3', '03-028', 'Warszawa', '75120514389');
   }
 

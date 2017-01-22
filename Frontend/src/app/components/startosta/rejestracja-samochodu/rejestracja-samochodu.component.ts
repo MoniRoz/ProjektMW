@@ -40,6 +40,9 @@ export class RejestracjaSamochodu implements OnChanges {
   }
 
   isVehicleExists(VIN: string) {
+    this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null);
+    this.formularzRejestracji.reset();
+    this.formularzWyszukiwarki.reset();
     this.service.getVehicle(VIN).subscribe(
       samochod => {
         this.samochod = samochod;
@@ -49,7 +52,6 @@ export class RejestracjaSamochodu implements OnChanges {
         // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'P');
       }
     );
-    this.formularzWyszukiwarki.reset();
   }
 
   ngOnChanges(changes: SimpleChanges) {
