@@ -45,6 +45,7 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   public ngOnInit(): void {
+    $('pojazd-info tbody').addClass('pointer');
     $('pojazd-info').hide();
     this.onChangeTable(this.config);
   }

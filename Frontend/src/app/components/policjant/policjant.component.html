@@ -9,9 +9,9 @@
   <div id="content" class="row">
     <div class="container" style="min-height: 50vh; padding-top: 15px">
       <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.value)">
-        <div class="col-lg-4 col-sm-6 float-xs-right">
+        <div class="col-lg-5 float-xs-right">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Dane pojazdu"
+            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub rejestracyjny"
                    [maxlength]="17"
                    [formControl]="formularzWyszukiwarki.controls['search']">
             <span class="input-group-btn">

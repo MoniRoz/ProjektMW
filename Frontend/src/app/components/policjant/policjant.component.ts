@@ -37,7 +37,6 @@ export class Policjant implements OnInit {
     this.ownerData = [];
 
     if (this.carChoosen != null) {
-      console.log("checked");
       $('#ownerLoad').show();
       setTimeout(() => {
         $('#ownerLoad').hide();
