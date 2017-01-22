@@ -8,6 +8,8 @@ public class Wlasciciel {
     private String kod_pocztowy;
     private String miejscowosc;
     private int nr_domu;
+    private String data_poczatkowa;
+    private String data_koncowa;
 
     public String getImie() {
         return imie;
@@ -63,5 +65,21 @@ public class Wlasciciel {
 
     public void setNr_domu(int nr_domu) {
         this.nr_domu = nr_domu;
+    }
+
+    public String getData_poczatkowa() {
+        return data_poczatkowa;
+    }
+
+    public void setData_poczatkowa(String data_poczatkowa) {
+        this.data_poczatkowa = data_poczatkowa;
+    }
+
+    public String getData_koncowa() {
+        return data_koncowa;
+    }
+
+    public void setData_koncowa(String data_koncowa) {
+        this.data_koncowa = data_koncowa;
     }
 }

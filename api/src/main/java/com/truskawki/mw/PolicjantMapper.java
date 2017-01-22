@@ -1,14 +1,15 @@
 package com.truskawki.mw;
 
 import com.truskawki.mw.lib.Pojazd;
+import com.truskawki.mw.lib.Przeglad;
 import com.truskawki.mw.lib.Wlasciciel;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.scripting.xmltags.XMLLanguageDriver;
 
+import java.util.List;
+
 public interface PolicjantMapper extends Mapper {
-
-
 
     @Lang(XMLLanguageDriver.class)
     @Select("<script>" +
@@ -28,21 +29,14 @@ public interface PolicjantMapper extends Mapper {
     Pojazd getPojazd(@Param("vin") String vin, @Param("rejestracja") String rejestracja);
 
 
+    @Select("select imie, nazwisko, pesel, ulica, nr_domu, kod_pocztowy, miejscowosc, data_poczatkowa, data_koncowa from Wlasciciel, Dokument, Pojazd \n" +
+            "where Dokument.ID_WLASCICIELA = Wlasciciel.ID_WLASCICIELA and Dokument.ID_POJAZDU = Pojazd.ID_POJAZDU\n" +
+            "and id_typu = 1 and nr_vin = #{vin}")
+    List<Wlasciciel> getWlasciciele(String vin);
 
-
-
-//    @SelectProvider(type = UserSqlBuilder.class, method = "buildGetUsersByName")
-//    Pojazd getUsersByName(@Param("name") String name, @Param("orderByColumn") String orderByColumn);
-//
-//    class UserSqlBuilder {
-//        public String buildGetUsersByName(final String name, final String orderByColumn) {
-//            return new SQL(){{
-//                SELECT("*");
-//                FROM("users");
-//                WHERE("name like #{name} || '%'");
-//                ORDER_BY(orderByColumn);
-//            }}.toString();
-//        }
-//    }
+    @Select("select data_wystawienia, data_waznosci, Przeglad.wystawiajacy from Przeglad, Dokument, Pojazd \n" +
+            "where Przeglad.ID_DOKUMENT = Dokument.ID_DOKUMENT and Dokument.ID_POJAZDU = Pojazd.ID_POJAZDU\n" +
+            "and id_typu = 1 and nr_vin = #{vin}")
+    List<Przeglad> getPrzeglady(String vin);
 }
 
