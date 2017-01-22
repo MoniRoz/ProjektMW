@@ -1,12 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {CarData} from "../policjant/pojazd-informacje/przykladowy-samochod";
-import * as $ from 'jquery';
-import set = Reflect.set;
-import {PrzegladInfo} from "../policjant/przeglad-informacje/przeglad-informacje.component";
 import {PrzegladyData} from "../policjant/przeglad-informacje/przykladowe-przeglady";
 import {Samochod} from "../../_mocks/samochod";
 import {AutoService} from "../../_services/auto.service";
+import * as $ from 'jquery';
 
 @Component({
   selector: 'skp',
@@ -15,6 +13,7 @@ import {AutoService} from "../../_services/auto.service";
 })
 export class SKP implements OnInit {
   private formularzWyszukiwarki;
+  private message;
   private carChoosen: Samochod = null;
   private carData: Array<any> = [];
   private przegladyData: Array<any> = [];

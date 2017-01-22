@@ -21,10 +21,11 @@
           </div>
         </div>
       </form>
-      <p id="message">Skorzystaj z wyszukiwarki by znaleźć informacje o pojeździe</p>
+      <p id="message" class="infomessage">Skorzystaj z wyszukiwarki by znaleźć informacje o pojeździe</p>
       <div id="onLoad" class="loader"></div>
       <div class="content">
         <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>
+        <nowy-przeglad></nowy-przeglad>
         <div id="ownerLoad" class="loader"></div>
         <przeglad-info [TableData]="przegladyData"></przeglad-info>
       </div>

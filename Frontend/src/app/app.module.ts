@@ -15,9 +15,10 @@ import {StarostaService} from "./_services/starosta.service";
 import {WlascicielInfo} from "./components/policjant/wlascicele-informacje/wlasciciel-informacje.component";
 import {Ng2TableModule} from "ng2-table";
 import {PojazdInfo} from "./components/policjant/pojazd-informacje/pojazd-informacje.component";
-import { PaginationModule } from 'ng2-bootstrap/pagination';
+import {PaginationModule} from 'ng2-bootstrap/pagination';
 import {SKP} from "./components/skp/skp.component";
 import {PrzegladInfo} from "./components/policjant/przeglad-informacje/przeglad-informacje.component";
+import {NowyPrzeglad} from "./components/skp/nowy-przeglad/nowy-przeglad.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {PrzegladInfo} from "./components/policjant/przeglad-informacje/przeglad-
     WlascicielInfo,
     PojazdInfo,
     SKP,
-    PrzegladInfo
+    PrzegladInfo,
+    NowyPrzeglad
   ],
   imports: [
     BrowserModule,

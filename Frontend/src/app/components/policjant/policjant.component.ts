@@ -72,7 +72,7 @@ export class Policjant implements OnInit {
     this.ownerData = [];
     this.przegladyData = [];
     $('.content').hide();
-    $('#message').hide();
+    $('.infomessage').hide();
     $('#onLoad').toggle();
     this.autoService.znajdzSamochody(value).subscribe(
       data => {

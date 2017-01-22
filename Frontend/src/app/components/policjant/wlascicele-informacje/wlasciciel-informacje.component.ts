@@ -19,7 +19,7 @@ export class WlascicielInfo implements OnInit,OnChanges {
     {title: 'Kod pocztowy', name: 'kod_pocztowy'},
     {title: 'Miejscowość', name: 'miejscowosc'},
     {title: 'Data początkowa', name: 'data_p', sort: 'desc'},
-    {title: 'Data końcowa', name: 'data_k'}
+    {title: 'Data zakończenia', name: 'data_k'}
 
   ];
   public page: number = 1;
