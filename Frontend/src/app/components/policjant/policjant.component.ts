@@ -47,6 +47,7 @@ export class Policjant implements OnInit {
 
   private clicked(value: any) {
     this.formularzWyszukiwarki.reset();
+    $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();
     this.autoService.znajdzSamochod(value).subscribe(
