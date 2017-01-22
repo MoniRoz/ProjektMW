@@ -58,8 +58,7 @@ export class SKP implements OnInit {
     this.przegladyData = [];
     $('.content').hide();
     $('#onLoad').toggle();
-    console.log(car.nr_VIN, value);
-    this.autoService.nowyPrzeglad(this.carChoosen.nr_VIN, value).subscribe(
+    this.autoService.nowyPrzeglad(car.nr_VIN, value).subscribe(
       data => {
         this.message = 'Przegląd dodano pomyślnie';
         $('#onLoad').toggle();
