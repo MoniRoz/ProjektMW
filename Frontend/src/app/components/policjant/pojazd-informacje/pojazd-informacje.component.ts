@@ -1,25 +1,29 @@
-///<reference path="../../../../../node_modules/@angular/forms/src/validators.d.ts"/>
-import {Component, OnInit} from '@angular/core';
-import {TableData} from './przykladowy-samochod';
+import {Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges} from '@angular/core';
+import * as $ from 'jquery';
+import {Samochod} from "../../../_mocks/samochod";
 
 
 @Component({
   selector: 'pojazd-info',
   templateUrl: 'pojazd-informacje.component.html'
 })
-export class PojazdInfo implements OnInit {
+export class PojazdInfo implements OnInit,OnChanges {
+  @Input() TableData: Array<any>;
+  @Output() notify = new EventEmitter();
+
   public rows: Array<any> = [];
   public columns: Array<any> = [
     {title: 'Rodzaj', name: 'rodzaj_pojazdu'},
     {title: 'Marka', name: 'marka'},
     {title: 'Typ', name: 'typ'},
     {title: 'Model', name: 'model'},
-    {title: 'Rok', name: 'rok_produkcji'},
-    {title: 'VIN', name: 'nr_VIN'},
-    {title: 'Nr silnika', name: 'nr_silnika'},
     {title: 'Rejestracja', name: 'd_nr_rejestracyjny'},
-    {title: 'Nr karty pojazdu', name: 'nr_kart_pojazdu'},
-    {title: 'Barwa', name: 'barwa_nadwozia'}
+    {title: 'VIN', name: 'nr_VIN'},
+    {title: 'Rok', name: 'rok_produkcji'},
+    {title: 'Masa', name: 'masa'},
+    {title: 'Pojemność', name: 'p_silnika'},
+    {title: 'Moc', name: 'm_silnika'},
+    {title: 'Rodzaj paliwa', name: 'r_paliwa'}
   ];
   public page: number = 1;
   public itemsPerPage: number = 6;
@@ -34,15 +38,30 @@ export class PojazdInfo implements OnInit {
     className: ['table-striped', 'table-bordered']
   };
 
-  private contentData: Array<any> = TableData;
+  private contentData: Array<any> = [];
 
   public constructor() {
     this.length = this.contentData.length;
   }
 
   public ngOnInit(): void {
+    $('pojazd-info tbody').addClass('pointer');
+    $('pojazd-info').hide();
     this.onChangeTable(this.config);
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.TableData.length > 0) {
+      this.contentData = this.TableData;
+      this.onChangeTable(this.config);
+      $('pojazd-info').fadeIn('slow');
+    }
+    else {
+      this.contentData = [];
+      $('pojazd-info').hide();
+    }
+  }
+
 
   public changePage(page: any, data: Array<any> = this.contentData): Array<any> {
     let start = (page.page - 1) * page.itemsPerPage;
@@ -133,6 +152,18 @@ export class PojazdInfo implements OnInit {
   }
 
   public onCellClick(data: any): any {
-    console.log(data);
+    let samochod = new Samochod(data.row.rodzaj_pojazdu, data.row.marka, data.row.typ, data.row.model,
+      data.row.rok_produkcji, data.row.nr_VIN, data.row.masa, data.row.d_nr_rejestracyjny, data.row.p_silnika, data.row.m_silnika, data.row.zasilanie)
+    this.notify.emit(samochod);
+    $('tbody > tr').click(function () {
+      $(this).css('background-color', '#61f661');
+      $(this).siblings().each(function () {
+        if ($(this).index() % 2 == 0) {
+          $(this).css('background-color', 'rgba(0, 0, 0, 0.05)');
+        } else {
+          $(this).css('background-color', 'transparent');
+        }
+      });
+    });
   }
 }

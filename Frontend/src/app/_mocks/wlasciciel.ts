@@ -5,10 +5,10 @@ export class Wlasciciel {
   nr_domu: string;
   kod_pocztowy: string;
   miejscowosc: string;
-  pesel: string;
+  pesel: number;
 
 
-  constructor(imie: string, nazwisko: string, ulica: string, nr_domu: string, kod_pocztowy: string, miejscowosc: string, pesel: string) {
+  constructor(imie: string, nazwisko: string, ulica: string, nr_domu: string, kod_pocztowy: string, miejscowosc: string, pesel: number) {
     this.imie = imie;
     this.nazwisko = nazwisko;
     this.ulica = ulica;

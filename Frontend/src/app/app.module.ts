@@ -15,6 +15,8 @@ import {StarostaService} from "./_services/starosta.service";
 import {WlascicielInfo} from "./components/policjant/wlascicele-informacje/wlasciciel-informacje.component";
 import {Ng2TableModule} from "ng2-table";
 import {PojazdInfo} from "./components/policjant/pojazd-informacje/pojazd-informacje.component";
+import { PaginationModule } from 'ng2-bootstrap/pagination';
+import {SKP} from "./components/skp/skp.component";
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {PojazdInfo} from "./components/policjant/pojazd-informacje/pojazd-inform
     RejestracjaSamochodu,
     FormularzWlasciciela,
     WlascicielInfo,
-    PojazdInfo
+    PojazdInfo,
+    SKP
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,8 @@ import {PojazdInfo} from "./components/policjant/pojazd-informacje/pojazd-inform
     HttpModule,
     AppRoutingModule,
     Ng2TableModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    PaginationModule.forRoot()
   ],
   providers: [AutoService, StarostaService],
   bootstrap: [AppComponent]

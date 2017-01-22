@@ -2,10 +2,11 @@
   <div class="col-lg-12">
     <div style="padding: 15px">
       <div class="row">
-        <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="isOwnerExists(formularzWyszukiwarki.value)">
+        <form [formGroup]="formularzWyszukiwarki"
+              (ngSubmit)="isOwnerExists(formularzWyszukiwarki.controls['search'].value)">
           <div class="col-lg-4 col-sm-6 float-xs-right">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="PESEL"
+              <input type="text" class="form-control" placeholder="Wpisz pesel właściela"
                      [maxlength]="11"
                      [formControl]="formularzWyszukiwarki.controls['search']">
               <span class="input-group-btn">

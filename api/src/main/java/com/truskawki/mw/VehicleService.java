@@ -29,13 +29,35 @@ public class VehicleService {
         int result;
 
         if(validateAttributes(vehicleUVM, ownerUVM)){
-            truskawkiSimpleResponse = vehicleRepository.addVehicle(response, vehicleUVM, ownerUVM);
+            truskawkiSimpleResponse = vehicleRepository.addVehicle(vehicleUVM, ownerUVM);
             result = truskawkiSimpleResponse.getResult();
         }
         else
             result = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 
         response.setStatus(result);
+    }
+
+    public Wlasciciel getWlasciciel(long wlasciciel, HttpServletResponse response) {
+        TruskawkiSimpleResponse truskawkiSimpleResponse;
+        int result;
+
+        truskawkiSimpleResponse = vehicleRepository.getWlasciciel(wlasciciel);
+        result = truskawkiSimpleResponse.getResult();
+        response.setStatus(result);
+
+        return (Wlasciciel) truskawkiSimpleResponse.getResponse();
+    }
+
+    public Pojazd getPojazd(long vin, HttpServletResponse response) {
+        TruskawkiSimpleResponse truskawkiSimpleResponse;
+        int result;
+
+        truskawkiSimpleResponse = vehicleRepository.getPojazd(vin);
+        result = truskawkiSimpleResponse.getResult();
+        response.setStatus(result);
+
+        return (Pojazd) truskawkiSimpleResponse.getResponse();
     }
 
     private PojazdPost parseToVehiclePost(String requestBody) {

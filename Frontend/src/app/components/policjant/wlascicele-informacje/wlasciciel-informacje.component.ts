@@ -1,13 +1,14 @@
-///<reference path="../../../../../node_modules/@angular/forms/src/validators.d.ts"/>
-import {Component, OnInit} from '@angular/core';
-import {TableData} from './przykladowi-wlasciciele';
+import {Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
+import * as $ from 'jquery';
 
 
 @Component({
   selector: 'wlasciciel-info',
   templateUrl: 'wlasciciel-informacje.component.html'
 })
-export class WlascicielInfo implements OnInit {
+export class WlascicielInfo implements OnInit,OnChanges {
+  @Input() TableData: Array<any>;
+
   public rows: Array<any> = [];
   public columns: Array<any> = [
     {title: 'Imię', name: 'imie'},
@@ -17,11 +18,12 @@ export class WlascicielInfo implements OnInit {
     {title: 'Numer domu', name: 'nr_domu'},
     {title: 'Kod pocztowy', name: 'kod_pocztowy'},
     {title: 'Miejscowość', name: 'miejscowosc'},
-    {title: 'Data', name: 'data', sort: 'desc'}
+    {title: 'Data początkowa', name: 'data_p', sort: 'desc'},
+    {title: 'Data końcowa', name: 'data_k'}
 
   ];
   public page: number = 1;
-  public itemsPerPage: number = 6;
+  public itemsPerPage: number = 2;
   public maxSize: number = 5;
   public numPages: number = 1;
   public length: number = 0;
@@ -33,14 +35,27 @@ export class WlascicielInfo implements OnInit {
     className: ['table-striped', 'table-bordered']
   };
 
-  private contentData: Array<any> = TableData;
+  private contentData: Array<any> = [];
 
   public constructor() {
     this.length = this.contentData.length;
   }
 
   public ngOnInit(): void {
+    $('wlasciciel-info').hide();
     this.onChangeTable(this.config);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.TableData.length > 0) {
+      this.contentData = this.TableData;
+      this.onChangeTable(this.config);
+      $('wlasciciel-info').fadeIn('slow');
+    }
+    else {
+      this.contentData = [];
+      $('wlasciciel-info').hide();
+    }
   }
 
   public changePage(page: any, data: Array<any> = this.contentData): Array<any> {

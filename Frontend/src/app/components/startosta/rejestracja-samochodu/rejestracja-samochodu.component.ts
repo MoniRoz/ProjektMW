@@ -2,6 +2,7 @@ import {Component, Output, EventEmitter, Input, SimpleChanges, OnChanges} from '
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Samochod} from "../../../_mocks/samochod";
 import {StarostaService} from "../../../_services/starosta.service";
+import {CarData} from "../../policjant/pojazd-informacje/przykladowy-samochod";
 
 @Component({
   selector: 'rejestracja-samochodu',
@@ -23,11 +24,11 @@ export class RejestracjaSamochodu implements OnChanges {
       'model': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
       'rok_produkcji': [null, [Validators.required, Validators.pattern('^[1-2][0-9]{3}$')]],
       'nr_VIN': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]],
-      'nr_silnika': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{12}$')]],
+      'masa': [null, [Validators.required]],
       'd_nr_rejestracyjny': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{7}$')]],
-      'nr_kart_pojazdu': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{15}$' || 'nie wydano')]],
-      'przebieg_p_w_km': [null, [Validators.required, Validators.pattern('[0-9]*')]],
-      'barwa_nadwozia': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]]
+      'p_silnika': [null, [Validators.required]],
+      'm_silnika': [null, [Validators.required]],
+      'r_paliwa': [null, [Validators.required]]
     });
 
     this.formularzWyszukiwarki = fb.group({
@@ -46,11 +47,11 @@ export class RejestracjaSamochodu implements OnChanges {
       },
       error => {
         console.log(error);
+        // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'P');
+        //  this.samochod = CarData[0];
       }
     );
     this.formularzWyszukiwarki.reset();
-    // this.samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
-    //   '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -1,4 +1,4 @@
-export const TableData: Array<any> = [
+export const OwnersData: Array<any> = [
   {
     'imie': 'Victoria',
     'nazwisko': 'Cantrell',
@@ -7,7 +7,8 @@ export const TableData: Array<any> = [
     'kod_pocztowy': '01-011',
     'pesel': 123456789,
     'miejscowosc': 'Warszawa',
-    'data': '2001-01-01'
+    'data_p': '2001-01-01',
+    'data_k': '2005-01-12'
   }, {
     'imie': 'Pearl',
     'nazwisko': 'Crosby',
@@ -16,7 +17,8 @@ export const TableData: Array<any> = [
     'kod_pocztowy': '01-012',
     'pesel': 987654321,
     'miejscowosc': "Warszawa",
-    'data': '2005-01-12'
+    'data_p': '2005-01-12',
+    'data_k': '2011-01-12'
   }, {
     'imie': 'Colette',
     'nazwisko': 'Foley',
@@ -25,7 +27,8 @@ export const TableData: Array<any> = [
     'kod_pocztowy': '23-123',
     'pesel': 123498765,
     'miejscowosc': "Warszawa",
-    'data': '2011-01-12'
+    'data_p': '2011-01-12',
+    'data_k': '2016-09-12'
   }, {
     'imie': 'Anastasia',
     'nazwisko': 'Shaffer',
@@ -34,5 +37,6 @@ export const TableData: Array<any> = [
     'kod_pocztowy': '01-231',
     'pesel': 987651234,
     'miejscowosc': "Warszawa",
-    'data': '2016-09-12'
+    'data_p': '2016-09-12',
+    'data_k': '-'
   }];

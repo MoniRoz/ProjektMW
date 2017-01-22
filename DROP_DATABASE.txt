@@ -4,7 +4,7 @@ DROP SEQUENCE seq_Dokument;
 DROP SEQUENCE seq_Posiadanie;
 DROP SEQUENCE seq_Typ_dokumentu;
 DROP SEQUENCE seq_Marka;
-DROP SEQUENCE seq_Rodzaj;
+DROP SEQUENCE seq_Rodzaj_pojazdu;
 DROP SEQUENCE seq_Przeglad;
 
 DROP TABLE Przeglad;
@@ -13,5 +13,5 @@ DROP TABLE Typ_dokumentu;
 DROP TABLE Posiadanie;
 DROP TABLE Wlasciciel;
 DROP TABLE Pojazd;
-DROP TABLE Rodzaj;
+DROP TABLE Rodzaj_pojazdu;
 DROP TABLE Marka;

@@ -2,15 +2,15 @@ package com.truskawki.mw.lib;
 
 public class Pojazd {
     private String marka;
-    private String rodzaj;
+    private String rodzaj_pojazdu;
     private String model;
     private int rok_produkcji;
     private String nr_VIN;
-    private int masa;
-    private int pojemnosc_silnika;
-    private int moc_silnika;
-    private int zasilanie;
-    private String nr_rejestracyjny;
+    private long masa;
+    private long p_silnika;
+    private long m_silnika;
+    private long r_silnika;
+    private String d_nr_rejestracyjny;
 
     public String getMarka() {
         return marka;
@@ -20,12 +20,12 @@ public class Pojazd {
         this.marka = marka;
     }
 
-    public String getRodzaj() {
-        return rodzaj;
+    public String getRodzaj_pojazdu() {
+        return rodzaj_pojazdu;
     }
 
-    public void setRodzaj(String rodzaj) {
-        this.rodzaj = rodzaj;
+    public void setRodzaj_pojazdu(String rodzaj_pojazdu) {
+        this.rodzaj_pojazdu = rodzaj_pojazdu;
     }
 
     public String getModel() {
@@ -52,43 +52,43 @@ public class Pojazd {
         this.nr_VIN = nr_VIN;
     }
 
-    public int getMasa() {
+    public long getMasa() {
         return masa;
     }
 
-    public void setMasa(int masa) {
+    public void setMasa(long masa) {
         this.masa = masa;
     }
 
-    public int getPojemnosc_silnika() {
-        return pojemnosc_silnika;
+    public long getP_silnika() {
+        return p_silnika;
     }
 
-    public void setPojemnosc_silnika(int pojemnosc_silnika) {
-        this.pojemnosc_silnika = pojemnosc_silnika;
+    public void setP_silnika(long p_silnika) {
+        this.p_silnika = p_silnika;
     }
 
-    public int getMoc_silnika() {
-        return moc_silnika;
+    public long getM_silnika() {
+        return m_silnika;
     }
 
-    public void setMoc_silnika(int moc_silnika) {
-        this.moc_silnika = moc_silnika;
+    public void setM_silnika(long m_silnika) {
+        this.m_silnika = m_silnika;
     }
 
-    public int getZasilanie() {
-        return zasilanie;
+    public long getR_silnika() {
+        return r_silnika;
     }
 
-    public void setZasilanie(int zasilanie) {
-        this.zasilanie = zasilanie;
+    public void setR_silnika(long r_silnika) {
+        this.r_silnika = r_silnika;
     }
 
-    public String getNr_rejestracyjny() {
-        return nr_rejestracyjny;
+    public String getD_nr_rejestracyjny() {
+        return d_nr_rejestracyjny;
     }
 
-    public void setNr_rejestracyjny(String nr_rejestracyjny) {
-        this.nr_rejestracyjny = nr_rejestracyjny;
+    public void setD_nr_rejestracyjny(String d_nr_rejestracyjny) {
+        this.d_nr_rejestracyjny = d_nr_rejestracyjny;
     }
 }
