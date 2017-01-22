@@ -21,7 +21,7 @@ export class Policjant implements OnInit {
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
     this.formularzWyszukiwarki = fb.group({
-      'search': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$' || '^[A-Z0-9]{7}$')]]
+      'search': [null]
     });
   }
 
