@@ -3,23 +3,17 @@ import * as $ from 'jquery';
 
 
 @Component({
-  selector: 'wlasciciel-info',
-  templateUrl: 'wlasciciel-informacje.component.html'
+  selector: 'przeglad-info',
+  templateUrl: 'przeglad-informacje.component.html'
 })
-export class WlascicielInfo implements OnInit,OnChanges {
+export class PrzegladInfo implements OnInit,OnChanges {
   @Input() TableData: Array<any>;
 
   public rows: Array<any> = [];
   public columns: Array<any> = [
-    {title: 'Imię', name: 'imie'},
-    {title: 'Nazwisko', name: 'nazwisko'},
-    {title: 'Pesel', name: 'pesel'},
-    {title: 'Ulica', name: 'ulica'},
-    {title: 'Numer domu', name: 'nr_domu'},
-    {title: 'Kod pocztowy', name: 'kod_pocztowy'},
-    {title: 'Miejscowość', name: 'miejscowosc'},
-    {title: 'Data początkowa', name: 'data_p', sort: 'desc'},
-    {title: 'Data zakończenia', name: 'data_k'}
+    {title: 'Data wystawienia', name: 'd_wystawienia', sort: 'desc'},
+    {title: 'Data ważności', name: 'd_waznosci'},
+    {title: 'Wystawiający', name: 'wystawiajacy'}
 
   ];
   public page: number = 1;
@@ -42,7 +36,7 @@ export class WlascicielInfo implements OnInit,OnChanges {
   }
 
   public ngOnInit(): void {
-    $('wlasciciel-info').hide();
+    $('przeglad-info').hide();
     this.onChangeTable(this.config);
   }
 
@@ -50,11 +44,11 @@ export class WlascicielInfo implements OnInit,OnChanges {
     if (this.TableData.length > 0) {
       this.contentData = this.TableData;
       this.onChangeTable(this.config);
-      $('wlasciciel-info').fadeIn('slow');
+      $('przeglad-info').fadeIn('slow');
     }
     else {
       this.contentData = [];
-      $('wlasciciel-info').hide();
+      $('przeglad-info').hide();
     }
   }
 

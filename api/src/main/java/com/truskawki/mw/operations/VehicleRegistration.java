@@ -1,6 +1,6 @@
 package com.truskawki.mw.operations;
 
-import com.truskawki.mw.VehicleMapper;
+import com.truskawki.mw.StarostaMapper;
 import com.truskawki.mw.constants.DatabaseOperationResultEnum;
 import com.truskawki.mw.lib.Pojazd;
 import com.truskawki.mw.lib.TruskawkiSimpleResponse;
@@ -16,7 +16,7 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
 
 
     public VehicleRegistration(Pojazd pojazd, Wlasciciel wlasciciel) {
-        super(VehicleMapper.class);
+        super(StarostaMapper.class);
         this.pojazd = pojazd;
         this.wlasciciel = wlasciciel;
     }
@@ -26,13 +26,26 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
         TruskawkiSimpleResponse truskawkiSimpleResponse = new TruskawkiSimpleResponse();
 
         try{
-            ((VehicleMapper)mapper).insertRodzaj_pojazdu(pojazd.getRodzaj_pojazdu());
-            ((VehicleMapper)mapper).insertMarka(pojazd.getMarka());
-            ((VehicleMapper)mapper).insertPojazd(pojazd);
-            ((VehicleMapper)mapper).insertWlasciciel(wlasciciel);
-            ((VehicleMapper)mapper).insertPosiadanie();
-            ((VehicleMapper)mapper).insertDowodRejestracyjny();
-            ((VehicleMapper)mapper).insertKartaPojazdu();
+            boolean isPojazdAlreadyUsed = getBoolean(((StarostaMapper) mapper).isPojazdAlreadyUsed(pojazd.getNr_VIN()));
+            boolean isWlascicielAlreadyUsed = getBoolean(((StarostaMapper) mapper).isWlascicielAlreadyUsed(wlasciciel.getPesel()));
+
+            if(isWlascicielAlreadyUsed){
+                ((StarostaMapper)mapper).updateWlasciciel(wlasciciel);
+            }
+
+            if(isPojazdAlreadyUsed){
+
+            }
+
+            if(!isPojazdAlreadyUsed && !isWlascicielAlreadyUsed){
+                ((StarostaMapper)mapper).insertRodzaj_pojazdu(pojazd.getRodzaj_pojazdu());
+                ((StarostaMapper)mapper).insertMarka(pojazd.getMarka());
+                ((StarostaMapper)mapper).insertPojazd(pojazd);
+                ((StarostaMapper)mapper).insertWlasciciel(wlasciciel);
+                ((StarostaMapper)mapper).insertPosiadanie();
+                ((StarostaMapper)mapper).insertDowodRejestracyjny();
+                ((StarostaMapper)mapper).insertKartaPojazdu();
+            }
 
             databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLE_REGISTERED_PROPERLY;
         } catch (Exception e){

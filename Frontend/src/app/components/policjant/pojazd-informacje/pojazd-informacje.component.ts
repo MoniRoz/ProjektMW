@@ -51,6 +51,13 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    $('tbody > tr').each(function () {
+      if ($(this).index() % 2 == 0) {
+        $(this).css('background-color', 'rgba(0, 0, 0, 0.05)');
+      } else {
+        $(this).css('background-color', 'transparent');
+      }
+    });
     if (this.TableData.length > 0) {
       this.contentData = this.TableData;
       this.onChangeTable(this.config);
@@ -155,7 +162,7 @@ export class PojazdInfo implements OnInit,OnChanges {
     let samochod = new Samochod(data.row.rodzaj_pojazdu, data.row.marka, data.row.typ, data.row.model,
       data.row.rok_produkcji, data.row.nr_VIN, data.row.masa, data.row.d_nr_rejestracyjny, data.row.p_silnika, data.row.m_silnika, data.row.zasilanie)
     this.notify.emit(samochod);
-    $('tbody > tr').click(function () {
+    $('pojazd-info tbody > tr').click(function () {
       $(this).css('background-color', '#61f661');
       $(this).siblings().each(function () {
         if ($(this).index() % 2 == 0) {

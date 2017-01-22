@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import {Http, URLSearchParams} from '@angular/http';
 
 import {Observable} from "rxjs";
 import {Samochod} from "../_mocks/samochod";
@@ -10,6 +10,7 @@ export class AutoService {
   private httpregistrationUrl = 'api/starosta_samochod';
   private httpFindCars = 'api/policjant/samochody';
   private httpFindOwners = 'api/policjant/wlasciciele';
+  private httpFindPrzeglad = 'api/policjant/przeglady';
 
   constructor(private http: Http) {
   }
@@ -22,18 +23,29 @@ export class AutoService {
   }
 
   znajdzSamochody(value: string): Observable <Samochod[]> {
-    let body = JSON.stringify({'wartosc': value});
-    return this.http.post(this.httpFindCars, body)
+    let params = new URLSearchParams();
+    params.set('wartosc', value);
+    return this.http.get(this.httpFindCars, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
   }
 
   znajdzWlascicieli(samochod: Samochod) {
-    let body = JSON.stringify({'samochod': samochod});
-    return this.http.post(this.httpFindOwners, body)
+    let params = new URLSearchParams();
+    params.set('vin', samochod.nr_VIN);
+    return this.http.get(this.httpFindOwners, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
   }
+
+  znajdzPrzeglady(samochod: Samochod) {
+    let params = new URLSearchParams();
+    params.set('vin', samochod.nr_VIN);
+    return this.http.get(this.httpFindPrzeglad, {search: params})
+      .map(res => res.json())
+      .catch(this.handleError);
+  }
+
 
   private handleError(error: any) {
     let errorMsg;

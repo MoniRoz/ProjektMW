@@ -1,14 +1,11 @@
 package com.truskawki.mw.operations;
 
-import com.truskawki.mw.VehicleMapper;
+import com.truskawki.mw.OtherMapper;
 import com.truskawki.mw.constants.DatabaseOperationResultEnum;
-import com.truskawki.mw.lib.Pojazd;
 import com.truskawki.mw.lib.TruskawkiSimpleResponse;
 import com.truskawki.mw.lib.Wlasciciel;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-
-import java.util.List;
 
 public class FetchWlasciciel extends DatabaseComplexResponseOperation {
 
@@ -16,7 +13,7 @@ public class FetchWlasciciel extends DatabaseComplexResponseOperation {
     private long pesel;
 
     public FetchWlasciciel(long pesel) {
-        super(VehicleMapper.class);
+        super(OtherMapper.class);
         this.pesel = pesel;
     }
 
@@ -26,7 +23,7 @@ public class FetchWlasciciel extends DatabaseComplexResponseOperation {
         Wlasciciel wlasciciel = null;
 
         try{
-            wlasciciel = ((VehicleMapper) mapper).getWlasciciel(pesel);
+            wlasciciel = ((OtherMapper) mapper).getWlasciciel(pesel);
             databaseOperationResultEnum = DatabaseOperationResultEnum.OWNER_FETCHED_PROPERLY;
         } catch (Exception e){
             logger.log(Level.ERROR, e.toString());

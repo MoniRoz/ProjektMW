@@ -13,12 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class VehicleService {
+public class StarostaService {
 
     @Autowired
-    private VehicleRepository vehicleRepository;
+    private StarostaRepository starostaRepository;
 
-    private Logger logger = Logger.getLogger(VehicleService.class);
+    private Logger logger = Logger.getLogger(StarostaService.class);
 
     public void addVehicle(String requestBody, HttpServletResponse response) {
         PojazdPost pojazdPost = parseToVehiclePost(requestBody);
@@ -29,7 +29,7 @@ public class VehicleService {
         int result;
 
         if(validateAttributes(vehicleUVM, ownerUVM)){
-            truskawkiSimpleResponse = vehicleRepository.addVehicle(vehicleUVM, ownerUVM);
+            truskawkiSimpleResponse = starostaRepository.addVehicle(vehicleUVM, ownerUVM);
             result = truskawkiSimpleResponse.getResult();
         }
         else
@@ -42,7 +42,7 @@ public class VehicleService {
         TruskawkiSimpleResponse truskawkiSimpleResponse;
         int result;
 
-        truskawkiSimpleResponse = vehicleRepository.getWlasciciel(wlasciciel);
+        truskawkiSimpleResponse = starostaRepository.getWlasciciel(wlasciciel);
         result = truskawkiSimpleResponse.getResult();
         response.setStatus(result);
 
@@ -53,7 +53,7 @@ public class VehicleService {
         TruskawkiSimpleResponse truskawkiSimpleResponse;
         int result;
 
-        truskawkiSimpleResponse = vehicleRepository.getPojazd(vin);
+        truskawkiSimpleResponse = starostaRepository.getPojazd(vin);
         result = truskawkiSimpleResponse.getResult();
         response.setStatus(result);
 

@@ -19,7 +19,9 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper class="com.truskawki.mw.VehicleMapper"/>
+		<mapper class="com.truskawki.mw.StarostaMapper"/>
+		<mapper class="com.truskawki.mw.PolicjantMapper"/>
+		<mapper class="com.truskawki.mw.OtherMapper"/>
 	</mappers>
 
 </configuration>

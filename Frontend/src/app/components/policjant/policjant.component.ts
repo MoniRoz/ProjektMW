@@ -5,6 +5,7 @@ import {CarData} from './pojazd-informacje/przykladowy-samochod';
 import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
 import {Samochod} from "../../_mocks/samochod";
 import * as $ from 'jquery';
+import {PrzegladyData} from "./przeglad-informacje/przykladowe-przeglady";
 
 @Component({
   selector: 'policjant',
@@ -17,6 +18,7 @@ export class Policjant implements OnInit {
   private carChoosen: Samochod = null;
   private carData: Array<any> = [];
   private ownerData: Array<any> = [];
+  private przegladyData: Array<any> = [];
 
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
@@ -35,6 +37,7 @@ export class Policjant implements OnInit {
   myChange(value) {
     this.carChoosen = value;
     this.ownerData = [];
+    this.przegladyData = [];
 
     if (this.carChoosen != null) {
       $('#ownerLoad').show();
@@ -49,13 +52,27 @@ export class Policjant implements OnInit {
           this.ownerData = OwnersData;
         }
       );
+      this.autoService.znajdzPrzeglady(this.carChoosen).subscribe(
+        data => {
+          console.log(data);
+          $('#ownerLoad').hide();
+          this.przegladyData = PrzegladyData;
+        }, error => {
+          console.log(error);
+          $('#ownerLoad').hide();
+          this.przegladyData = PrzegladyData;
+        }
+      );
     }
   }
 
   private clicked(value: any) {
     this.formularzWyszukiwarki.reset();
+    this.carData = [];
+    this.ownerData = [];
+    this.przegladyData = [];
     $('.content').hide();
-    $('#message').hide();
+    $('.infomessage').hide();
     $('#onLoad').toggle();
     this.autoService.znajdzSamochody(value).subscribe(
       data => {
