@@ -1,32 +1,23 @@
-import {Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, SimpleChanges, OnChanges} from '@angular/core';
 import * as $ from 'jquery';
-import {Samochod} from "../../../_mocks/samochod";
 
 
 @Component({
-  selector: 'pojazd-info',
-  templateUrl: 'pojazd-informacje.component.html'
+  selector: 'przeglad-info',
+  templateUrl: 'przeglad-informacje.component.html'
 })
-export class PojazdInfo implements OnInit,OnChanges {
+export class PrzegladInfo implements OnInit,OnChanges {
   @Input() TableData: Array<any>;
-  @Output() notify = new EventEmitter();
 
   public rows: Array<any> = [];
   public columns: Array<any> = [
-    {title: 'Rodzaj', name: 'rodzaj_pojazdu'},
-    {title: 'Marka', name: 'marka'},
-    {title: 'Typ', name: 'typ'},
-    {title: 'Model', name: 'model'},
-    {title: 'Rejestracja', name: 'd_nr_rejestracyjny'},
-    {title: 'VIN', name: 'nr_VIN'},
-    {title: 'Rok', name: 'rok_produkcji'},
-    {title: 'Masa', name: 'masa'},
-    {title: 'Pojemność', name: 'p_silnika'},
-    {title: 'Moc', name: 'm_silnika'},
-    {title: 'Rodzaj paliwa', name: 'r_paliwa'}
+    {title: 'Data wystawienia', name: 'd_wystawienia', sort: 'desc'},
+    {title: 'Data ważności', name: 'd_waznosci'},
+    {title: 'Wystawiający', name: 'wystawiajacy'}
+
   ];
   public page: number = 1;
-  public itemsPerPage: number = 6;
+  public itemsPerPage: number = 2;
   public maxSize: number = 5;
   public numPages: number = 1;
   public length: number = 0;
@@ -45,30 +36,21 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   public ngOnInit(): void {
-    $('pojazd-info tbody').addClass('pointer');
-    $('pojazd-info').hide();
+    $('przeglad-info').hide();
     this.onChangeTable(this.config);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    $('tbody > tr').each(function () {
-      if ($(this).index() % 2 == 0) {
-        $(this).css('background-color', 'rgba(0, 0, 0, 0.05)');
-      } else {
-        $(this).css('background-color', 'transparent');
-      }
-    });
     if (this.TableData.length > 0) {
       this.contentData = this.TableData;
       this.onChangeTable(this.config);
-      $('pojazd-info').fadeIn('slow');
+      $('przeglad-info').fadeIn('slow');
     }
     else {
       this.contentData = [];
-      $('pojazd-info').hide();
+      $('przeglad-info').hide();
     }
   }
-
 
   public changePage(page: any, data: Array<any> = this.contentData): Array<any> {
     let start = (page.page - 1) * page.itemsPerPage;
@@ -159,18 +141,6 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   public onCellClick(data: any): any {
-    let samochod = new Samochod(data.row.rodzaj_pojazdu, data.row.marka, data.row.typ, data.row.model,
-      data.row.rok_produkcji, data.row.nr_VIN, data.row.masa, data.row.d_nr_rejestracyjny, data.row.p_silnika, data.row.m_silnika, data.row.zasilanie)
-    this.notify.emit(samochod);
-    $('pojazd-info tbody > tr').click(function () {
-      $(this).css('background-color', '#61f661');
-      $(this).siblings().each(function () {
-        if ($(this).index() % 2 == 0) {
-          $(this).css('background-color', 'rgba(0, 0, 0, 0.05)');
-        } else {
-          $(this).css('background-color', 'transparent');
-        }
-      });
-    });
+    console.log(data);
   }
 }

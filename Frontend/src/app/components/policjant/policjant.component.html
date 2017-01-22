@@ -26,6 +26,7 @@
       <div class="content">
         <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>
         <div id="ownerLoad" class="loader"></div>
+        <przeglad-info [TableData]="przegladyData"></przeglad-info>
         <wlasciciel-info [TableData]="ownerData"></wlasciciel-info>
       </div>
     </div>

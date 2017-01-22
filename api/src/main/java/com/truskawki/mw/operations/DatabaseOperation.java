@@ -21,6 +21,10 @@ public class DatabaseOperation {
     static{
         responseMap.put(DatabaseOperationResultEnum.VEHICLE_REGISTERED_PROPERLY, HttpServletResponse.SC_OK);
         responseMap.put(DatabaseOperationResultEnum.VEHICLE_REGISTER_ATTEMPT_FAILED_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        responseMap.put(DatabaseOperationResultEnum.VEHICLE_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
+        responseMap.put(DatabaseOperationResultEnum.VEHICLE_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        responseMap.put(DatabaseOperationResultEnum.OWNER_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
+        responseMap.put(DatabaseOperationResultEnum.OWNER_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
     protected DatabaseOperationResultEnum databaseOperationResultEnum;

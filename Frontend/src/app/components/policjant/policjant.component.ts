@@ -5,6 +5,7 @@ import {CarData} from './pojazd-informacje/przykladowy-samochod';
 import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
 import {Samochod} from "../../_mocks/samochod";
 import * as $ from 'jquery';
+import {PrzegladyData} from "./przeglad-informacje/przykladowe-przeglady";
 
 @Component({
   selector: 'policjant',
@@ -17,6 +18,7 @@ export class Policjant implements OnInit {
   private carChoosen: Samochod = null;
   private carData: Array<any> = [];
   private ownerData: Array<any> = [];
+  private przegladyData: Array<any> = [];
 
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
@@ -47,6 +49,7 @@ export class Policjant implements OnInit {
           console.log(error);
           $('#ownerLoad').hide();
           this.ownerData = OwnersData;
+          this.przegladyData = PrzegladyData;
         }
       );
     }
@@ -54,6 +57,7 @@ export class Policjant implements OnInit {
 
   private clicked(value: any) {
     this.formularzWyszukiwarki.reset();
+    this.carData = [];
     $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();

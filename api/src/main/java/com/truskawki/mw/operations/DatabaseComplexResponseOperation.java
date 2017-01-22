@@ -2,6 +2,9 @@ package com.truskawki.mw.operations;
 
 import com.truskawki.mw.lib.TruskawkiSimpleResponse;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.session.SqlSession;
+
+import java.io.InputStream;
 
 public abstract class DatabaseComplexResponseOperation <T extends Mapper>  extends DatabaseOperation {
     protected T mapper;
@@ -12,20 +15,21 @@ public abstract class DatabaseComplexResponseOperation <T extends Mapper>  exten
     }
 
     public TruskawkiSimpleResponse performAction() {
-//        InputStream inputStream = openInputStream();
-//        SqlSession session = establishSession(inputStream);
-//        mapper = session.getMapper(mapperType);
-//
-//        MalinkiComplexResponse malinkiComplexResponse;
-//
-//        malinkiComplexResponse = mainAction();
-//        session.commit();
-//        malinkiComplexResponse.setResult(getResultCode());
-//
-//        session.close();
-//        closeInputStream(inputStream);
+        InputStream inputStream = openInputStream();
+        SqlSession session = establishSession(inputStream);
+        mapper = session.getMapper(mapperType);
 
-        return new TruskawkiSimpleResponse();
+        TruskawkiSimpleResponse truskawkiSimpleResponse;
+
+        truskawkiSimpleResponse = mainAction();
+        session.commit();
+
+        truskawkiSimpleResponse.setResult(getResultCode());
+
+        session.close();
+        closeInputStream(inputStream);
+
+        return truskawkiSimpleResponse;
     }
 
     abstract protected TruskawkiSimpleResponse mainAction();
