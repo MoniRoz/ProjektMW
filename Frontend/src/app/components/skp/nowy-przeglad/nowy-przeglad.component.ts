@@ -1,6 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
-import * as $ from 'jquery';
 import {Przeglad} from "../../../_mocks/przeglad";
 
 @Component({
@@ -9,6 +8,7 @@ import {Przeglad} from "../../../_mocks/przeglad";
   // styleUrls: ['../_css/app.component.css']
 })
 export class NowyPrzeglad {
+  @Output() notify = new EventEmitter();
   private formularzPrzegladu: FormGroup;
 
   constructor(private fb: FormBuilder) {
@@ -21,7 +21,7 @@ export class NowyPrzeglad {
 
   submit(value: Przeglad) {
     this.formularzPrzegladu.reset();
-    console.log(value);
+    this.notify.emit(value);
   }
 
 }
