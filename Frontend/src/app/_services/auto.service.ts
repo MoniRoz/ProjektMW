@@ -12,7 +12,7 @@ export class AutoService {
   private httpFindCars = 'api/policjant/samochody';
   private httpFindOwners = 'api/policjant/wlasciciele';
   private httpFindPrzeglad = 'api/policjant/przeglady';
-  private httpNowyPrzeglad = 'api/policjant/samochod_przeglad';
+  private httpNowyPrzeglad = 'api/skp/samochod_przeglad';
 
   constructor(private http: Http) {
   }
