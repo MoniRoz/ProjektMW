@@ -2,7 +2,6 @@ export const CarData: Array<any> = [
   {
     'rodzaj_pojazdu': 'Osobowy',
     'marka': 'Ford',
-    'typ': 'Sedan',
     'model': 'Focus',
     'rok_produkcji': 2008,
     'nr_VIN': 'W0L0XCF0814000002',

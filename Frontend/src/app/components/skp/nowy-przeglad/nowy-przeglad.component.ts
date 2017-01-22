@@ -5,7 +5,6 @@ import {Przeglad} from "../../../_mocks/przeglad";
 @Component({
   selector: 'nowy-przeglad',
   templateUrl: './nowy-przeglad.component.html'
-  // styleUrls: ['../_css/app.component.css']
 })
 export class NowyPrzeglad {
   @Output() notify = new EventEmitter();
