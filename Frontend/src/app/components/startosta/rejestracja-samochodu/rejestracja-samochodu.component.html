@@ -59,19 +59,19 @@
         <div class="form-group row">
           <div class="col-sm-4">
             <label>Masa: </label>
-            <input [maxlength]="12" type="text" class="form-control"
+            <input [maxlength]="12" type="number" class="form-control"
                    [formControl]="formularzRejestracji.controls['masa']"
                    [ngModel]="samochod.masa">
           </div>
           <div class="col-sm-4">
             <label>Rok produkcji: </label>
-            <input [maxlength]="4" type="text" class="form-control"
+            <input [maxlength]="4" type="number" class="form-control"
                    [formControl]="formularzRejestracji.controls['rok_produkcji']"
                    [ngModel]="samochod.rok_produkcji">
           </div>
           <div class="col-sm-4">
             <label>Pojemność silnika: </label>
-            <input [maxlength]="15" type="text" class="form-control"
+            <input [maxlength]="15" type="number" class="form-control"
                    [formControl]="formularzRejestracji.controls['p_silnika']"
                    [ngModel]="samochod.p_silnika">
           </div>
@@ -79,12 +79,12 @@
         <div class="form-group row">
           <div class="col-sm-6">
             <label>Moc silnika: </label>
-            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['m_silnika']"
+            <input type="number" class="form-control" [formControl]="formularzRejestracji.controls['m_silnika']"
                    [ngModel]="samochod.m_silnika">
           </div>
           <div class="col-sm-6">
             <label>Zasilanie: </label>
-            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['zasilanie']"
+            <input type="number" class="form-control" [formControl]="formularzRejestracji.controls['zasilanie']"
                    [ngModel]="samochod.zasilanie">
           </div>
         </div>

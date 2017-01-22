@@ -46,11 +46,10 @@ export class RejestracjaSamochodu implements OnChanges {
       },
       error => {
         console.log(error);
+        // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 1);
       }
     );
     this.formularzWyszukiwarki.reset();
-    this.samochod = new Samochod('Osobowy', 'Ford', 'Sedan', 'Focus',
-      '2008', 'W0L0XCF0814000002', 'F16D3000080K', 'WD70757', 'AWD23423456AAAA', '200000', 'Czerwony');
   }
 
   ngOnChanges(changes: SimpleChanges) {

@@ -38,10 +38,15 @@ export class Policjant implements OnInit {
 
     if (this.carChoosen != null) {
       $('#ownerLoad').show();
-      setTimeout(() => {
-        $('#ownerLoad').hide();
-        this.ownerData = OwnersData;
-      }, 2000);
+      this.autoService.znajdzWlasciciela(this.carChoosen).subscribe(
+        data => {
+          console.log(data);
+        }, error => {
+          console.log(error);
+          $('#ownerLoad').hide();
+          this.ownerData = OwnersData;
+        }
+      );
     }
   }
 
