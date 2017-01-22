@@ -35,7 +35,7 @@ export class Starosta implements AfterViewInit,DoCheck {
   submit() {
     this.message = null;
     this.autoService.nowySamochod(this.samochodFormularz.value, this.wlascicielFormularz.value).subscribe(
-      data => {
+      () => {
         this.message = 'Rejestracja przebiegła pomyślnie';
       },
       error => {

@@ -10,7 +10,7 @@ export const CarData: Array<any> = [
     'd_nr_rejestracyjny': 'WD70757',
     'p_silnika': 1.6 + 'l',
     'm_silnika': 103 + 'kW',
-    'zasilanie': 230 + 'V'
+    'zasilanie': 'Silnik spalinowy'
   }, {
     'rodzaj_pojazdu': 'Osobowy',
     'marka': 'Volvo',
@@ -22,5 +22,5 @@ export const CarData: Array<any> = [
     'd_nr_rejestracyjny': 'WD34734',
     'p_silnika': 2.0 + 'l',
     'm_silnika': 110 + 'kW',
-    'zasilanie': 230 + 'V'
+    'zasilanie': 'Silnik spalinowy'
   }];

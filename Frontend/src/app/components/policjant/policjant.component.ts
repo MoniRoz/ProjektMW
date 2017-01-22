@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {AutoService} from "../../_services/auto.service";
 import {CarData} from './pojazd-informacje/przykladowy-samochod';
 import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
@@ -21,7 +21,7 @@ export class Policjant implements OnInit {
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
     this.formularzWyszukiwarki = fb.group({
-      'search': [null]
+      'search': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$' || '^[A-Z0-9]{7}$')]]
     });
   }
 
@@ -38,7 +38,7 @@ export class Policjant implements OnInit {
 
     if (this.carChoosen != null) {
       $('#ownerLoad').show();
-      this.autoService.znajdzWlasciciela(this.carChoosen).subscribe(
+      this.autoService.znajdzWlascicieli(this.carChoosen).subscribe(
         data => {
           console.log(data);
           $('#ownerLoad').hide();
@@ -57,7 +57,7 @@ export class Policjant implements OnInit {
     $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();
-    this.autoService.znajdzSamochod(value).subscribe(
+    this.autoService.znajdzSamochody(value).subscribe(
       data => {
         console.log(data);
         $('#onLoad').toggle();

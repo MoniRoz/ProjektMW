@@ -8,7 +8,8 @@ import {Wlasciciel} from "../_mocks/wlasciciel";
 @Injectable()
 export class AutoService {
   private httpregistrationUrl = 'api/starosta_samochod';
-  private httpFindCar = 'api/policjant';
+  private httpFindCars = 'api/policjant';
+  private httpFindOwners = 'api/policjant/owners';
 
   constructor(private http: Http) {
   }
@@ -20,16 +21,16 @@ export class AutoService {
       .catch(this.handleError);
   }
 
-  znajdzSamochod(value: string) {
+  znajdzSamochody(value: string): Observable <Samochod[]> {
     let body = JSON.stringify({'wartosc': value});
-    return this.http.post(this.httpFindCar, body)
+    return this.http.post(this.httpFindCars, body)
       .map(res => res.json())
       .catch(this.handleError);
   }
 
-  znajdzWlasciciela(samochod: Samochod){
+  znajdzWlascicieli(samochod: Samochod) {
     let body = JSON.stringify({'samochod': samochod});
-    return this.http.post(this.httpFindCar, body)
+    return this.http.post(this.httpFindOwners, body)
       .map(res => res.json())
       .catch(this.handleError);
   }

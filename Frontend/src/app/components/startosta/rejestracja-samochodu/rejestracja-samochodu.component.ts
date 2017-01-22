@@ -46,7 +46,7 @@ export class RejestracjaSamochodu implements OnChanges {
       },
       error => {
         console.log(error);
-        // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 1);
+         // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'a');
       }
     );
     this.formularzWyszukiwarki.reset();
