@@ -2,7 +2,7 @@ package com.truskawki.mw.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.truskawki.mw.bll.VehicleService;
+import com.truskawki.mw.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +18,6 @@ public class VehicleController {
 
 	@RequestMapping(value = "/starosta_samochod", method = RequestMethod.POST)
 	public void addVehicle(@RequestBody String requestBody, HttpServletResponse response) {
-		requestBody = requestBody.replace("Samo", "samo");	// do usuniecia
-		requestBody = requestBody.replace("Wlas", "wlas");  // do usuniecia
-
 		vehicleService.addVehicle(requestBody, response);
 	}
 }

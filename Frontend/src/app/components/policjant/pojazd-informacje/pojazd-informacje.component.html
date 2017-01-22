@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div style="padding: 15px">
+      <h5 class="formHeader">Dane samochodu:</h5>
+      <ng-table [config]="config"
+                (tableChanged)="onChangeTable(config)"
+                (cellClicked)="onCellClick($event)"
+                [rows]="rows" [columns]="columns">
+      </ng-table>
+    </div>
+  </div>
+</div>

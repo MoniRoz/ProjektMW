@@ -2,12 +2,31 @@
   <div class="row">
     <ul class="nav nav-tabs" role="tablist">
       <li class="nav-item">
-        <a class="tab nav-link active">Template</a>
+        <a class="tab nav-link active">Wyszukaj informacje o pojeździe</a>
       </li>
     </ul>
   </div>
   <div id="content" class="row">
-    <div class="container" style="min-height: 50vh">
+    <div class="container" style="min-height: 50vh; padding-top: 15px">
+      <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.value)">
+        <div class="col-lg-4 col-sm-6 float-xs-right">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Dane pojazdu"
+                   [maxlength]="17"
+                   [formControl]="formularzWyszukiwarki.controls['search']">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"
+                [disabled]="!formularzWyszukiwarki.valid">Szukaj</button>
+      </span>
+          </div>
+        </div>
+      </form>
+      <p id="message">Skorzystaj z wyszukiwarki by znaleźć informacje o interesującym Cię pojeździe</p>
+      <div class="loader"></div>
+      <div class="content">
+        <pojazd-info></pojazd-info>
+        <wlasciciel-info></wlasciciel-info>
+      </div>
     </div>
   </div>
 </div>

@@ -7,13 +7,13 @@
       <li class="nav-item">
         <a class="tab nav-link" href="#samochod" role="tab" data-toggle="tab">Dodaj do bazy nowy pojazd</a>
       </li>
-      <li class="nav-item">
-        <a class="tab nav-link" href="#karta" role="tab" data-toggle="tab">Karta pojazdu</a>
-      </li>
     </ul>
   </div>
   <div id="content" class="row">
     <div class="container">
+      <div class="container">
+        <h5 id="formHeader" class="message" *ngIf="message" style="padding-top: 25px">{{message}}</h5>
+      </div>
       <div class="tab-content">
         <div class="tab-pane active" id="wlasciciel">
           <wlasciciel-formularz [reset]="reset" (notify)="wlascicielFormularz = $event"></wlasciciel-formularz>
@@ -21,11 +21,8 @@
         <div class="tab-pane" id="samochod">
           <rejestracja-samochodu [reset]="reset" (notify)="samochodFormularz = $event"></rejestracja-samochodu>
         </div>
-        <div class="tab-pane" id="karta">
-          <karta-pojazdu></karta-pojazdu>
-        </div>
       </div>
-      <button class="btn btn-secondary float-xs-right" style="margin-right: 25px" [disabled]="!isFormValid()"
+      <button class="btn btn-secondary float-xs-right" style="margin-right: 25px" [disabled]="!isValid"
               (click)="submit()" title="Należy uzupełnić wszytkie dane poprawnie">
         Submit
       </button>

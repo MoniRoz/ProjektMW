@@ -1,10 +1,26 @@
 CREATE SEQUENCE seq_Pojazd;
 CREATE SEQUENCE seq_Wlasciciel;
 CREATE SEQUENCE seq_Dokument;
+CREATE SEQUENCE seq_Posiadanie;
+CREATE SEQUENCE seq_Typ_dokumentu;
+CREATE SEQUENCE seq_Marka;
+CREATE SEQUENCE seq_Rodzaj;
+CREATE SEQUENCE seq_Przeglad;
 
-CREATE TABLE Pojazd (ID_pojazdu number(10) NOT NULL, ID_dokument number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, PRIMARY KEY (ID_pojazdu));
-CREATE TABLE Wlasciciel (ID_wlasciciela number(10) NOT NULL, imie varchar2(50) NOT NULL, nazwisko varchar2(50) NOT NULL, pesel number(20) NOT NULL, ulica varchar2(50) NOT NULL, kod_pocztowy varchar2(50) NOT NULL, miejscowosc varchar2(50) NOT NULL, nr_domu number(10) NOT NULL, PRIMARY KEY (ID_wlasciciela));
-CREATE TABLE Dokument (ID_dokument number(10) NOT NULL, rodzaj_pojazdu varchar2(50) NOT NULL, marka varchar2(50) NOT NULL, typ varchar2(50) NOT NULL, model varchar2(50) NOT NULL, rok_produkcji number(10) NOT NULL, nr_vin number(20) NOT NULL, nr_silnika number(20) NOT NULL, d_nr_rejestracyjny number(10) NOT NULL, nr_kart_pojazdu number(20) NOT NULL, przebieg_p_w_km number(10) NOT NULL, barwa_nadwozia varchar2(50) NOT NULL, PRIMARY KEY (ID_dokument));
+CREATE TABLE Pojazd (ID_pojazdu number(10) NOT NULL, ID_marki number(10) NOT NULL, ID_rodzaju_pojazdu number(10) NOT NULL, model varchar2(50) NOT NULL, rok_produkcji number(4) NOT NULL, nr_vin varchar2(50) NOT NULL, masa number(10) NOT NULL, pojemnosc_silnika number(10) NOT NULL, moc_silnika number(10) NOT NULL, zasilanie number(10) NOT NULL, nr_rejestracyjny varchar2(50) NOT NULL, PRIMARY KEY (ID_pojazdu));
+CREATE TABLE Wlasciciel (ID_wlasciciela number(10) NOT NULL, imie varchar2(50) NOT NULL, nazwisko varchar2(50) NOT NULL, pesel number(11) NOT NULL, ulica varchar2(50) NOT NULL, kod_pocztowy varchar2(50) NOT NULL, miejscowosc varchar2(50) NOT NULL, nr_domu varchar2(50) NOT NULL, PRIMARY KEY (ID_wlasciciela));
+CREATE TABLE Dokument (ID_dokument number(10) NOT NULL, ID_pojazdu number(10) NOT NULL, ID_typu number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, nr_dokumentu varchar2(50) NOT NULL, wystawiajacy varchar2(50) NOT NULL, data_poczatkowa date NOT NULL, data_koncowa date NOT NULL, PRIMARY KEY (ID_dokument));
+CREATE TABLE Posiadanie (ID_posiadania number(10) NOT NULL, ID_pojazdu number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, data_poczatkowa date NOT NULL, data_koncowa date NOT NULL, PRIMARY KEY (ID_posiadania));
+CREATE TABLE Typ_dokumentu (Id_typu number(10) NOT NULL, typ_dokumentu number(10) NOT NULL, PRIMARY KEY (Id_typu));
+CREATE TABLE Marka (ID_marki number(10) NOT NULL, marka varchar2(50) NOT NULL, PRIMARY KEY (ID_marki));
+CREATE TABLE Rodzaj (ID_rodzaju number(10) NOT NULL, rodzaj varchar2(50) NOT NULL, PRIMARY KEY (ID_rodzaju));
+CREATE TABLE Przeglad (ID_przegladu number(10) NOT NULL, ID_dokument number(10) NOT NULL, data_wystawienia date NOT NULL, data_waznosci date NOT NULL, wystawiajacy varchar2(50) NOT NULL, PRIMARY KEY (ID_przegladu));
 
-ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd146638 FOREIGN KEY (ID_dokument) REFERENCES Dokument (ID_dokument);
-ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd436213 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
+ALTER TABLE Posiadanie ADD CONSTRAINT FKPosiadanie130716 FOREIGN KEY (ID_pojazdu) REFERENCES Pojazd (ID_pojazdu);
+ALTER TABLE Posiadanie ADD CONSTRAINT FKPosiadanie17191 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
+ALTER TABLE Dokument ADD CONSTRAINT FKDokument993508 FOREIGN KEY (ID_typu) REFERENCES Typ_dokumentu (Id_typu);
+ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd804539 FOREIGN KEY (ID_marki) REFERENCES Marka (ID_marki);
+ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd246860 FOREIGN KEY (ID_rodzaju_pojazdu) REFERENCES Rodzaj (ID_rodzaju);
+ALTER TABLE Przeglad ADD CONSTRAINT FKPrzeglad335326 FOREIGN KEY (ID_dokument) REFERENCES Dokument (ID_dokument);
+ALTER TABLE Dokument ADD CONSTRAINT FKDokument834475 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
+ALTER TABLE Dokument ADD CONSTRAINT FKDokument989207 FOREIGN KEY (ID_pojazdu) REFERENCES Pojazd (ID_pojazdu);
