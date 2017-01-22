@@ -19,7 +19,7 @@ export class StarostaService {
     console.log(VIN);
     let params = new URLSearchParams();
     params.set('vin', VIN);
-    return this.http.get(this.httpVehicleDataUrl,{search: params})
+    return this.http.get(this.httpVehicleDataUrl, {search: params})
       .map(res => res.json())
       .catch(this.handleError);
   }
@@ -27,7 +27,9 @@ export class StarostaService {
   getOwner(pesel: string): Observable<Wlasciciel> {
     let params = new URLSearchParams();
     params.set('pesel', pesel);
-    return this.http.get(this.httpOwnersDataUrl).map(res => res.json()).catch(this.handleError);
+    return this.http.get(this.httpOwnersDataUrl, {search: params})
+      .map(res => res.json())
+      .catch(this.handleError);
   }
 
   private handleError(error: any) {
