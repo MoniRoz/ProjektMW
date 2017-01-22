@@ -15,7 +15,6 @@ export class PojazdInfo implements OnInit,OnChanges {
   public columns: Array<any> = [
     {title: 'Rodzaj', name: 'rodzaj_pojazdu'},
     {title: 'Marka', name: 'marka'},
-    {title: 'Typ', name: 'typ'},
     {title: 'Model', name: 'model'},
     {title: 'Rejestracja', name: 'd_nr_rejestracyjny'},
     {title: 'VIN', name: 'nr_VIN'},
@@ -159,7 +158,7 @@ export class PojazdInfo implements OnInit,OnChanges {
   }
 
   public onCellClick(data: any): any {
-    let samochod = new Samochod(data.row.rodzaj_pojazdu, data.row.marka, data.row.typ, data.row.model,
+    let samochod = new Samochod(data.row.rodzaj_pojazdu, data.row.marka, data.row.model,
       data.row.rok_produkcji, data.row.nr_VIN, data.row.masa, data.row.d_nr_rejestracyjny, data.row.p_silnika, data.row.m_silnika, data.row.zasilanie)
     this.notify.emit(samochod);
     $('pojazd-info tbody > tr').click(function () {

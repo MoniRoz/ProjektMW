@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PolicjantService {
 
@@ -20,7 +22,7 @@ public class PolicjantService {
 
     private Logger logger = Logger.getLogger(StarostaService.class);
 
-    public Pojazd getPojazd(String value, HttpServletResponse response) {
+    public List<Pojazd> getPojazd(String value, HttpServletResponse response) {
         TruskawkiSimpleResponse truskawkiSimpleResponse = null;
         int result;
 
@@ -32,7 +34,10 @@ public class PolicjantService {
         result = truskawkiSimpleResponse.getResult();
         response.setStatus(result);
 
-        return (Pojazd) truskawkiSimpleResponse.getResponse();
+        List<Pojazd> list = new ArrayList<>();
+        list.add((Pojazd) truskawkiSimpleResponse.getResponse());
+
+        return list;
     }
 
     private PojazdPost parseToVehiclePost(String requestBody) {

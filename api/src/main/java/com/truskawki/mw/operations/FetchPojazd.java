@@ -10,9 +10,9 @@ import org.apache.log4j.Logger;
 public class FetchPojazd extends DatabaseComplexResponseOperation {
 
     private final Logger logger = Logger.getLogger(VehicleRegistration.class);
-    private long vin;
+    private String vin;
 
-    public FetchPojazd(long vin) {
+    public FetchPojazd(String vin) {
         super(OtherMapper.class);
         this.vin = vin;
     }

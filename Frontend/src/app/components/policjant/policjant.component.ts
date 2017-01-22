@@ -76,10 +76,13 @@ export class Policjant implements OnInit {
     $('#onLoad').toggle();
     this.autoService.znajdzSamochody(value).subscribe(
       data => {
-        console.log(data);
+        console.log("data", data);
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
-        this.carData = CarData;
+        let samochod: Array<any> = [];
+        samochod.push(new Samochod('a', 'a', 'a', 2008, 'a', 1111, 'a', 1.2, 1.3, 'a'));
+        this.carData = samochod;
+        console.log("car data: ", this.carData);
       }, error => {
         console.log(error);
         $('#onLoad').toggle();

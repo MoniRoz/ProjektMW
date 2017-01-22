@@ -12,12 +12,12 @@ public interface OtherMapper extends Mapper {
     Wlasciciel getWlasciciel(long pesel);
 
     @Select("SELECT * FROM Pojazd WHERE nr_VIN = #{vin}")
-    Pojazd getPojazd(long vin);
+    Pojazd getPojazd(String vin);
 
     @Select("SELECT Rodzaj_pojazdu FROM Rodzaj_pojazdu r, Pojazd p WHERE r.ID_rodzaju_pojazdu = p.ID_rodzaju_pojazdu AND nr_VIN = #{vin}")
-    String getRodzaj_pojazdu(long vin);
+    String getRodzaj_pojazdu(String vin);
 
     @Select("SELECT Marka FROM Marka m, Pojazd p WHERE m.ID_marki = p.ID_marki AND nr_VIN = #{vin}")
-    String getMarka(long vin);
+    String getMarka(String vin);
 }
 

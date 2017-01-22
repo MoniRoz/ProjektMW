@@ -22,7 +22,7 @@ public class StarostaRepository {
         return fetchWlasciciel.performAction();
     }
 
-    public TruskawkiSimpleResponse getPojazd(long vin) {
+    public TruskawkiSimpleResponse getPojazd(String vin) {
         FetchPojazd fetchPojazd = new FetchPojazd(vin);
         return fetchPojazd.performAction();
     }

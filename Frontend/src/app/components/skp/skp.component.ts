@@ -52,10 +52,32 @@ export class SKP implements OnInit {
 
   }
 
-  private clicked(value: any) {
+  nowyPrzeglad(value: any) {
+    if (this.carChoosen == null)
+      var car = this.carData[0];
+    else
+      car = this.carChoosen;
+    this.carData = [];
+    this.przegladyData = [];
+    $('.content').hide();
+    $('#onLoad').toggle();
+    this.autoService.nowyPrzeglad(car.nr_VIN, value).subscribe(
+      data => {
+        this.message = 'Przegląd dodano pomyślnie';
+        $('#onLoad').toggle();
+      },
+      error => {
+        this.message = 'Coś poszło nie tak, spróbuj ponownie';
+        $('#onLoad').toggle();
+      }
+    );
+  }
+
+  clicked(value: any) {
     this.formularzWyszukiwarki.reset();
     this.carData = [];
     this.przegladyData = [];
+    this.message = null;
     $('.content').hide();
     $('#message').hide();
     $('#onLoad').toggle();

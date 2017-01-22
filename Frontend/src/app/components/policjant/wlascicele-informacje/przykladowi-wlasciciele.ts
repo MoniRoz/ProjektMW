@@ -22,7 +22,7 @@ export const OwnersData: Array<any> = [
   }, {
     'imie': 'Colette',
     'nazwisko': 'Foley',
-    'ulica': 'Nibylandii',
+    'ulica': 'Nibyla',
     'nr_domu': '88',
     'kod_pocztowy': '23-123',
     'pesel': 123498765,
@@ -32,7 +32,7 @@ export const OwnersData: Array<any> = [
   }, {
     'imie': 'Anastasia',
     'nazwisko': 'Shaffer',
-    'ulica': 'Mechaników',
+    'ulica': 'Andów',
     'nr_domu': '132',
     'kod_pocztowy': '01-231',
     'pesel': 987651234,

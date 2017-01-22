@@ -20,7 +20,6 @@ export class RejestracjaSamochodu implements OnChanges {
     this.formularzRejestracji = fb.group({
       'rodzaj_pojazdu': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
       'marka': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
-      'typ': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
       'model': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
       'rok_produkcji': [null, [Validators.required, Validators.pattern('^[1-2][0-9]{3}$')]],
       'nr_VIN': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]],
@@ -41,6 +40,9 @@ export class RejestracjaSamochodu implements OnChanges {
   }
 
   isVehicleExists(VIN: string) {
+    this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null);
+    this.formularzRejestracji.reset();
+    this.formularzWyszukiwarki.reset();
     this.service.getVehicle(VIN).subscribe(
       samochod => {
         this.samochod = samochod;
@@ -50,17 +52,16 @@ export class RejestracjaSamochodu implements OnChanges {
         // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'P');
       }
     );
-    this.formularzWyszukiwarki.reset();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.reset) {
       this.formularzRejestracji.reset();
-      this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null, null);
+      this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null);
     }
 
     if (!this.samochod) {
-      this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null, null);
+      this.samochod = new Samochod(null, null, null, null, null, null, null, null, null, null);
     }
   }
 }

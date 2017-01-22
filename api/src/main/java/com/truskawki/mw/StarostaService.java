@@ -49,7 +49,7 @@ public class StarostaService {
         return (Wlasciciel) truskawkiSimpleResponse.getResponse();
     }
 
-    public Pojazd getPojazd(long vin, HttpServletResponse response) {
+    public Pojazd getPojazd(String vin, HttpServletResponse response) {
         TruskawkiSimpleResponse truskawkiSimpleResponse;
         int result;
 

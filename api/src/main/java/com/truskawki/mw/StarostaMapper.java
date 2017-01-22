@@ -16,7 +16,7 @@ public interface StarostaMapper extends Mapper {
     void insertMarka(String marka);
 
     @Insert("INSERT INTO Pojazd VALUES (seq_Pojazd.NEXTVAL, seq_Marka.CURRVAL, seq_Rodzaj_pojazdu.CURRVAL, #{model}," +
-            "#{rok_produkcji}, #{nr_VIN}, #{masa}, #{p_silnika}, #{m_silnika}, #{r_silnika}, #{d_nr_rejestracyjny} )")
+            "#{rok_produkcji}, #{nr_VIN}, #{masa}, #{p_silnika}, #{m_silnika}, #{r_paliwa}, #{d_nr_rejestracyjny} )")
     void insertPojazd(Pojazd pojazd);
 
     @Insert("INSERT INTO Wlasciciel VALUES (seq_Wlasciciel.NEXTVAL, #{imie}, #{nazwisko}, #{pesel}, #{ulica}, #{kod_pocztowy}, #{miejscowosc}, #{nr_domu} )")
