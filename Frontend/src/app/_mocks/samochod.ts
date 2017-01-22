@@ -9,10 +9,10 @@ export class Samochod {
   d_nr_rejestracyjny: string;
   p_silnika: number;
   m_silnika: number;
-  zasilanie: string;
+  r_paliwa: string;
 
 
-  constructor(rodzaj_pojazdu: string, marka: string, typ: string, model: string, rok_produkcji: number, nr_VIN: string, masa: number, d_nr_rejestracyjny: string, p_silnika: number, m_silnika: number, zasilanie: string) {
+  constructor(rodzaj_pojazdu: string, marka: string, typ: string, model: string, rok_produkcji: number, nr_VIN: string, masa: number, d_nr_rejestracyjny: string, p_silnika: number, m_silnika: number, r_paliwa: string) {
     this.rodzaj_pojazdu = rodzaj_pojazdu;
     this.marka = marka;
     this.typ = typ;
@@ -23,6 +23,6 @@ export class Samochod {
     this.d_nr_rejestracyjny = d_nr_rejestracyjny;
     this.p_silnika = p_silnika;
     this.m_silnika = m_silnika;
-    this.zasilanie = zasilanie;
+    this.r_paliwa = r_paliwa;
   }
 }

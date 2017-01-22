@@ -23,7 +23,7 @@ export class PojazdInfo implements OnInit,OnChanges {
     {title: 'Masa', name: 'masa'},
     {title: 'Pojemność', name: 'p_silnika'},
     {title: 'Moc', name: 'm_silnika'},
-    {title: 'Zasialnie', name: 'zasilanie'}
+    {title: 'Rodzaj paliwa', name: 'r_paliwa'}
   ];
   public page: number = 1;
   public itemsPerPage: number = 6;

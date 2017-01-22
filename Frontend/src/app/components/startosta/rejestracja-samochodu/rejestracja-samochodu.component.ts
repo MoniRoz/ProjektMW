@@ -2,6 +2,7 @@ import {Component, Output, EventEmitter, Input, SimpleChanges, OnChanges} from '
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Samochod} from "../../../_mocks/samochod";
 import {StarostaService} from "../../../_services/starosta.service";
+import {CarData} from "../../policjant/pojazd-informacje/przykladowy-samochod";
 
 @Component({
   selector: 'rejestracja-samochodu',
@@ -27,7 +28,7 @@ export class RejestracjaSamochodu implements OnChanges {
       'd_nr_rejestracyjny': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{7}$')]],
       'p_silnika': [null, [Validators.required]],
       'm_silnika': [null, [Validators.required]],
-      'zasilanie': [null, [Validators.required]]
+      'r_paliwa': [null, [Validators.required]]
     });
 
     this.formularzWyszukiwarki = fb.group({
@@ -46,7 +47,8 @@ export class RejestracjaSamochodu implements OnChanges {
       },
       error => {
         console.log(error);
-         // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'a');
+        // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'P');
+        //  this.samochod = CarData[0];
       }
     );
     this.formularzWyszukiwarki.reset();

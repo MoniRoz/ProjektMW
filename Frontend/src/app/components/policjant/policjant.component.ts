@@ -5,7 +5,6 @@ import {CarData} from './pojazd-informacje/przykladowy-samochod';
 import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
 import {Samochod} from "../../_mocks/samochod";
 import * as $ from 'jquery';
-import {SearchPattern} from "../../_validators/policjant_search.validators";
 
 @Component({
   selector: 'policjant',
