@@ -14,4 +14,9 @@ export class SKP {
       'search': [null]
     });
   }
+
+  private clicked(value: any) {
+    this.formularzWyszukiwarki.reset();
+    console.log(value);
+  }
 }
