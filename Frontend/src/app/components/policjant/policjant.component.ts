@@ -41,6 +41,8 @@ export class Policjant implements OnInit {
       this.autoService.znajdzWlasciciela(this.carChoosen).subscribe(
         data => {
           console.log(data);
+          $('#ownerLoad').hide();
+          this.ownerData = OwnersData;
         }, error => {
           console.log(error);
           $('#ownerLoad').hide();
@@ -58,6 +60,9 @@ export class Policjant implements OnInit {
     this.autoService.znajdzSamochod(value).subscribe(
       data => {
         console.log(data);
+        $('#onLoad').toggle();
+        $('.content').fadeIn('slow');
+        this.carData = CarData;
       }, error => {
         console.log(error);
         $('#onLoad').toggle();
