@@ -29,22 +29,41 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
             boolean isPojazdAlreadyUsed = getBoolean(((StarostaMapper) mapper).isPojazdAlreadyUsed(pojazd.getNr_VIN()));
             boolean isWlascicielAlreadyUsed = getBoolean(((StarostaMapper) mapper).isWlascicielAlreadyUsed(wlasciciel.getPesel()));
 
-            if(isWlascicielAlreadyUsed){
+            if(isWlascicielAlreadyUsed && isPojazdAlreadyUsed){
                 ((StarostaMapper)mapper).updateWlasciciel(wlasciciel);
+                ((StarostaMapper)mapper).updatePojazd(pojazd);
+                ((StarostaMapper)mapper).updateDowodRejestracyjny(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).updatePosiadanie(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).insertUpdateDowodRejestracyjny(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).insertUpdatePosiadania(pojazd.getNr_VIN(), wlasciciel.getPesel());
             }
-
-            if(isPojazdAlreadyUsed){
-
+            else if(isWlascicielAlreadyUsed && !isPojazdAlreadyUsed){
+                ((StarostaMapper)mapper).updateWlasciciel(wlasciciel);
+                ((StarostaMapper)mapper).insertRodzaj_pojazdu(pojazd.getRodzaj_pojazdu());
+                ((StarostaMapper)mapper).insertMarka(pojazd.getMarka());
+                ((StarostaMapper)mapper).insertPojazd(pojazd);
+                ((StarostaMapper)mapper).insertPosiadanie();
+                ((StarostaMapper)mapper).insertNewDowodRejestracyjny();
+                ((StarostaMapper)mapper).insertKartaPojazdu();
+//                ((StarostaMapper)mapper).insertPrzeglad();
             }
-
-            if(!isPojazdAlreadyUsed && !isWlascicielAlreadyUsed){
+            else if(!isWlascicielAlreadyUsed && isPojazdAlreadyUsed){
+                ((StarostaMapper)mapper).insertWlasciciel(wlasciciel);
+                ((StarostaMapper)mapper).updatePojazd(pojazd);
+                ((StarostaMapper)mapper).updateDowodRejestracyjny(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).updatePosiadanie(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).insertUpdateDowodRejestracyjny(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).insertUpdatePosiadania(pojazd.getNr_VIN(), wlasciciel.getPesel());
+            }
+            else if(!isPojazdAlreadyUsed && !isWlascicielAlreadyUsed){
                 ((StarostaMapper)mapper).insertRodzaj_pojazdu(pojazd.getRodzaj_pojazdu());
                 ((StarostaMapper)mapper).insertMarka(pojazd.getMarka());
                 ((StarostaMapper)mapper).insertPojazd(pojazd);
                 ((StarostaMapper)mapper).insertWlasciciel(wlasciciel);
                 ((StarostaMapper)mapper).insertPosiadanie();
-                ((StarostaMapper)mapper).insertDowodRejestracyjny();
                 ((StarostaMapper)mapper).insertKartaPojazdu();
+                ((StarostaMapper)mapper).insertNewDowodRejestracyjny();
+//                ((StarostaMapper)mapper).insertPrzeglad();
             }
 
             databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLE_REGISTERED_PROPERLY;

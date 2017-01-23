@@ -2,10 +2,7 @@ package com.truskawki.mw;
 
 import com.truskawki.mw.lib.Pojazd;
 import com.truskawki.mw.lib.Wlasciciel;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 public interface StarostaMapper extends Mapper {
 
@@ -26,10 +23,13 @@ public interface StarostaMapper extends Mapper {
     void insertPosiadanie();
 
     @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, seq_Pojazd.CURRVAL, seq_Wlasciciel.CURRVAL, 1, 'Starosta bialobrzeski', current_date, null )")
-    void insertDowodRejestracyjny();
+    void insertNewDowodRejestracyjny();
 
     @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, seq_Pojazd.CURRVAL, seq_Wlasciciel.CURRVAL, 2, 'Starosta bialobrzeski', current_date, null )")
     void insertKartaPojazdu();
+
+    @Insert("INSERT INTO przeglad VALUES (seq_Przeglad.NEXTVAL, seq_Dokument.CURRVAL, current_date, current_date + 3 * 365, 'SKP Myszogrod')")
+    void insertPrzeglad();
 
     ///
 
@@ -45,7 +45,34 @@ public interface StarostaMapper extends Mapper {
             "WHERE pesel = #{pesel}")
     void updateWlasciciel(Wlasciciel wlasciciel);
 
-    @Update("UPDATE Pojazd SET masa = #{masa}, r_silnika = #{r_silnika}, d_nr_rejestracyjny = #{d_nr_rejestracyjny} WHERE nr_VIN = #{nr_VIN}")
+    @Update("UPDATE Pojazd SET masa = #{masa}, r_paliwa = #{r_paliwa}, d_nr_rejestracyjny = #{d_nr_rejestracyjny} WHERE nr_VIN = #{nr_VIN}")
     void updatePojazd(Pojazd pojazd);
+
+    @Update("UPDATE Dokument set data_koncowa = current_date  \n" +
+            "WHERE ID_dokument = \n" +
+            "(\n" +
+            "select ID_dokument from Dokument, Pojazd, Wlasciciel where Pojazd.ID_Pojazdu = Dokument.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Dokument.ID_Wlasciciela " +
+            "and id_typu = 1 \n" +
+            "and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null\n" +
+            ")")
+    void updateDowodRejestracyjny(@Param("vin") String vin, @Param("pesel") long pesel);
+
+    @Update("UPDATE Posiadanie set data_koncowa = current_date  \n" +
+            "WHERE ID_posiadania = \n" +
+            "(\n" +
+            "select ID_posiadania from Posiadanie, Pojazd, Wlasciciel where Pojazd.ID_Pojazdu = Posiadanie.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Posiadanie.ID_Wlasciciela \n" +
+            "and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null\n" +
+            ")")
+    void updatePosiadanie(@Param("vin") String vin, @Param("pesel") long pesel);
+
+
+
+
+
+    @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, (select ID_pojazdu from Pojazd where nr_VIN = #{vin}), (select ID_wlasciciela from Wlasciciel where pesel = #{pesel}), 1, 'Starosta bialobrzeski', current_date, null )")
+    void insertUpdateDowodRejestracyjny(@Param("vin") String vin, @Param("pesel") long pesel);
+
+    @Insert("INSERT INTO Posiadanie VALUES (seq_Posiadanie.NEXTVAL, (select ID_pojazdu from Pojazd where nr_VIN = #{vin}), (select ID_wlasciciela from Wlasciciel where pesel = #{pesel}), current_date, null )")
+    void insertUpdatePosiadania(@Param("vin") String vin, @Param("pesel") long pesel);
 }
 

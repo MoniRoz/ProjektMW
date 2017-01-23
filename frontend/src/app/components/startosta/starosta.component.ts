@@ -41,9 +41,9 @@ export class Starosta implements AfterViewInit,DoCheck {
       error => {
         console.log(error);
       });
-    this.reset = true;
-    setTimeout(() => {
-      this.reset = false;
-    });
+  //  this.reset = true;
+  //  setTimeout(() => {
+  //    this.reset = false;
+ //   });
   }
 }
