@@ -34,7 +34,7 @@ public interface PolicjantMapper extends Mapper {
             "and id_typu = 1 and nr_vin = #{vin}")
     List<Wlasciciel> getWlasciciele(String vin);
 
-    @Select("select d_wystawienia, d_waznosci, Przeglad.wystawiajacy from Przeglad, Dokument, Pojazd \n" +
+    @Select("select data_wystawienia, data_waznosci, Przeglad.wystawiajacy from Przeglad, Dokument, Pojazd \n" +
             "where Przeglad.ID_DOKUMENT = Dokument.ID_DOKUMENT and Dokument.ID_POJAZDU = Pojazd.ID_POJAZDU\n" +
             "and id_typu = 1 and nr_vin = #{vin}")
     List<Przeglad> getPrzeglady(String vin);

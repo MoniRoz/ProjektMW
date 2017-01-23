@@ -106,7 +106,7 @@ public interface StarostaMapper extends Mapper {
 
     @Select("select ID_przegladu from Przeglad, Dokument, Pojazd\n" +
             "where Dokument.ID_POJAZDU = Pojazd.ID_POJAZDU and Przeglad.ID_DOKUMENT = Dokument.ID_DOKUMENT\n" +
-            "and id_typu = 1 and nr_VIN = #{vin} and data_koncowa is null and d_waznosci > current_date")
+            "and id_typu = 1 and nr_VIN = #{vin} and data_koncowa is null and data_waznosci > current_date")
     int getPrzegladID(String vin);
 
 

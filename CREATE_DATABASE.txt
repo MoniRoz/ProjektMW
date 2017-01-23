@@ -14,7 +14,7 @@ CREATE TABLE Posiadanie (ID_posiadania number(10) NOT NULL, ID_pojazdu number(10
 CREATE TABLE Typ_dokumentu (Id_typu number(10) NOT NULL, typ_dokumentu varchar2(50) NOT NULL, PRIMARY KEY (Id_typu));
 CREATE TABLE Marka (ID_marki number(10) NOT NULL, marka varchar2(50) NOT NULL, PRIMARY KEY (ID_marki));
 CREATE TABLE Rodzaj_pojazdu (ID_rodzaju_pojazdu number(10) NOT NULL, rodzaj_pojazdu varchar2(50) NOT NULL, PRIMARY KEY (ID_rodzaju_pojazdu));
-CREATE TABLE Przeglad (ID_przegladu number(10) NOT NULL, ID_dokument number(10) NOT NULL, d_wystawienia date NOT NULL, d_waznosci date NOT NULL, wystawiajacy varchar2(50) NOT NULL, PRIMARY KEY (ID_przegladu));
+CREATE TABLE Przeglad (ID_przegladu number(10) NOT NULL, ID_dokument number(10) NOT NULL, data_wystawienia date NOT NULL, data_waznosci date NOT NULL, wystawiajacy varchar2(50) NOT NULL, PRIMARY KEY (ID_przegladu));
 
 ALTER TABLE Posiadanie ADD CONSTRAINT FKPosiadanie130716 FOREIGN KEY (ID_pojazdu) REFERENCES Pojazd (ID_pojazdu);
 ALTER TABLE Posiadanie ADD CONSTRAINT FKPosiadanie17191 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
@@ -24,7 +24,6 @@ ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd169156 FOREIGN KEY (ID_rodzaju_pojazdu
 ALTER TABLE Przeglad ADD CONSTRAINT FKPrzeglad335326 FOREIGN KEY (ID_dokument) REFERENCES Dokument (ID_dokument);
 ALTER TABLE Dokument ADD CONSTRAINT FKDokument834475 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
 ALTER TABLE Dokument ADD CONSTRAINT FKDokument989207 FOREIGN KEY (ID_pojazdu) REFERENCES Pojazd (ID_pojazdu);
-
 
 
 

@@ -1,15 +1,11 @@
 package com.truskawki.mw.operations;
 
 import com.truskawki.mw.OtherMapper;
-import com.truskawki.mw.PolicjantMapper;
 import com.truskawki.mw.constants.DatabaseOperationResultEnum;
-import com.truskawki.mw.lib.Pojazd;
 import com.truskawki.mw.lib.Przeglad;
 import com.truskawki.mw.lib.TruskawkiSimpleResponse;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-
-import javax.print.attribute.standard.MediaSize;
 
 public class AddPrzeglad extends DatabaseComplexResponseOperation {
 
@@ -28,7 +24,7 @@ public class AddPrzeglad extends DatabaseComplexResponseOperation {
         TruskawkiSimpleResponse truskawkiSimpleResponse = new TruskawkiSimpleResponse();
 
         try{
-            ((OtherMapper) mapper).addPrzeglad(nr_vin, przeglad.getD_wystawienia(), przeglad.getD_waznosci(), przeglad.getWystawiajacy());
+            ((OtherMapper) mapper).addPrzeglad(nr_vin, przeglad.getData_wystawienia(), przeglad.getData_waznosci(), przeglad.getWystawiajacy());
             databaseOperationResultEnum = DatabaseOperationResultEnum.PRZEGLAD_INSERTED_PROPERLY;
         } catch (Exception e){
             logger.log(Level.ERROR, e.toString());

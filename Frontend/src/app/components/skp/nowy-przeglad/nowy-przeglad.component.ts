@@ -15,8 +15,8 @@ export class NowyPrzeglad {
 
   constructor(private fb: FormBuilder) {
     this.formularzPrzegladu = fb.group({
-      'd_wystawienia': [null, DofIValidator.patternValidator],
-      'd_waznosci': [null, EDateValidator.patternValidator],
+      'data_wystawienia': [null, DofIValidator.patternValidator],
+      'data_waznosci': [null, EDateValidator.patternValidator],
       'wystawiajacy': [null, IServicingValidator.patternValidator]
     });
   }

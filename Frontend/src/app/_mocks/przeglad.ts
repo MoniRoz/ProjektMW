@@ -1,12 +1,12 @@
 export class Przeglad {
-  d_wystawienia: string;
-  d_waznosci: string;
+  data_wystawienia: string;
+  data_waznosci: string;
   wystawiajacy: string;
 
 
-  constructor(d_wystawienia: string, d_waznosci: string, wystawiajacy: string) {
-    this.d_wystawienia = d_wystawienia;
-    this.d_waznosci = d_waznosci;
+  constructor(data_wystawienia: string, data_waznosci: string, wystawiajacy: string) {
+    this.data_wystawienia = data_wystawienia;
+    this.data_waznosci = data_waznosci;
     this.wystawiajacy = wystawiajacy;
   }
 }

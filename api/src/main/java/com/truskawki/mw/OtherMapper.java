@@ -31,10 +31,10 @@ public interface OtherMapper extends Mapper {
             "where Dokument.ID_POJAZDU = Pojazd.ID_POJAZDU \n" +
             "and nr_VIN = #{vin} and id_typu = 1 and data_koncowa is null\n" +
             ")\n" +
-            ",#{d_wystawienia}, #{d_waznosci}, #{wystawiajacy}) ")
+            ",#{data_wystawienia}, #{data_waznosci}, #{wystawiajacy}) ")
     void addPrzeglad(@Param("vin") String vin,
-                     @Param("d_wystawienia") String d_wystawienia,
-                     @Param("d_waznosci") String d_waznosci,
+                     @Param("data_wystawienia") String data_wystawienia,
+                     @Param("data_waznosci") String data_waznosci,
                      @Param("wystawiajacy") String wystawiajacy);
 }
 
