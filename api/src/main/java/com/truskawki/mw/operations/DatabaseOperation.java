@@ -25,6 +25,12 @@ public class DatabaseOperation {
         responseMap.put(DatabaseOperationResultEnum.VEHICLE_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         responseMap.put(DatabaseOperationResultEnum.OWNER_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
         responseMap.put(DatabaseOperationResultEnum.OWNER_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        responseMap.put(DatabaseOperationResultEnum.OWNERS_FOR_POLICEMAN_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
+        responseMap.put(DatabaseOperationResultEnum.OWNERS_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        responseMap.put(DatabaseOperationResultEnum.VEHICLES_FOR_POLICEMAN_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
+        responseMap.put(DatabaseOperationResultEnum.VEHICLES_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        responseMap.put(DatabaseOperationResultEnum.PRZEGLADY_FOR_POLICEMAN_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
+        responseMap.put(DatabaseOperationResultEnum.PRZEGLADY_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
     protected DatabaseOperationResultEnum databaseOperationResultEnum;

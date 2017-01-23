@@ -7,7 +7,7 @@ CREATE SEQUENCE seq_Marka;
 CREATE SEQUENCE seq_Rodzaj_pojazdu;
 CREATE SEQUENCE seq_Przeglad;
 
-CREATE TABLE Pojazd (ID_pojazdu number(10) NOT NULL, ID_marki number(10) NOT NULL, ID_rodzaju_pojazdu number(10) NOT NULL, model varchar2(50) NOT NULL, rok_produkcji number(4) NOT NULL, nr_VIN varchar2(50) NOT NULL, masa number(10) NOT NULL, p_silnika number(10) NOT NULL, m_silnika number(10,1) NOT NULL, r_paliwa varchar2(50) NOT NULL, d_nr_rejestracyjny varchar2(50) NOT NULL, PRIMARY KEY (ID_pojazdu));
+CREATE TABLE Pojazd (ID_pojazdu number(10) NOT NULL, ID_marki number(10) NOT NULL, ID_rodzaju_pojazdu number(10) NOT NULL, model varchar2(50) NOT NULL, rok_produkcji number(4) NOT NULL, nr_VIN varchar2(50) NOT NULL, masa number(10) NOT NULL, p_silnika number(10,1) NOT NULL, m_silnika number(10,1) NOT NULL, r_paliwa varchar2(50) NOT NULL, d_nr_rejestracyjny varchar2(50) NOT NULL, PRIMARY KEY (ID_pojazdu));
 CREATE TABLE Wlasciciel (ID_wlasciciela number(10) NOT NULL, imie varchar2(50) NOT NULL, nazwisko varchar2(50) NOT NULL, pesel number(11) NOT NULL, ulica varchar2(50) NOT NULL, kod_pocztowy varchar2(50) NOT NULL, miejscowosc varchar2(50) NOT NULL, nr_domu varchar2(50) NOT NULL, PRIMARY KEY (ID_wlasciciela));
 CREATE TABLE Dokument (ID_dokument number(10) NOT NULL, ID_pojazdu number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, ID_typu number(10) NOT NULL, wystawiajacy varchar2(50) NOT NULL, data_poczatkowa date NOT NULL, data_koncowa date, PRIMARY KEY (ID_dokument));
 CREATE TABLE Posiadanie (ID_posiadania number(10) NOT NULL, ID_pojazdu number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, data_poczatkowa date NOT NULL, data_koncowa date, PRIMARY KEY (ID_posiadania));
@@ -50,7 +50,6 @@ into v_flag FROM dual;
 return v_flag;
 end;
 /
-
 ----
 
 create or replace FUNCTION isWlascicielAlreadyUsed (v_pesel IN integer)

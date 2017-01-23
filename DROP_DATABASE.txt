@@ -15,3 +15,6 @@ DROP TABLE Wlasciciel;
 DROP TABLE Pojazd;
 DROP TABLE Rodzaj_pojazdu;
 DROP TABLE Marka;
+
+DROP FUNCTION isWlascicielAlreadyUsed;
+DROP FUNCTION isPojazdAlreadyUsed;

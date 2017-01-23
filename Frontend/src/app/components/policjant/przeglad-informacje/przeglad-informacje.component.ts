@@ -11,8 +11,8 @@ export class PrzegladInfo implements OnInit,OnChanges {
 
   public rows: Array<any> = [];
   public columns: Array<any> = [
-    {title: 'Data wystawienia', name: 'd_wystawienia', sort: 'desc'},
-    {title: 'Data ważności', name: 'd_waznosci'},
+    {title: 'Data wystawienia', name: 'data_wystawienia', sort: 'desc'},
+    {title: 'Data ważności', name: 'data_waznosci'},
     {title: 'Wystawiający', name: 'wystawiajacy'}
 
   ];

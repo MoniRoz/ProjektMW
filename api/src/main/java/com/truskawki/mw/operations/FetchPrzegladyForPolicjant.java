@@ -29,10 +29,10 @@ public class FetchPrzegladyForPolicjant extends DatabaseComplexResponseOperation
 
         try{
             wlascicielList = ((PolicjantMapper) mapper).getPrzeglady(nr_vin);
-            databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLE_FETCHED_PROPERLY;
+            databaseOperationResultEnum = DatabaseOperationResultEnum.PRZEGLADY_FOR_POLICEMAN_FETCHED_PROPERLY;
         } catch (Exception e){
             logger.log(Level.ERROR, e.toString());
-            databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLE_NOT_FETCHED_PROPERLY_DUE_TO_ERROR;
+            databaseOperationResultEnum = DatabaseOperationResultEnum.PRZEGLADY_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR;
         }
 
         truskawkiSimpleResponse.setResponse(wlascicielList);

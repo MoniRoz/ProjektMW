@@ -7,8 +7,6 @@ import com.truskawki.mw.operations.FetchPojazd;
 import com.truskawki.mw.operations.FetchWlasciciel;
 import com.truskawki.mw.operations.VehicleRegistration;
 
-import javax.servlet.http.HttpServletResponse;
-
 
 public class StarostaRepository {
 
