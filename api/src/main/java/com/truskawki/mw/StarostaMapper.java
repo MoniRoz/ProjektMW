@@ -51,17 +51,17 @@ public interface StarostaMapper extends Mapper {
     @Update("UPDATE Dokument set data_koncowa = current_date  \n" +
             "WHERE ID_dokument = \n" +
             "(\n" +
-            "select ID_dokument from Dokument, Pojazd, Wlasciciel where Pojazd.ID_Pojazdu = Dokument.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Dokument.ID_Wlasciciela " +
+            "select ID_dokument from Dokument, Pojazd where Pojazd.ID_Pojazdu = Dokument.ID_Pojazdu  " +
             "and id_typu = 1 \n" +
-            "and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null\n" +
+            "and nr_VIN = #{vin} and data_koncowa is null\n" +
             ")")
-    void updateDowodRejestracyjny(@Param("vin") String vin, @Param("pesel") long pesel);
+    void updateDowodRejestracyjny(@Param("vin") String vin);
 
     @Update("UPDATE Posiadanie set data_koncowa = current_date  \n" +
             "WHERE ID_posiadania = \n" +
             "(\n" +
-            "select ID_posiadania from Posiadanie, Pojazd, Wlasciciel where Pojazd.ID_Pojazdu = Posiadanie.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Posiadanie.ID_Wlasciciela \n" +
-            "and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null\n" +
+            "select ID_posiadania from Posiadanie, Pojazd where Pojazd.ID_Pojazdu = Posiadanie.ID_Pojazdu  \n" +
+            "and nr_VIN = #{vin} and data_koncowa is null\n" +
             ")")
     void updatePosiadanie(@Param("vin") String vin, @Param("pesel") long pesel);
 

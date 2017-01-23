@@ -35,7 +35,7 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
 
                 int idPrzegladu = ((StarostaMapper)mapper).getPrzegladID(pojazd.getNr_VIN());
 
-                ((StarostaMapper)mapper).updateDowodRejestracyjny(pojazd.getNr_VIN(), wlasciciel.getPesel());
+                ((StarostaMapper)mapper).updateDowodRejestracyjny(pojazd.getNr_VIN());
                 ((StarostaMapper)mapper).updatePosiadanie(pojazd.getNr_VIN(), wlasciciel.getPesel());
                 ((StarostaMapper)mapper).insertUpdateDowodRejestracyjny(pojazd.getNr_VIN(), wlasciciel.getPesel());
                 ((StarostaMapper)mapper).insertUpdatePosiadania(pojazd.getNr_VIN(), wlasciciel.getPesel());
