@@ -54,13 +54,13 @@
         <div class="form-group row">
           <div class="col-sm-4">
             <label>Masa: </label>
-            <input [maxlength]="12" type="number" class="form-control" min="0"
+            <input [maxlength]="5" type="number" class="form-control" min="0" max="99999"
                    [formControl]="formularzRejestracji.controls['masa']"
                    [ngModel]="samochod.masa">
           </div>
           <div class="col-sm-4">
             <label>Rok produkcji: </label>
-            <input [maxlength]="4" type="number" class="form-control" min="0000"
+            <input [maxlength]="4" type="number" class="form-control" min="0000" max="2017"
                    [formControl]="formularzRejestracji.controls['rok_produkcji']"
                    [ngModel]="samochod.rok_produkcji">
           </div>
