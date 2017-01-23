@@ -30,7 +30,10 @@ export class AutoService {
   nowyPrzeglad(vin: string, przeglad: Przeglad) {
     let body = JSON.stringify({'vin': vin, 'przeglad': przeglad});
     return this.http.post(this.httpNowyPrzeglad, body)
-      .map(res => res.json())
+      .map((res: Response) => {
+        if (res.status === 200)
+          return true;
+      })
       .catch(this.handleError);
   }
 
