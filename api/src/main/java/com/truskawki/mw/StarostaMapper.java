@@ -13,7 +13,7 @@ public interface StarostaMapper extends Mapper {
     void insertMarka(String marka);
 
     @Insert("INSERT INTO Pojazd VALUES (seq_Pojazd.NEXTVAL, seq_Marka.CURRVAL, seq_Rodzaj_pojazdu.CURRVAL, #{model}," +
-            "#{rok_produkcji}, #{nr_VIN}, #{masa}, #{p_silnika}, #{m_silnika}, #{r_paliwa}, #{d_nr_rejestracyjny} )")
+            "#{nr_VIN}, #{d_nr_rejestracyjny}, #{r_paliwa}, #{rok_produkcji}, #{masa}, #{p_silnika}, #{m_silnika})")
     void insertPojazd(Pojazd pojazd);
 
     @Insert("INSERT INTO Wlasciciel VALUES (seq_Wlasciciel.NEXTVAL, #{imie}, #{nazwisko}, #{pesel}, #{ulica}, #{kod_pocztowy}, #{miejscowosc}, #{nr_domu} )")
@@ -121,8 +121,9 @@ public interface StarostaMapper extends Mapper {
 
     @Update("update Przeglad set ID_dokument = \n" +
             "(\n" +
-            "    select ID_posiadania from Posiadanie, Pojazd, Wlasciciel where Pojazd.ID_Pojazdu = Posiadanie.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Posiadanie.ID_Wlasciciela \n" +
-            "    and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null\n" +
+            "    select ID_Dokument from Dokument, Pojazd, Wlasciciel" +
+            " where Pojazd.ID_Pojazdu = Dokument.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Dokument.ID_Wlasciciela \n" +
+            "    and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null and id_typu = 1 \n" +
             ")\n" +
             "where ID_Przegladu = #{id}")
     int updatePrzeglad(@Param("id") int id, @Param("vin") String vin, @Param("pesel") long pesel);

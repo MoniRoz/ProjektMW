@@ -13,7 +13,7 @@ public interface PolicjantMapper extends Mapper {
 
     @Lang(XMLLanguageDriver.class)
     @Select("<script>" +
-            "select marka, rodzaj_pojazdu, model, rok_produkcji, nr_vin, masa, p_silnika, m_silnika, r_paliwa, d_nr_rejestracyjny\n" +
+            "select distinct marka, rodzaj_pojazdu, model, rok_produkcji, nr_vin, masa, p_silnika, m_silnika, r_paliwa, d_nr_rejestracyjny\n" +
             "from Dokument d, Pojazd p, Marka m, Rodzaj_pojazdu r " +
             "WHERE d.ID_POJAZDU = p.ID_POJAZDU \n" +
             "and m.ID_marki = p.id_marki\n" +

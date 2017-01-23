@@ -52,8 +52,8 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
                 int wlascicielID = ((StarostaMapper)mapper).getWlascicielID(wlasciciel.getPesel());
 
                 ((StarostaMapper)mapper).insertPosiadanie(pojazdCurrval, wlascicielID);
-                ((StarostaMapper)mapper).insertNewDowodRejestracyjny(pojazdCurrval, wlascicielID);
                 ((StarostaMapper)mapper).insertKartaPojazdu(pojazdCurrval, wlascicielID);
+                ((StarostaMapper)mapper).insertNewDowodRejestracyjny(pojazdCurrval, wlascicielID);
                 ((StarostaMapper)mapper).insertPrzeglad();
             }
             else if(!isWlascicielAlreadyUsed && isPojazdAlreadyUsed){
