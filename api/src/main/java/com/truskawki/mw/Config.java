@@ -25,4 +25,14 @@ public class Config {
     public PolicjantRepository policjantRepository() {
         return new PolicjantRepository();
     }
+
+    @Bean
+    public SKPService SKPService() {
+        return new SKPService();
+    }
+
+    @Bean
+    public SKPRepository SKPRepository() {
+        return new SKPRepository();
+    }
 }

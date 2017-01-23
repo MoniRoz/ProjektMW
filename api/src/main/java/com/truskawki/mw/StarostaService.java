@@ -26,16 +26,9 @@ public class StarostaService {
         Wlasciciel ownerUVM = pojazdPost.getWlasciciel();
 
         TruskawkiSimpleResponse truskawkiSimpleResponse;
-        int result;
+        truskawkiSimpleResponse = starostaRepository.addVehicle(vehicleUVM, ownerUVM);
 
-        if(validateAttributes(vehicleUVM, ownerUVM)){
-            truskawkiSimpleResponse = starostaRepository.addVehicle(vehicleUVM, ownerUVM);
-            result = truskawkiSimpleResponse.getResult();
-        }
-        else
-            result = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-
-        response.setStatus(result);
+        response.setStatus(truskawkiSimpleResponse.getResult());
     }
 
     public Wlasciciel getWlasciciel(long wlasciciel, HttpServletResponse response) {
@@ -73,31 +66,5 @@ public class StarostaService {
         }
 
         return vehiclePost;
-    }
-
-    private boolean validateAttributes(Pojazd pojazd, Wlasciciel wlascicel){
-//        boolean validateVehicle =  !pojazd.getBarwa_nadwozia().isEmpty()
-//                && !pojazd.getD_nr_rejestracyjny().isEmpty()
-//                && !pojazd.getMarka().isEmpty()
-//                && !pojazd.getModel().isEmpty()
-//                && !pojazd.getNr_kart_pojazdu().isEmpty()
-//                && !pojazd.getNr_silnika().isEmpty()
-//                && !pojazd.getNr_VIN().isEmpty()
-//                && !pojazd.getRodzaj_pojazdu().isEmpty()
-//                && !pojazd.getTyp().isEmpty()
-//                && pojazd.getPrzebieg_p_w_km() != 0
-//                && pojazd.getRok_produkcji() != 0;
-//
-//        boolean validateOwner =  !wlascicel.getImie().isEmpty()
-//                && !wlascicel.getNazwisko().isEmpty()
-//                &&!wlascicel.getUlica().isEmpty()
-//                && wlascicel.getNr_domu() != 0
-//                && !wlascicel.getKod_pocztowy().isEmpty()
-//                && !wlascicel.getMiejscowosc().isEmpty()
-//                && wlascicel.getPesel() != 0;
-//
-//        return validateVehicle && validateOwner;
-
-        return true;
     }
 }

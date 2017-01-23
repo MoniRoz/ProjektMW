@@ -31,6 +31,8 @@ public class DatabaseOperation {
         responseMap.put(DatabaseOperationResultEnum.VEHICLES_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         responseMap.put(DatabaseOperationResultEnum.PRZEGLADY_FOR_POLICEMAN_FETCHED_PROPERLY, HttpServletResponse.SC_OK);
         responseMap.put(DatabaseOperationResultEnum.PRZEGLADY_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+        responseMap.put(DatabaseOperationResultEnum.PRZEGLAD_INSERTED_PROPERLY, HttpServletResponse.SC_OK);
+        responseMap.put(DatabaseOperationResultEnum.PRZEGLAD_NOT_INSERTED_PROPERLY_DUE_TO_ERROR, HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
     }
 
     protected DatabaseOperationResultEnum databaseOperationResultEnum;
