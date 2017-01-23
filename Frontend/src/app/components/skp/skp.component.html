@@ -23,7 +23,7 @@
       </form>
       <p id="message" class="infomessage" style=" margin-top: 20vh;">Skorzystaj z wyszukiwarki by znaleźć informacje o
         pojeździe</p>
-      <p id="infoPrzeglad" class="infomessage" *ngIf="message">{{message}}</p>
+      <p id="infoPrzeglad" class="infomessage" style=" margin-top: 20vh;" *ngIf="message">{{message}}</p>
       <div id="onLoad" class="loader"></div>
       <div class="content">
         <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>

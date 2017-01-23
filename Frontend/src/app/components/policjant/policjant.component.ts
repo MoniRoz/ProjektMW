@@ -94,6 +94,7 @@ export class Policjant implements OnInit {
         console.log(error);
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
+        $('#info').text('Brak winików').show();
       });
   }
 }

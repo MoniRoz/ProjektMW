@@ -19,9 +19,9 @@ export class PojazdInfo implements OnInit,OnChanges {
     {title: 'Rejestracja', name: 'd_nr_rejestracyjny'},
     {title: 'VIN', name: 'nr_VIN'},
     {title: 'Rok', name: 'rok_produkcji'},
-    {title: 'Masa [kg]', name: 'masa'},
-    {title: 'Pojemność [l]', name: 'p_silnika'},
-    {title: 'Moc [kW]', name: 'm_silnika'},
+    {title: 'Masa', name: 'masa'},
+    {title: 'Pojemność', name: 'p_silnika'},
+    {title: 'Moc', name: 'm_silnika'},
     {title: 'Rodzaj paliwa', name: 'r_paliwa'}
   ];
   public page: number = 1;
@@ -58,7 +58,20 @@ export class PojazdInfo implements OnInit,OnChanges {
       }
     });
     if (this.TableData.length > 0) {
-      this.contentData = this.TableData;
+      for (let i = 0; i < this.TableData.length; i++) {
+        this.contentData.push({
+          'rodzaj_pojazdu': this.TableData[i].rodzaj_pojazdu,
+          'marka': this.TableData[i].marka,
+          'model': this.TableData[i].model,
+          'd_nr_rejestracyjny': this.TableData[i].d_nr_rejestracyjny,
+          'nr_VIN': this.TableData[i].nr_VIN,
+          'rok_produkcji': this.TableData[i].rok_produkcji,
+          'masa': this.TableData[i].masa + 'kg',
+          'p_silnika': this.TableData[i].p_silnika + 'l',
+          'm_silnika': this.TableData[i].m_silnika + 'kW',
+          'r_paliwa': this.TableData[i].r_paliwa
+        })
+      }
       this.onChangeTable(this.config);
       $('pojazd-info').fadeIn('slow');
     }

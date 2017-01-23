@@ -25,8 +25,8 @@ export class RejestracjaSamochodu implements OnChanges {
       'nr_VIN': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]],
       'masa': [null, [Validators.required]],
       'd_nr_rejestracyjny': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{7}$')]],
-      'p_silnika': [null, [Validators.required]],
-      'm_silnika': [null, [Validators.required]],
+      'p_silnika': [null, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1})?$')]],
+      'm_silnika': [null, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1})?$')]],
       'r_paliwa': [null, [Validators.required]]
     });
 

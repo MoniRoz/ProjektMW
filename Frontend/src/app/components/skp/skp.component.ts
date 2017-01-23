@@ -96,6 +96,8 @@ export class SKP implements OnInit {
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
       }, error => {
+        $('nowy-przeglad').hide();
+        $('#message').text('Brak winików').show();
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
       });
