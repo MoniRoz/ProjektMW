@@ -66,8 +66,11 @@
   text-align: center;
 }
 
-.infomessage {
+.mainmessage{
   margin-top: 20vh;
+}
+.infomessage {
+  margin-top: 20px;
   font-style: italic;
   text-align: center;
 }
