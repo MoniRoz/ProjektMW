@@ -69,6 +69,28 @@ public interface StarostaMapper extends Mapper {
 
 
 
+
+    @Update("UPDATE Dokument set data_koncowa = current_date  \n" +
+            "WHERE ID_dokument = \n" +
+            "(\n" +
+            "select ID_dokument from Dokument, Pojazd where Pojazd.ID_Pojazdu = Dokument.ID_Pojazdu " +
+            "and id_typu = 1 \n" +
+            "and nr_VIN = #{vin} and data_koncowa is null\n" +
+            ")")
+    void updateDowodRejestracyjny2(@Param("vin") String vin);
+
+    @Update("UPDATE Posiadanie set data_koncowa = current_date  \n" +
+            "WHERE ID_posiadania = \n" +
+            "(\n" +
+            "select ID_posiadania from Posiadanie, Pojazd where Pojazd.ID_Pojazdu = Posiadanie.ID_Pojazdu \n" +
+            "and nr_VIN = #{vin} and data_koncowa is null\n" +
+            ")")
+    void updatePosiadanie2(@Param("vin") String vin);
+
+
+
+
+
     @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, (select ID_pojazdu from Pojazd where nr_VIN = #{vin}), (select ID_wlasciciela from Wlasciciel where pesel = #{pesel}), 1, 'Starosta bialobrzeski', current_date, null )")
     void insertUpdateDowodRejestracyjny(@Param("vin") String vin, @Param("pesel") long pesel);
 

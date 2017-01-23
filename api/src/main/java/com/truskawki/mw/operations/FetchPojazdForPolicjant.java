@@ -27,10 +27,10 @@ public class FetchPojazdForPolicjant extends DatabaseComplexResponseOperation {
 
         try{
             pojazd = ((PolicjantMapper) mapper).getPojazd(nr_vin, nr_rejestracyjny);
-            databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLE_FETCHED_PROPERLY;
+            databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLES_FOR_POLICEMAN_FETCHED_PROPERLY;
         } catch (Exception e){
             logger.log(Level.ERROR, e.toString());
-            databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLE_NOT_FETCHED_PROPERLY_DUE_TO_ERROR;
+            databaseOperationResultEnum = DatabaseOperationResultEnum.VEHICLES_FOR_POLICEMAN_NOT_FETCHED_PROPERLY_DUE_TO_ERROR;
         }
 
         truskawkiSimpleResponse.setResponse(pojazd);
