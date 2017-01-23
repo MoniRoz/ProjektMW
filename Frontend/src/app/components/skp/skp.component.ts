@@ -5,6 +5,8 @@ import {PrzegladyData} from "../policjant/przeglad-informacje/przykladowe-przegl
 import {Samochod} from "../../_mocks/samochod";
 import {AutoService} from "../../_services/auto.service";
 import * as $ from 'jquery';
+import {VINValidator} from "../../_validators/VIN.validator";
+import {PoliceSearchValidator} from "../../_validators/police-search.validator";
 
 @Component({
   selector: 'skp',
@@ -21,7 +23,7 @@ export class SKP implements OnInit {
   public constructor(private autoService: AutoService,
                      private fb: FormBuilder) {
     this.formularzWyszukiwarki = fb.group({
-      'search': [null]
+      'search': [null,PoliceSearchValidator.patternValidator]
     });
   }
 

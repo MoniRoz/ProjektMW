@@ -7,6 +7,7 @@ import {Samochod} from "../../_mocks/samochod";
 import * as $ from 'jquery';
 import {PrzegladyData} from "./przeglad-informacje/przykladowe-przeglady";
 import {Wlasciciel} from "../../_mocks/wlasciciel";
+import {PoliceSearchValidator} from "../../_validators/police-search.validator";
 
 @Component({
   selector: 'policjant',
@@ -24,7 +25,7 @@ export class Policjant implements OnInit {
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
     this.formularzWyszukiwarki = fb.group({
-      'search': [null]
+      'search': [null, PoliceSearchValidator.patternValidator]
     });
   }
 
