@@ -42,9 +42,13 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
                 ((StarostaMapper)mapper).insertRodzaj_pojazdu(pojazd.getRodzaj_pojazdu());
                 ((StarostaMapper)mapper).insertMarka(pojazd.getMarka());
                 ((StarostaMapper)mapper).insertPojazd(pojazd);
-                ((StarostaMapper)mapper).insertPosiadanie();
-                ((StarostaMapper)mapper).insertNewDowodRejestracyjny();
-                ((StarostaMapper)mapper).insertKartaPojazdu();
+
+                int pojazdCurrval = ((StarostaMapper)mapper).getPojazdCurrval();
+                int wlascicielID = ((StarostaMapper)mapper).getWlascicielID(wlasciciel.getPesel());
+
+                ((StarostaMapper)mapper).insertPosiadanie(pojazdCurrval, wlascicielID);
+                ((StarostaMapper)mapper).insertNewDowodRejestracyjny(pojazdCurrval, wlascicielID);
+                ((StarostaMapper)mapper).insertKartaPojazdu(pojazdCurrval, wlascicielID);
 //                ((StarostaMapper)mapper).insertPrzeglad();
             }
             else if(!isWlascicielAlreadyUsed && isPojazdAlreadyUsed){
@@ -60,9 +64,13 @@ public class VehicleRegistration extends DatabaseComplexResponseOperation {
                 ((StarostaMapper)mapper).insertMarka(pojazd.getMarka());
                 ((StarostaMapper)mapper).insertPojazd(pojazd);
                 ((StarostaMapper)mapper).insertWlasciciel(wlasciciel);
-                ((StarostaMapper)mapper).insertPosiadanie();
-                ((StarostaMapper)mapper).insertKartaPojazdu();
-                ((StarostaMapper)mapper).insertNewDowodRejestracyjny();
+
+                int pojazdID = ((StarostaMapper)mapper).getPojazdID(pojazd.getNr_VIN());
+                int wlascicielID = ((StarostaMapper)mapper).getWlascicielID(wlasciciel.getPesel());
+
+                ((StarostaMapper)mapper).insertPosiadanie(pojazdID, wlascicielID);
+                ((StarostaMapper)mapper).insertKartaPojazdu(pojazdID, wlascicielID);
+                ((StarostaMapper)mapper).insertNewDowodRejestracyjny(pojazdID, wlascicielID);
 //                ((StarostaMapper)mapper).insertPrzeglad();
             }
 

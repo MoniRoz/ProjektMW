@@ -19,14 +19,14 @@ public interface StarostaMapper extends Mapper {
     @Insert("INSERT INTO Wlasciciel VALUES (seq_Wlasciciel.NEXTVAL, #{imie}, #{nazwisko}, #{pesel}, #{ulica}, #{kod_pocztowy}, #{miejscowosc}, #{nr_domu} )")
     void insertWlasciciel(Wlasciciel wlasciciel);
 
-    @Insert("INSERT INTO Posiadanie VALUES (seq_Posiadanie.NEXTVAL, seq_Pojazd.CURRVAL, seq_Wlasciciel.CURRVAL, current_date, null )")
-    void insertPosiadanie();
+    @Insert("INSERT INTO Posiadanie VALUES (seq_Posiadanie.NEXTVAL, #{idPojazd}, #{idWlasciciel}, current_date, null )")
+    void insertPosiadanie(@Param("idPojazd") int idPojazd, @Param("idWlasciciel") int idWlasciciel);
 
-    @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, seq_Pojazd.CURRVAL, seq_Wlasciciel.CURRVAL, 1, 'Starosta bialobrzeski', current_date, null )")
-    void insertNewDowodRejestracyjny();
+    @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, #{idPojazd}, #{idWlasciciel}, 1, 'Starosta bialobrzeski', current_date, null )")
+    void insertNewDowodRejestracyjny(@Param("idPojazd") int idPojazd, @Param("idWlasciciel") int idWlasciciel);
 
-    @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, seq_Pojazd.CURRVAL, seq_Wlasciciel.CURRVAL, 2, 'Starosta bialobrzeski', current_date, null )")
-    void insertKartaPojazdu();
+    @Insert("INSERT INTO Dokument VALUES (seq_Dokument.NEXTVAL, #{idPojazd}, #{idWlasciciel}, 2, 'Starosta bialobrzeski', current_date, null )")
+    void insertKartaPojazdu(@Param("idPojazd") int idPojazd, @Param("idWlasciciel") int idWlasciciel);
 
     @Insert("INSERT INTO przeglad VALUES (seq_Przeglad.NEXTVAL, seq_Dokument.CURRVAL, current_date, current_date + 3 * 365, 'SKP Myszogrod')")
     void insertPrzeglad();
@@ -74,5 +74,22 @@ public interface StarostaMapper extends Mapper {
 
     @Insert("INSERT INTO Posiadanie VALUES (seq_Posiadanie.NEXTVAL, (select ID_pojazdu from Pojazd where nr_VIN = #{vin}), (select ID_wlasciciela from Wlasciciel where pesel = #{pesel}), current_date, null )")
     void insertUpdatePosiadania(@Param("vin") String vin, @Param("pesel") long pesel);
+
+
+    @Select("select seq_Pojazd.CURRVAL from dual")
+    int getPojazdCurrval();
+
+    @Select("select seq_Wlasciciel.CURRVAL from dual")
+    int getWlascicielCurrval();
+
+
+
+
+
+    @Select("select ID_wlasciciela from Wlasciciel where pesel = #{pesel}")
+    int getWlascicielID(long pesel);
+
+    @Select("select ID_pojazdu from Pojazd where nr_VIN = #{vin}")
+    int getPojazdID(String vin);
 }
 
