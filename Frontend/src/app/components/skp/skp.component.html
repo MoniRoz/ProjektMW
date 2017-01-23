@@ -9,9 +9,9 @@
   <div id="content" class="row">
     <div class="container" style="min-height: 50vh; padding-top: 15px">
       <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.controls['search'].value)">
-        <div class="col-lg-4 col-sm-6 float-xs-right">
+        <div class="col-lg-6 float-xs-right">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Wpisz numer VIN pojazdu"
+            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub numer rejestracyjny pojazdu"
                    [maxlength]="17"
                    [formControl]="formularzWyszukiwarki.controls['search']">
             <span class="input-group-btn">
@@ -21,14 +21,15 @@
           </div>
         </div>
       </form>
-      <p id="message" class="infomessage">Skorzystaj z wyszukiwarki by znaleźć informacje o
+      <p id="message" class="infomessage" style=" margin-top: 20vh;">Skorzystaj z wyszukiwarki by znaleźć informacje o
         pojeździe</p>
-      <p class="infomessage" *ngIf="message">{{message}}</p>
+      <p id="infoPrzeglad" class="infomessage" style=" margin-top: 20vh;" *ngIf="message">{{message}}</p>
       <div id="onLoad" class="loader"></div>
       <div class="content">
         <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>
         <nowy-przeglad (notify)="nowyPrzeglad($event)"></nowy-przeglad>
         <div id="ownerLoad" class="loader"></div>
+        <p id="brakPrzegladow" class="infomessage">Brak przeglądów</p>
         <przeglad-info [TableData]="przegladyData"></przeglad-info>
       </div>
     </div>

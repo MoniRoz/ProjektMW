@@ -5,6 +5,8 @@ import {PrzegladyData} from "../policjant/przeglad-informacje/przykladowe-przegl
 import {Samochod} from "../../_mocks/samochod";
 import {AutoService} from "../../_services/auto.service";
 import * as $ from 'jquery';
+import {VINValidator} from "../../_validators/VIN.validator";
+import {PoliceSearchValidator} from "../../_validators/police-search.validator";
 
 @Component({
   selector: 'skp',
@@ -21,7 +23,7 @@ export class SKP implements OnInit {
   public constructor(private autoService: AutoService,
                      private fb: FormBuilder) {
     this.formularzWyszukiwarki = fb.group({
-      'search': [null]
+      'search': [null,PoliceSearchValidator.patternValidator]
     });
   }
 
@@ -31,15 +33,17 @@ export class SKP implements OnInit {
 
     $('#ownerLoad').show();
     if (this.carChoosen != null) {
+      $('#brakPrzegladow').hide();
       this.autoService.znajdzPrzeglady(this.carChoosen).subscribe(
         data => {
           console.log(data);
           $('#ownerLoad').hide();
-          this.przegladyData = PrzegladyData;
+          this.przegladyData = data;
+          if (data.length <= 0)
+            $('#brakPrzegladow').show();
         }, error => {
           console.log(error);
           $('#ownerLoad').hide();
-          this.przegladyData = PrzegladyData;
         }
       );
     }
@@ -71,6 +75,7 @@ export class SKP implements OnInit {
         $('#onLoad').toggle();
       }
     );
+    $('#infoPrzeglad').show();
   }
 
   clicked(value: any) {
@@ -79,19 +84,24 @@ export class SKP implements OnInit {
     this.przegladyData = [];
     this.message = null;
     $('.content').hide();
-    $('#message').hide();
+    $('.infomessage').hide();
     $('#onLoad').toggle();
     this.autoService.znajdzSamochody(value).subscribe(
       data => {
-        console.log(data);
+        if (data[0] != null) {
+          $('nowy-przeglad').show();
+          this.carData = data;
+        } else {
+          $('nowy-przeglad').hide();
+          $('#message').text('Brak winików').show();
+        }
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
-        this.carData = CarData;
       }, error => {
-        console.log(error);
+        $('nowy-przeglad').hide();
+        $('#message').text('Brak winików').show();
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
-        this.carData = CarData;
       });
   }
 }

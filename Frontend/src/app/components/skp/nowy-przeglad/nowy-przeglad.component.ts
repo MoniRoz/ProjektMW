@@ -1,6 +1,9 @@
 import {Component, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Przeglad} from "../../../_mocks/przeglad";
+import {DofIValidator} from "../../../_validators/date-of-issue.validator";
+import {EDateValidator} from "../../../_validators/expiry-date.validator";
+import {IServicingValidator} from "../../../_validators/issuing-servicing.validator";
 
 @Component({
   selector: 'nowy-przeglad',
@@ -12,9 +15,9 @@ export class NowyPrzeglad {
 
   constructor(private fb: FormBuilder) {
     this.formularzPrzegladu = fb.group({
-      'd_wystawienia': [null],
-      'd_waznosci': [null],
-      'wystawiajacy': [null]
+      'd_wystawienia': [null, DofIValidator.patternValidator],
+      'd_waznosci': [null, EDateValidator.patternValidator],
+      'wystawiajacy': [null, IServicingValidator.patternValidator]
     });
   }
 

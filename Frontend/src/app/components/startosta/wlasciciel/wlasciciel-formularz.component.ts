@@ -2,6 +2,13 @@ import {Component, EventEmitter, Output, Input, OnChanges, SimpleChanges} from '
 import {FormGroup, FormBuilder, Validators, Validator} from "@angular/forms";
 import {Wlasciciel} from "../../../_mocks/wlasciciel";
 import {StarostaService} from "../../../_services/starosta.service";
+import {NameValidator} from "../../../_validators/name.validator";
+import {LastnameValidator} from "../../../_validators/lastname.validator";
+import {StreetValidator} from "../../../_validators/street.validator";
+import {HousenumberValidator} from "../../../_validators/house_number.validator";
+import {PostcodeValidator} from "../../../_validators/poste-code.validator";
+import {TownValidator} from "../../../_validators/town.validator";
+import {P_I_NumberValidator} from "../../../_validators/personal-identit- number.component";
 
 @Component({
   selector: 'wlasciciel-formularz',
@@ -17,17 +24,17 @@ export class FormularzWlasciciela implements OnChanges {
   constructor(private fb: FormBuilder,
               private service: StarostaService) {
     this.formularzWlasciciela = fb.group({
-      'imie': [null, [Validators.required, Validators.pattern('^[A-ZŁŻ][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{1,20}$')]],
-      'nazwisko': [null, [Validators.required, Validators.pattern('^[A-ZĆŁŚŻŹ][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{1,20}((-|\\s)?[A-ZĆŁŚŻŹ][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{1,20})?$')]],
-      'ulica': [null, [Validators.required, Validators.pattern('^[A-ZĆŁŚŻŹ]{1,}[a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{0,20}((-|\\s)[A-ZĆŁŚŻŹ]{1,}[a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{0,20}){0,5}')]],
-      'nr_domu': [null, [Validators.required, Validators.pattern('^[0-9]{1,3}[a-z]?$')]],
-      'kod_pocztowy': [null, [Validators.required, Validators.pattern('^[0-9]{2}-[0-9]{3}$')]],
-      'miejscowosc': [null, [Validators.required, Validators.pattern('^[A-ZĆŁŚŻŹ][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{1,20}((-|\\s)?[A-ZĆŁŚŻŹ][a-ząćęłńóśźżĄĘŁŃÓŚŹŻ]{1,20})?$')]],
-      'pesel': [null, [Validators.required, Validators.pattern('^\\d{11}$')]]
+      'imie': [null, [Validators.required, NameValidator.patternValidator]],
+      'nazwisko': [null, [Validators.required, LastnameValidator.patternValidator]],
+      'ulica': [null, [Validators.required, StreetValidator.patternValidator]],
+      'nr_domu': [null, [Validators.required, HousenumberValidator.patternValidator]],
+      'kod_pocztowy': [null, [Validators.required, PostcodeValidator.patternValidator]],
+      'miejscowosc': [null, [Validators.required, TownValidator.patternValidator]],
+      'pesel': [null, [Validators.required, P_I_NumberValidator.patternValidator]]
     });
 
     this.formularzWyszukiwarki = fb.group({
-      'search': [null, [Validators.required, Validators.pattern('^\\d{11}$')]]
+      'search': [null, [Validators.required, P_I_NumberValidator.patternValidator]]
     });
 
     this.formularzWlasciciela.valueChanges.subscribe(() => {

@@ -3,6 +3,16 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {Samochod} from "../../../_mocks/samochod";
 import {StarostaService} from "../../../_services/starosta.service";
 import {CarData} from "../../policjant/pojazd-informacje/przykladowy-samochod";
+import {CarTypeValidator} from "../../../_validators/car_type.validator";
+import {ProductionYearValidator} from "../../../_validators/production_year.validator";
+import {VINValidator} from "../../../_validators/VIN.validator";
+import {MassValidator} from "../../../_validators/mass.validator";
+import {LogbookValidator} from "../../../_validators/logbook.validator";
+import {ECCValidator} from "../../../_validators/engine-cubic-capacity.validator";
+import {EPValidator} from "../../../_validators/engine-power.validator";
+import {FTValidator} from "../../../_validators/fuel-type.validator";
+import {CarMakeValidator} from "../../../_validators/car_make.validator";
+import {CMValidator} from "../../../_validators/car-model.validator";
 
 @Component({
   selector: 'rejestracja-samochodu',
@@ -18,20 +28,20 @@ export class RejestracjaSamochodu implements OnChanges {
   constructor(private fb: FormBuilder,
               private service: StarostaService) {
     this.formularzRejestracji = fb.group({
-      'rodzaj_pojazdu': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
-      'marka': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
-      'model': [null, [Validators.required, Validators.pattern('^[A-Z][a-z]+')]],
-      'rok_produkcji': [null, [Validators.required, Validators.pattern('^[1-2][0-9]{3}$')]],
-      'nr_VIN': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]],
-      'masa': [null, [Validators.required]],
-      'd_nr_rejestracyjny': [null, [Validators.required, Validators.pattern('^[A-Z0-9]{7}$')]],
-      'p_silnika': [null, [Validators.required]],
-      'm_silnika': [null, [Validators.required]],
-      'r_paliwa': [null, [Validators.required]]
+      'rodzaj_pojazdu': [null, [Validators.required, CarTypeValidator.patternValidator]],
+      'marka': [null, [Validators.required, CarMakeValidator.patternValidator]],
+      'model': [null, [Validators.required, CMValidator.patternValidator]],
+      'rok_produkcji': [null, [Validators.required, ProductionYearValidator.patternValidator]],
+      'nr_VIN': [null, [Validators.required, VINValidator.patternValidator]],
+      'masa': [null, [Validators.required, MassValidator.patternValidator]],
+      'd_nr_rejestracyjny': [null, [Validators.required, LogbookValidator.patternValidator]],
+      'p_silnika': [null, [Validators.required, ECCValidator.patternValidator]],
+      'm_silnika': [null, [Validators.required, EPValidator.patternValidator]],
+      'r_paliwa': [null, [Validators.required, FTValidator.patternValidator]]
     });
 
     this.formularzWyszukiwarki = fb.group({
-      'search': [null, [Validators.required, Validators.pattern('^[0-9A-HJ-NPR-Z]{17}$')]]
+      'search': [null, [Validators.required, VINValidator.patternValidator]]
     });
 
     this.formularzRejestracji.valueChanges.subscribe(() => {
@@ -49,7 +59,6 @@ export class RejestracjaSamochodu implements OnChanges {
       },
       error => {
         console.log(error);
-        // this.samochod = new Samochod('a', 'a', 'a', 'a', 2005, 'a', 1, 'a', 1, 1, 'P');
       }
     );
   }

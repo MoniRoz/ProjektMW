@@ -6,6 +6,8 @@ import {OwnersData} from "./wlascicele-informacje/przykladowi-wlasciciele";
 import {Samochod} from "../../_mocks/samochod";
 import * as $ from 'jquery';
 import {PrzegladyData} from "./przeglad-informacje/przykladowe-przeglady";
+import {Wlasciciel} from "../../_mocks/wlasciciel";
+import {PoliceSearchValidator} from "../../_validators/police-search.validator";
 
 @Component({
   selector: 'policjant',
@@ -23,7 +25,7 @@ export class Policjant implements OnInit {
   public constructor(private fb: FormBuilder,
                      private autoService: AutoService) {
     this.formularzWyszukiwarki = fb.group({
-      'search': [null]
+      'search': [null, PoliceSearchValidator.patternValidator]
     });
   }
 
@@ -40,27 +42,34 @@ export class Policjant implements OnInit {
     this.przegladyData = [];
 
     if (this.carChoosen != null) {
+      $('#brakPrzegladow').hide();
       $('#ownerLoad').show();
       this.autoService.znajdzWlascicieli(this.carChoosen).subscribe(
         data => {
           console.log(data);
           $('#ownerLoad').hide();
-          this.ownerData = OwnersData;
+          for (let i = 0; i < data.length; i++) {
+            if (data[i].data_koncowa == null)
+              data[i].data_koncowa = '-';
+          }
+          this.ownerData = data;
+          if (data.length <= 0)
+            $('#brakWlascicieli').show();
         }, error => {
           console.log(error);
           $('#ownerLoad').hide();
-          this.ownerData = OwnersData;
         }
       );
       this.autoService.znajdzPrzeglady(this.carChoosen).subscribe(
         data => {
           console.log(data);
           $('#ownerLoad').hide();
-          this.przegladyData = PrzegladyData;
+          this.przegladyData = data;
+          if (data.length <= 0)
+            $('#brakPrzegladow').show();
         }, error => {
           console.log(error);
           $('#ownerLoad').hide();
-          this.przegladyData = PrzegladyData;
         }
       );
     }
@@ -76,18 +85,17 @@ export class Policjant implements OnInit {
     $('#onLoad').toggle();
     this.autoService.znajdzSamochody(value).subscribe(
       data => {
-        console.log("data", data);
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
-        let samochod: Array<any> = [];
-        samochod.push(new Samochod('a', 'a', 'a', 2008, 'a', 1111, 'a', 1.2, 1.3, 'a'));
-        this.carData = samochod;
-        console.log("car data: ", this.carData);
+        if (data[0] != null) {
+          this.carData = data;
+        } else
+          $('#info').text('Brak winików').show();
       }, error => {
         console.log(error);
         $('#onLoad').toggle();
         $('.content').fadeIn('slow');
-        this.carData = CarData;
+        $('#info').text('Brak winików').show();
       });
   }
 }

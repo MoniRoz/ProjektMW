@@ -101,11 +101,6 @@ public interface StarostaMapper extends Mapper {
     @Select("select seq_Pojazd.CURRVAL from dual")
     int getPojazdCurrval();
 
-    @Select("select seq_Wlasciciel.CURRVAL from dual")
-    int getWlascicielCurrval();
-
-
-
 
 
     @Select("select ID_wlasciciela from Wlasciciel where pesel = #{pesel}")
@@ -113,5 +108,23 @@ public interface StarostaMapper extends Mapper {
 
     @Select("select ID_pojazdu from Pojazd where nr_VIN = #{vin}")
     int getPojazdID(String vin);
+
+
+
+
+
+    @Select("select ID_przegladu from Przeglad, Dokument, Pojazd\n" +
+            "where Dokument.ID_POJAZDU = Pojazd.ID_POJAZDU and Przeglad.ID_DOKUMENT = Dokument.ID_DOKUMENT\n" +
+            "and id_typu = 1 and nr_VIN = #{vin} and data_koncowa is null and data_waznosci > current_date")
+    int getPrzegladID(String vin);
+
+
+    @Update("update Przeglad set ID_dokument = \n" +
+            "(\n" +
+            "    select ID_posiadania from Posiadanie, Pojazd, Wlasciciel where Pojazd.ID_Pojazdu = Posiadanie.ID_Pojazdu and Wlasciciel.ID_Wlasciciela = Posiadanie.ID_Wlasciciela \n" +
+            "    and nr_VIN = #{vin} and pesel = #{pesel} and data_koncowa is null\n" +
+            ")\n" +
+            "where ID_Przegladu = #{id}")
+    int updatePrzeglad(@Param("id") int id, @Param("vin") String vin, @Param("pesel") long pesel);
 }
 
