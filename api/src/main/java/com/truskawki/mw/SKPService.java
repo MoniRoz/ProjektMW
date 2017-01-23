@@ -15,7 +15,7 @@ import java.util.List;
 public class SKPService {
 
     @Autowired
-    private PolicjantRepository policjantRepository;
+    private SKPRepository SKPRepository;
 
     private Logger logger = Logger.getLogger(StarostaService.class);
 
@@ -23,16 +23,9 @@ public class SKPService {
         PrzegladPOST przegladPOST = parseToPrzegladPost(requestBody);
 
         TruskawkiSimpleResponse truskawkiSimpleResponse;
-        int result;
+        truskawkiSimpleResponse = SKPRepository.addPrzeglad(przegladPOST.getVin(), przegladPOST.getPrzeglad());
 
-//        if(validateAttributes(vehicleUVM, ownerUVM)){
-//            truskawkiSimpleResponse = starostaRepository.addVehicle(vehicleUVM, ownerUVM);
-//            result = truskawkiSimpleResponse.getResult();
-//        }
-//        else
-//            result = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-
-//        response.setStatus(result);
+        response.setStatus(truskawkiSimpleResponse.getResult());
     }
 
 

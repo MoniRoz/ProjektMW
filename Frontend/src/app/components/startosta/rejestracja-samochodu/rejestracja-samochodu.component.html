@@ -60,7 +60,7 @@
           </div>
           <div class="col-sm-4">
             <label>Rok produkcji: </label>
-            <input [maxlength]="4" type="number" class="form-control" min="0000" max="2017"
+            <input [maxlength]="4" type="number" class="form-control" min="1900" max="2099"
                    [formControl]="formularzRejestracji.controls['rok_produkcji']"
                    [ngModel]="samochod.rok_produkcji">
           </div>
