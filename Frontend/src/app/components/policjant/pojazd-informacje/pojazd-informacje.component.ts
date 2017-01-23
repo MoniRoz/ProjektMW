@@ -19,9 +19,9 @@ export class PojazdInfo implements OnInit,OnChanges {
     {title: 'Rejestracja', name: 'd_nr_rejestracyjny'},
     {title: 'VIN', name: 'nr_VIN'},
     {title: 'Rok', name: 'rok_produkcji'},
-    {title: 'Masa', name: 'masa'},
-    {title: 'Pojemność', name: 'p_silnika'},
-    {title: 'Moc', name: 'm_silnika'},
+    {title: 'Masa [kg]', name: 'masa'},
+    {title: 'Pojemność [l]', name: 'p_silnika'},
+    {title: 'Moc [kW]', name: 'm_silnika'},
     {title: 'Rodzaj paliwa', name: 'r_paliwa'}
   ];
   public page: number = 1;

@@ -4,13 +4,13 @@ public class Pojazd {
     private String marka;
     private String rodzaj_pojazdu;
     private String model;
-    private int rok_produkcji;
     private String nr_VIN;
+    private String r_paliwa;
+    private String d_nr_rejestracyjny;
+    private int rok_produkcji;
     private long masa;
     private long p_silnika;
     private long m_silnika;
-    private long r_silnika;
-    private String d_nr_rejestracyjny;
 
     public String getMarka() {
         return marka;
@@ -76,12 +76,12 @@ public class Pojazd {
         this.m_silnika = m_silnika;
     }
 
-    public long getR_silnika() {
-        return r_silnika;
+    public String getR_paliwa() {
+        return r_paliwa;
     }
 
-    public void setR_silnika(long r_silnika) {
-        this.r_silnika = r_silnika;
+    public void setR_paliwa(String r_paliwa) {
+        this.r_paliwa = r_paliwa;
     }
 
     public String getD_nr_rejestracyjny() {

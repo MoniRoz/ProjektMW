@@ -7,7 +7,9 @@ public class Wlasciciel {
     private String ulica;
     private String kod_pocztowy;
     private String miejscowosc;
-    private int nr_domu;
+    private String nr_domu;
+    private String data_poczatkowa;
+    private String data_koncowa;
 
     public String getImie() {
         return imie;
@@ -57,11 +59,27 @@ public class Wlasciciel {
         this.miejscowosc = miejscowosc;
     }
 
-    public int getNr_domu() {
+    public String getNr_domu() {
         return nr_domu;
     }
 
-    public void setNr_domu(int nr_domu) {
+    public void setNr_domu(String nr_domu) {
         this.nr_domu = nr_domu;
+    }
+
+    public String getData_poczatkowa() {
+        return data_poczatkowa;
+    }
+
+    public void setData_poczatkowa(String data_poczatkowa) {
+        this.data_poczatkowa = data_poczatkowa;
+    }
+
+    public String getData_koncowa() {
+        return data_koncowa;
+    }
+
+    public void setData_koncowa(String data_koncowa) {
+        this.data_koncowa = data_koncowa;
     }
 }

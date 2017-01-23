@@ -26,7 +26,7 @@ public class StarostaController {
 	}
 
 	@RequestMapping(value = "starosta/dane_samochod", method = RequestMethod.GET)
-	public Pojazd getSamochod(@RequestParam long vin, HttpServletResponse response) {
+	public Pojazd getSamochod(@RequestParam String vin, HttpServletResponse response) {
 		return starostaService.getPojazd(vin, response);
 	}
 }

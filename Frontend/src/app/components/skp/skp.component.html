@@ -23,12 +23,13 @@
       </form>
       <p id="message" class="infomessage">Skorzystaj z wyszukiwarki by znaleźć informacje o
         pojeździe</p>
-      <p class="infomessage" *ngIf="message">{{message}}</p>
+      <p id="infoPrzeglad" class="infomessage" *ngIf="message">{{message}}</p>
       <div id="onLoad" class="loader"></div>
       <div class="content">
         <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>
         <nowy-przeglad (notify)="nowyPrzeglad($event)"></nowy-przeglad>
         <div id="ownerLoad" class="loader"></div>
+        <p id="brakPrzegladow" class="infomessage">Brak przeglądów</p>
         <przeglad-info [TableData]="przegladyData"></przeglad-info>
       </div>
     </div>

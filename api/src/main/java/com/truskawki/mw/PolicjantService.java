@@ -2,16 +2,15 @@ package com.truskawki.mw;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.truskawki.mw.lib.Pojazd;
-import com.truskawki.mw.lib.PojazdPost;
-import com.truskawki.mw.lib.TruskawkiSimpleResponse;
-import com.truskawki.mw.lib.Wlasciciel;
+import com.truskawki.mw.lib.*;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PolicjantService {
 
@@ -20,7 +19,7 @@ public class PolicjantService {
 
     private Logger logger = Logger.getLogger(StarostaService.class);
 
-    public Pojazd getPojazd(String value, HttpServletResponse response) {
+    public List<Pojazd> getPojazd(String value, HttpServletResponse response) {
         TruskawkiSimpleResponse truskawkiSimpleResponse = null;
         int result;
 
@@ -32,7 +31,34 @@ public class PolicjantService {
         result = truskawkiSimpleResponse.getResult();
         response.setStatus(result);
 
-        return (Pojazd) truskawkiSimpleResponse.getResponse();
+        List<Pojazd> list = new ArrayList<>();
+        list.add((Pojazd) truskawkiSimpleResponse.getResponse());
+
+        return list;
+    }
+
+    public List<Wlasciciel> getWlasciciele(String vin, HttpServletResponse response) {
+        TruskawkiSimpleResponse truskawkiSimpleResponse = null;
+        int result;
+
+        truskawkiSimpleResponse = policjantRepository.getWlasciciele(vin);
+
+        result = truskawkiSimpleResponse.getResult();
+        response.setStatus(result);
+
+        return (List<Wlasciciel>) truskawkiSimpleResponse.getResponse();
+    }
+
+    public List<Przeglad> getPrzeglady(String vin, HttpServletResponse response) {
+        TruskawkiSimpleResponse truskawkiSimpleResponse = null;
+        int result;
+
+        truskawkiSimpleResponse = policjantRepository.getPrzeglady(vin);
+
+        result = truskawkiSimpleResponse.getResult();
+        response.setStatus(result);
+
+        return (List<Przeglad>) truskawkiSimpleResponse.getResponse();
     }
 
     private PojazdPost parseToVehiclePost(String requestBody) {
