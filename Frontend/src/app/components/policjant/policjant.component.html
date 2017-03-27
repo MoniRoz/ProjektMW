@@ -1,0 +1,37 @@
+<div class="container" style="margin-bottom: 20px">
+  <div class="row">
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="tab nav-link active">Wyszukaj informacje o pojazdach</a>
+      </li>
+    </ul>
+  </div>
+  <div id="content" class="row">
+    <div class="container" style="min-height: 50vh; padding-top: 15px">
+      <form [formGroup]="formularzWyszukiwarki" (ngSubmit)="clicked(formularzWyszukiwarki.controls['search'].value)">
+        <div class="col-lg-6 float-xs-right">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Wpisz numer VIN lub numer rejestracyjny pojazdu"
+                   [maxlength]="17"
+                   [formControl]="formularzWyszukiwarki.controls['search']">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"
+                [disabled]="!formularzWyszukiwarki.valid">Szukaj</button>
+      </span>
+          </div>
+        </div>
+      </form>
+      <p id="info" class="infomessage" style=" margin-top: 20vh;">Skorzystaj z wyszukiwarki by znaleźć informacje o interesujących Cię
+        pojazdach</p>
+      <div id="onLoad" class="loader"></div>
+      <div class="content">
+        <pojazd-info [TableData]="carData" (notify)="myChange($event)"></pojazd-info>
+        <div id="ownerLoad" class="loader"></div>
+        <przeglad-info [TableData]="przegladyData"></przeglad-info>
+        <wlasciciel-info [TableData]="ownerData"></wlasciciel-info>
+        <p id="brakPrzegladow" class="infomessage">Brak przeglądów</p>
+        <p id="brakWlascicieli" class="infomessage">Brak właścicieli</p>
+      </div>
+    </div>
+  </div>
+</div>

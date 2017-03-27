@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div style="padding: 15px">
+      <div class="row">
+        <form [formGroup]="formularzWyszukiwarki"
+              (ngSubmit)="isVehicleExists(formularzWyszukiwarki.controls['search'].value)">
+          <div class="col-lg-4 col-sm-6 float-xs-right">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Wpisz numer VIN pojazdu"
+                     [maxlength]="17"
+                     [formControl]="formularzWyszukiwarki.controls['search']">
+              <span class="input-group-btn">
+        <button class="btn btn-default" type="submit"
+                [disabled]="!formularzWyszukiwarki.valid">Szukaj</button>
+      </span>
+            </div>
+          </div>
+        </form>
+      </div>
+      <h4 id="#formHeader">Dane pojazdu:</h4>
+      <form [formGroup]="formularzRejestracji">
+        <div class="form-group row">
+          <div class="col-sm-12">
+            <label>Rodzaj pojazdu: </label>
+            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['rodzaj_pojazdu']"
+                   [ngModel]="samochod.rodzaj_pojazdu">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>Marka: </label>
+            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['marka']"
+                   [ngModel]="samochod.marka">
+          </div>
+          <div class="col-sm-6">
+            <label>Model: </label>
+            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['model']"
+                   [ngModel]="samochod.model">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>Numer rejestracyjny: </label>
+            <input [maxlength]="7" type="text" class="form-control"
+                   [formControl]="formularzRejestracji.controls['d_nr_rejestracyjny']">
+          </div>
+          <div class="col-sm-6">
+            <label>Numer identyfikacyjny VIN: </label>
+            <input [maxlength]="17" type="text" class="form-control"
+                   [formControl]="formularzRejestracji.controls['nr_VIN']"
+                   [ngModel]="samochod.nr_VIN">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <label>Masa: </label>
+            <input [maxlength]="5" type="number" class="form-control" min="0" max="99999"
+                   [formControl]="formularzRejestracji.controls['masa']"
+                   [ngModel]="samochod.masa">
+          </div>
+          <div class="col-sm-4">
+            <label>Rok produkcji: </label>
+            <input [maxlength]="4" type="number" class="form-control" min="1900" max="2099"
+                   [formControl]="formularzRejestracji.controls['rok_produkcji']"
+                   [ngModel]="samochod.rok_produkcji">
+          </div>
+          <div class="col-sm-4">
+            <label>Pojemność silnika: </label>
+            <input [maxlength]="15" step="0.1" min="0.0"
+                   type="number" class="form-control"
+                   [formControl]="formularzRejestracji.controls['p_silnika']"
+                   [ngModel]="samochod.p_silnika">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-6">
+            <label>Moc silnika: </label>
+            <input type="number" min="0" class="form-control"
+                   [formControl]="formularzRejestracji.controls['m_silnika']"
+                   [ngModel]="samochod.m_silnika">
+          </div>
+          <div class="col-sm-6">
+            <label>Rodzaj paliwa: </label>
+            <input type="text" class="form-control" [formControl]="formularzRejestracji.controls['r_paliwa']"
+                   [ngModel]="samochod.r_paliwa">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

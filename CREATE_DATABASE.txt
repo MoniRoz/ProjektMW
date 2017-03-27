@@ -1,0 +1,73 @@
+CREATE SEQUENCE seq_Pojazd;
+CREATE SEQUENCE seq_Wlasciciel;
+CREATE SEQUENCE seq_Dokument;
+CREATE SEQUENCE seq_Posiadanie;
+CREATE SEQUENCE seq_Typ_dokumentu;
+CREATE SEQUENCE seq_Marka;
+CREATE SEQUENCE seq_Rodzaj_pojazdu;
+CREATE SEQUENCE seq_Przeglad;
+
+CREATE TABLE Pojazd (ID_pojazdu number(10) NOT NULL, ID_marki number(10) NOT NULL, ID_rodzaju_pojazdu number(10) NOT NULL, model varchar2(50) NOT NULL, nr_VIN varchar2(50) NOT NULL, d_nr_rejestracyjny varchar2(50) NOT NULL, r_paliwa varchar2(50) NOT NULL, rok_produkcji number(4) NOT NULL, masa number(10) NOT NULL, p_silnika number(10, 1) NOT NULL, m_silnika number(10, 1) NOT NULL, PRIMARY KEY (ID_pojazdu));
+CREATE TABLE Wlasciciel (ID_wlasciciela number(10) NOT NULL, imie varchar2(50) NOT NULL, nazwisko varchar2(50) NOT NULL, pesel number(11) NOT NULL, ulica varchar2(50) NOT NULL, kod_pocztowy varchar2(50) NOT NULL, miejscowosc varchar2(50) NOT NULL, nr_domu varchar2(50) NOT NULL, PRIMARY KEY (ID_wlasciciela));
+CREATE TABLE Dokument (ID_dokument number(10) NOT NULL, ID_pojazdu number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, ID_typu number(10) NOT NULL, wystawiajacy varchar2(50) NOT NULL, data_poczatkowa date NOT NULL, data_koncowa date, PRIMARY KEY (ID_dokument));
+CREATE TABLE Posiadanie (ID_posiadania number(10) NOT NULL, ID_pojazdu number(10) NOT NULL, ID_wlasciciela number(10) NOT NULL, data_poczatkowa date NOT NULL, data_koncowa date, PRIMARY KEY (ID_posiadania));
+CREATE TABLE Typ_dokumentu (Id_typu number(10) NOT NULL, typ_dokumentu varchar2(50) NOT NULL, PRIMARY KEY (Id_typu));
+CREATE TABLE Marka (ID_marki number(10) NOT NULL, marka varchar2(50) NOT NULL, PRIMARY KEY (ID_marki));
+CREATE TABLE Rodzaj_pojazdu (ID_rodzaju_pojazdu number(10) NOT NULL, rodzaj_pojazdu varchar2(50) NOT NULL, PRIMARY KEY (ID_rodzaju_pojazdu));
+CREATE TABLE Przeglad (ID_przegladu number(10) NOT NULL, ID_dokument number(10) NOT NULL, d_wystawienia date NOT NULL, d_waznosci date NOT NULL, wystawiajacy varchar2(50) NOT NULL, PRIMARY KEY (ID_przegladu));
+
+ALTER TABLE Posiadanie ADD CONSTRAINT FKPosiadanie130716 FOREIGN KEY (ID_pojazdu) REFERENCES Pojazd (ID_pojazdu);
+ALTER TABLE Posiadanie ADD CONSTRAINT FKPosiadanie17191 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
+ALTER TABLE Dokument ADD CONSTRAINT FKDokument993508 FOREIGN KEY (ID_typu) REFERENCES Typ_dokumentu (Id_typu);
+ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd804539 FOREIGN KEY (ID_marki) REFERENCES Marka (ID_marki);
+ALTER TABLE Pojazd ADD CONSTRAINT FKPojazd169156 FOREIGN KEY (ID_rodzaju_pojazdu) REFERENCES Rodzaj_pojazdu (ID_rodzaju_pojazdu);
+ALTER TABLE Przeglad ADD CONSTRAINT FKPrzeglad335326 FOREIGN KEY (ID_dokument) REFERENCES Dokument (ID_dokument);
+ALTER TABLE Dokument ADD CONSTRAINT FKDokument834475 FOREIGN KEY (ID_wlasciciela) REFERENCES Wlasciciel (ID_wlasciciela);
+ALTER TABLE Dokument ADD CONSTRAINT FKDokument989207 FOREIGN KEY (ID_pojazdu) REFERENCES Pojazd (ID_pojazdu);
+
+
+
+
+
+INSERT INTO Typ_dokumentu VALUES (1, 'Dowod rejestracyjny');
+INSERT INTO Typ_dokumentu VALUES (2, 'Karta pojazdu');
+
+----
+
+create or replace FUNCTION isPojazdAlreadyUsed (v_vin IN VARCHAR2)
+return integer is
+
+v_flag integer := 0;
+
+begin
+
+SELECT
+   CASE WHEN EXISTS(SELECT 1 FROM Pojazd where nr_VIN = v_vin)
+     THEN 1
+     ELSE 0
+   END
+into v_flag FROM dual;
+
+return v_flag;
+end;
+/
+
+----
+
+create or replace FUNCTION isWlascicielAlreadyUsed (v_pesel IN integer)
+return integer is
+
+v_flag integer := 0;
+
+begin
+
+SELECT
+   CASE WHEN EXISTS(SELECT 1 FROM Wlasciciel where pesel = v_pesel)
+     THEN 1
+     ELSE 0
+   END
+into v_flag FROM dual;
+
+return v_flag;
+end;
+/
