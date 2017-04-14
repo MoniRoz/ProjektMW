@@ -1,3 +1,10 @@
+## PROJECT OVERVIEW
+
+![Starostwo wl](/screenshots/starostwo_wlasciciel.png)
+![Starostwo auto](/screenshots/starostwo_pojazd.png)
+![Policja](/screenshots/policja.png)
+![SKP](/screenshots/skp.png)
+
 ## JAK ŻYĆ ?
 ### Wymagania:
 - git
